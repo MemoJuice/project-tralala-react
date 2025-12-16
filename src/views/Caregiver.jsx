@@ -1,7 +1,7 @@
-export default function About() {
+export default function Caregiver() {
   return (
     <div>
-      <h1>About</h1>
+      <h1>Caregiver</h1>
       <p>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est
         repudiandae adipisci voluptate voluptatem ex animi, illo maxime at quam
