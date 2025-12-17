@@ -9,6 +9,9 @@ import AdminManagement from "./views/AdminManagement";
 import Checkout from "./views/Checkout";
 import OrderConfirmation from "./views/OrderConfirmation";
 import Login from "./views/Login";
+import SignUp from "./views/SignUp";
+import UserDashboard from "./views/UserDashboard";
+
 import UserProfile from "./views/UserProfile";
 import Dashboard from "./views/Dashboard";
 import DashboardIncome from "./views/DashboardIncome";
@@ -35,6 +38,8 @@ const router = createBrowserRouter([
       { path: "checkout", element: <Checkout />},
       { path: "order_confirmation", element: <OrderConfirmation />},
       { path: "login", element: <Login /> },
+      { path: "signup", element: <SignUp /> },
+      { path: "userdashboard", element: <UserDashboard /> },
       { path: "userprofile", element: <UserProfile /> },
       { path: "dashboard", element: <Dashboard /> },
       { path: "dashboardincome", element: <DashboardIncome /> },
