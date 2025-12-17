@@ -5,6 +5,9 @@ import About from "./views/About";
 import Contact from "./views/Contact";
 import Caregiver from "./views/Caregiver";
 import Services from "./views/Services";
+import AdminManagement from "./views/AdminManagement";
+import Checkout from "./views/Checkout";
+import OrderConfirmation from "./views/OrderConfirmation";
 import Login from "./views/Login";
 import UserProfile from "./views/UserProfile";
 import Dashboard from "./views/Dashboard";
@@ -28,6 +31,10 @@ const router = createBrowserRouter([
       { path: "services", element: <Services /> },
       { path: "contact", element: <Contact /> },
       { path: "caregiver", element: <Caregiver /> },
+      { path: "management", element: <AdminManagement />},
+      { path: "checkout", element: <Checkout />},
+      { path: "order_confirmation", element: <OrderConfirmation />},
+      { path: "login", element: <Login /> }
       { path: "login", element: <Login /> },
       { path: "userprofile", element: <UserProfile /> },
       { path: "dashboard", element: <Dashboard /> },
