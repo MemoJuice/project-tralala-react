@@ -6,8 +6,9 @@ import Contact from "./views/Contact";
 import Caregiver from "./views/Caregiver";
 import Services from "./views/Services";
 import Login from "./views/Login";
-import FormSignUp from "./views/FormSignUp";
+import FormSignUp from "./views/Register";
 import AdminDashboard from "./views/AdminDashboard";
+import Register from "./views/Register";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
       { path: "login", element: <Login /> },
       { path: "formsignup", element: <FormSignUp />},
       { path: "admindashboard", element: <AdminDashboard /> },
+      { path: "register", element: <Register /> },
     ],
   },
 ]);

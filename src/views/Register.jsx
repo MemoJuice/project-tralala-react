@@ -1,4 +1,4 @@
-export default function FormSignUp() {
+export default function Register() {
     return (
         <div>
             <section className="flex">
