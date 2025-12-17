@@ -50,7 +50,7 @@ export default function AdminManagement() {
                             </div>
                             <div>
                                 <button className="flex w-15 h-full rounded-full bg-white outline-1 outline-gray-300 hover:cursor-pointer hover:outline-indigo-500 active:bg-indigo-300">
-                                    <img src="images/user 2.svg" className="w-5 h-5 my-auto ml-2 mr-1" />
+                                    <img src="images/user.svg" className="w-5 h-5 my-auto ml-2 mr-1" />
                                     <svg viewBox="0 0 16 16" fill="currentColor" data-slot="icon" aria-hidden="true" className="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4">
                                         <path d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd" />
                                     </svg>
@@ -166,7 +166,7 @@ export default function AdminManagement() {
                                 </td>
                                 <td>
                                     <div className="flex border-none justify-center">
-                                        <img src="images/user 2.svg" className="w-7 bg-indigo-100 rounded-full border border-indigo-300" />
+                                        <img src="images/user.svg" className="w-7 bg-indigo-100 rounded-full border border-indigo-300" />
                                     </div>
                                 </td>
                                 <td>John Smith</td>
@@ -189,7 +189,7 @@ export default function AdminManagement() {
                                 </td>
                                 <td>
                                     <div className="flex border-none justify-center">
-                                        <img src="images/user 2.svg" className="w-7 bg-indigo-100 rounded-full border border-indigo-300" />
+                                        <img src="images/user.svg" className="w-7 bg-indigo-100 rounded-full border border-indigo-300" />
                                     </div>
                                 </td>
                                 <td>Olivia Bennett</td>
@@ -212,7 +212,7 @@ export default function AdminManagement() {
                                 </td>
                                 <td>
                                     <div className="flex border-none justify-center">
-                                        <img src="images/user 2.svg" className="w-7 bg-indigo-100 rounded-full border border-indigo-300" />
+                                        <img src="images/user.svg" className="w-7 bg-indigo-100 rounded-full border border-indigo-300" />
                                     </div>
                                 </td>
                                 <td>Daniel Warren</td>
@@ -235,7 +235,7 @@ export default function AdminManagement() {
                                 </td>
                                 <td>
                                     <div className="flex border-none justify-center">
-                                        <img src="images/user 2.svg" className="w-7 bg-indigo-100 rounded-full border border-indigo-300" />
+                                        <img src="images/user.svg" className="w-7 bg-indigo-100 rounded-full border border-indigo-300" />
                                     </div>
                                 </td>
                                 <td>Chloe Hayes</td>
@@ -258,7 +258,7 @@ export default function AdminManagement() {
                                 </td>
                                 <td>
                                     <div className="flex border-none justify-center">
-                                        <img src="images/user 2.svg" className="w-7 bg-indigo-100 rounded-full border border-indigo-300" />
+                                        <img src="images/user.svg" className="w-7 bg-indigo-100 rounded-full border border-indigo-300" />
                                     </div>
                                 </td>
                                 <td>Marcus Reed</td>
@@ -281,7 +281,7 @@ export default function AdminManagement() {
                                 </td>
                                 <td>
                                     <div className="flex border-none justify-center">
-                                        <img src="images/user 2.svg" className="w-7 bg-indigo-100 rounded-full border border-indigo-300" />
+                                        <img src="images/user.svg" className="w-7 bg-indigo-100 rounded-full border border-indigo-300" />
                                     </div>
                                 </td>
                                 <td>Isabelle Clark</td>
@@ -304,7 +304,7 @@ export default function AdminManagement() {
                                 </td>
                                 <td>
                                     <div className="flex border-none justify-center">
-                                        <img src="images/user 2.svg" className="w-7 bg-indigo-100 rounded-full border border-indigo-300" />
+                                        <img src="images/user.svg" className="w-7 bg-indigo-100 rounded-full border border-indigo-300" />
                                     </div>
                                 </td>
                                 <td>Lucas Mitchell</td>
@@ -327,7 +327,7 @@ export default function AdminManagement() {
                                 </td>
                                 <td>
                                     <div className="flex border-none justify-center">
-                                        <img src="images/user 2.svg" className="w-7 bg-indigo-100 rounded-full border border-indigo-300" />
+                                        <img src="images/user.svg" className="w-7 bg-indigo-100 rounded-full border border-indigo-300" />
                                     </div>
                                 </td>
                                 <td>Mark Wilburg</td>
@@ -350,7 +350,7 @@ export default function AdminManagement() {
                                 </td>
                                 <td>
                                     <div className="flex border-none justify-center">
-                                        <img src="images/user 2.svg" className="w-7 bg-indigo-100 rounded-full border border-indigo-300" />
+                                        <img src="images/user.svg" className="w-7 bg-indigo-100 rounded-full border border-indigo-300" />
                                     </div>
                                 </td>
                                 <td>Nicholas Agenn</td>
@@ -373,7 +373,7 @@ export default function AdminManagement() {
                                 </td>
                                 <td>
                                     <div className="flex border-none justify-center">
-                                        <img src="images/user 2.svg" className="w-7 bg-indigo-100 rounded-full border border-indigo-300" />
+                                        <img src="images/user.svg" className="w-7 bg-indigo-100 rounded-full border border-indigo-300" />
                                     </div>
                                 </td>
                                 <td>Mia Nadinn</td>

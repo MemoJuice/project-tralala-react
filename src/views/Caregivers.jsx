@@ -1,4 +1,4 @@
-export default function Caregiver() {
+export default function Caregivers() {
   return (
     <div>
       <h1>Caregiver</h1>
