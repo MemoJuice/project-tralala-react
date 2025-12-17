@@ -19,6 +19,9 @@ export default function Navbar() {
         <li>
           <Link to="/contact">ติดต่อเรา</Link>
         </li>
+        <li>
+          <Link to="/login">เข้าสู่ระบบ</Link>
+        </li>
       </ul>
     </nav>
   );
