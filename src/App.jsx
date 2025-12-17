@@ -10,6 +10,8 @@ import UserProfile from "./views/UserProfile";
 import Dashboard from "./views/Dashboard";
 import DashboardIncome from "./views/DashboardIncome";
 import DashboardSchaedule from "./views/DashboardSchaedule";
+import Order from "./views/Order";
+import Productcard from "./views/Productcard"
 
 const router = createBrowserRouter([
   {
@@ -31,6 +33,8 @@ const router = createBrowserRouter([
       { path: "dashboard", element: <Dashboard /> },
       { path: "dashboardincome", element: <DashboardIncome /> },
       { path: "dashbordschaedule", element: <DashboardSchaedule /> },
+      { path: "order", element: <Order /> },
+      { path: "productcard", element: <Productcard /> },
     ],
   },
 ]);
