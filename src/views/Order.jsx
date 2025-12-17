@@ -14,7 +14,7 @@
 					<div className="grid grid-cols-[1.4fr_.6fr_.8fr_.8fr_.1fr] gap-3 items-center p-3 rounded-xl bg-white shadow-sm">
 						<div className="grid grid-cols-[96px_1fr] gap-3 items-center">
 							<div className="rounded-xl overflow-hidden bg-gray-100 hidden md:block">
-								<img src="./../asstes/images/p1-post2.png" className="w-24 h-auto" />
+								<img src="images/p1-post2.png" className="w-24 h-auto" />
 							</div>
 							<div>
 								<h3 className="text-base font-semibold ">แพคเกจการดูแลระยะสั้น 3 ชั่วโมง</h3>

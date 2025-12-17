@@ -3,13 +3,12 @@ import Layout from "./components/Layout";
 import Home from "./views/Home";
 import About from "./views/About";
 import Contact from "./views/Contact";
-import Caregiver from "./views/Caregiver";
+import Caregivers from "./views/Caregivers";
 import Services from "./views/Services";
 import AdminManagement from "./views/AdminManagement";
 import Checkout from "./views/Checkout";
 import OrderConfirmation from "./views/OrderConfirmation";
 import Login from "./views/Login";
-import Regi from "./views/Register";
 import AdminDashboard from "./views/AdminDashboard";
 import Register from "./views/Register";
 import SignUp from "./views/SignUp";
@@ -35,7 +34,7 @@ const router = createBrowserRouter([
       { path: "about", element: <About /> },
       { path: "services", element: <Services /> },
       { path: "contact", element: <Contact /> },
-      { path: "caregiver", element: <Caregiver /> },
+      { path: "caregivers", element: <Caregivers /> },
       { path: "management", element: <AdminManagement />},
       { path: "checkout", element: <Checkout />},
       { path: "order_confirmation", element: <OrderConfirmation />},

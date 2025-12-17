@@ -9,7 +9,7 @@ export default function About() {
           <div class="flex flex-col items-center pb-4">
             <h2 class="pb-4 text-2xl font-semibold text-indigo-900">Git Status Trala @JSD11</h2>
             <div class=" px-4 max-w-100">
-              <img src="git_status_tralala_group.png" class="w-full rounded-3xl border-3 border-red-200" />
+              <img src="images/git_status_tralala_group.png" class="w-full rounded-3xl border-3 border-red-200" />
             </div>
             <p class="w-fit mt-6 mr-auto rounded-xl bg-sky-50 px-3 py-2 mx-auto text-base text-black">
               ร่าเริง แจ่มใส ใส่ใจ เพื่อนทุกคน

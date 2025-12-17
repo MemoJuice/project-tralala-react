@@ -6,7 +6,7 @@ export default function AdminDashboard() {
                 <ul className="flex gap-5 pt-2 ">
 
                     <li className="flex flex-col items-center gap-2">
-                        <a href="inbox"><img className="w-5 " src="inbox.png" /></a>
+                        <a href="inbox"><img className="w-5 " src="images/inbox.png" /></a>
                         <p className="">inbox</p>
                     </li>
                     <li><a href="file-manager">File Manager</a></li>

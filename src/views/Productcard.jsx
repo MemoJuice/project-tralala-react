@@ -5,15 +5,15 @@ export default function Productcard (){
         <div className="min-h-full mx-4 md:mx-24 mt-24 mb-8 bg-white rounded-2xl shadow p-6 font-noto">
 			<h2 className="text-4xl font-semibold mb-8 text-center">นานา จ๋าจ๋า</h2>
 			<div className="flex flex-col lg:flex-row gap-6 justify-center">
-				<img src="./../asstes/images/p1-post2.png"
+				<img src="images/p1-post2.png"
 					className="w-100 h-125 object-cover rounded-xl" />
 
 				<div className="flex flex-col">
 					<div className="hidden lg:flex flex-col justify-evenly">
 						<div className="flex gap-3">
-							<img src="./../asstes/images/p1-post1.png"
+							<img src="images/p1-post1.png"
 									className="h-100 object-cover rounded-xl" />
-							<img src="./../asstes/images/p1-post3.png"
+							<img src="images/p1-post3.png"
 									className="h-80 object-cover rounded-xl" />
 						</div>
 					</div>
@@ -82,9 +82,9 @@ export default function Productcard (){
 
 				<div className="flex-col justify-evenlys">
 					<div className="flex justify-evenly md:*:mx-6">
-						<img src="./../asstes/images/calendar1.png"
+						<img src="images/calendar1.png"
 							className="w-125 h-auto object-cover rounded-xl" />
-						<img src="./../asstes/images/calendar2.png"
+						<img src="images/calendar2.png"
 							className="hidden md:block w-125 h-auto object-cover rounded-xl" />
 					</div>
 					<div className="flex gap-4 justify-center mt-4 h-12">

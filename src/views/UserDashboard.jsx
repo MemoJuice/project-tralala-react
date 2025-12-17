@@ -1,8 +1,6 @@
 export default function UserDashboard(){
     return (
-    <>
-      <div className="w-screen bg-pink-200">
-      <div className="max-w-7xl mx-auto w-full">
+    <div>
         <h1 className="text-2xl font-bold text-center text-gray-800 mb-2 mt-4">
           Health Overview
         </h1>
@@ -11,7 +9,7 @@ export default function UserDashboard(){
           className="box-content w-[400px] h-[300px] bg-white rounded-lg shadow-xl/20 mt-8 ml-6"
         >
           <img
-            src="imgs/woman.png"
+            src="images/woman.png"
             alt="user-profile"
             className="w-16 mx-auto items-center py-2"
           />
@@ -37,7 +35,7 @@ export default function UserDashboard(){
         <p className="box-content size-32 p-4 bg-white rounded-lg shadow-sm/20">
           Blood Sugar
           <img
-            src="imgs/bloodpressure.png"
+            src="images/bloodpressure.png"
             alt="user-profile"
             className="w-64 mx-auto items-center py-2"
           />
@@ -45,7 +43,7 @@ export default function UserDashboard(){
         <p className="box-content size-32 p-4 bg-white rounded-lg shadow-sm/20">
           Hearth Rate
            <img
-            src="imgs/Heartrate.png"
+            src="images/Heartrate.png"
             alt="heartrate"
             className="w-64 mx-auto items-center py-2"
           />
@@ -53,7 +51,7 @@ export default function UserDashboard(){
         <p className="box-content size-32 p-4 bg-white rounded-lg shadow-sm/20">
           Blood Pressure
            <img
-            src="imgs/Bloodsugar.png"
+            src="images/Bloodsugar.png"
             alt="bloodsugar"
             className="w-64 mx-auto items-center py-2"
           />
@@ -61,12 +59,10 @@ export default function UserDashboard(){
         </div>
         <div className="bg-white  w-[500px] h-[400px] ml-6 mb-6 rounded-lg">
         <img
-            src="imgs/activity.png"
+            src="images/activity.png"
             alt="bloodsugar"
             className="box-content w-[100%] h-[90%] flex justify-center items-center py-2 mt-8"/>
       </div>
-      </div>
-      </div>
-        </>
+    </div>
         )
 }
