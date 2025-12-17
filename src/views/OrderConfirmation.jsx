@@ -64,7 +64,7 @@ export default function OrderConfirmation() {
                         <div class="flex flex-col items-center md:items-start">
                             <h3 class="text-4xl md:ml-2 mb-2 text-indigo-700 text-center">ขอบคุณที่ไว้วางใจให้เราดูแล</h3>
                             <div class="max-w-100">
-                                <img src="thank-you-order-service-2.png" class="rounded-3xl border-3 border-red-200" />
+                                <img src="images/thank-you-order-service-2.png" class="rounded-3xl border-3 border-red-200" />
                             </div>
                         </div>
                     </div>
