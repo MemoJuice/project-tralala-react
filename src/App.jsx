@@ -9,13 +9,19 @@ import AdminManagement from "./views/AdminManagement";
 import Checkout from "./views/Checkout";
 import OrderConfirmation from "./views/OrderConfirmation";
 import Login from "./views/Login";
+import UserProfile from "./views/UserProfile";
+import Dashboard from "./views/Dashboard";
+import DashboardIncome from "./views/DashboardIncome";
+import DashboardSchaedule from "./views/DashboardSchaedule";
+import Order from "./views/Order";
+import Productcard from "./views/Productcard"
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
     errorElement: (
-      <div className="mind-h-screen flex justify-center items-center">
+      <div className="min-h-screen flex justify-center items-center">
         <h1 className="text-4xl">404 - Page Not Found</h1>
       </div>
     ),
@@ -29,6 +35,13 @@ const router = createBrowserRouter([
       { path: "checkout", element: <Checkout />},
       { path: "order_confirmation", element: <OrderConfirmation />},
       { path: "login", element: <Login /> }
+      { path: "login", element: <Login /> },
+      { path: "userprofile", element: <UserProfile /> },
+      { path: "dashboard", element: <Dashboard /> },
+      { path: "dashboardincome", element: <DashboardIncome /> },
+      { path: "dashbordschaedule", element: <DashboardSchaedule /> },
+      { path: "order", element: <Order /> },
+      { path: "productcard", element: <Productcard /> },
     ],
   },
 ]);
