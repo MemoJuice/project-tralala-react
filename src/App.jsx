@@ -6,13 +6,17 @@ import Contact from "./views/Contact";
 import Caregiver from "./views/Caregiver";
 import Services from "./views/Services";
 import Login from "./views/Login";
+import UserProfile from "./views/UserProfile";
+import Dashboard from "./views/Dashboard";
+import DashboardIncome from "./views/DashboardIncome";
+import DashboardSchaedule from "./views/DashboardSchaedule";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
     errorElement: (
-      <div className="mind-h-screen flex justify-center items-center">
+      <div className="min-h-screen flex justify-center items-center">
         <h1 className="text-4xl">404 - Page Not Found</h1>
       </div>
     ),
@@ -23,6 +27,10 @@ const router = createBrowserRouter([
       { path: "contact", element: <Contact /> },
       { path: "caregiver", element: <Caregiver /> },
       { path: "login", element: <Login /> },
+      { path: "userprofile", element: <UserProfile /> },
+      { path: "dashboard", element: <Dashboard /> },
+      { path: "dashboardincome", element: <DashboardIncome /> },
+      { path: "dashbordschaedule", element: <DashboardSchaedule /> },
     ],
   },
 ]);
