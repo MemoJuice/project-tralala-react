@@ -12,7 +12,7 @@ import Login from "./views/Login";
 import UserProfile from "./views/UserProfile";
 import Dashboard from "./views/Dashboard";
 import DashboardIncome from "./views/DashboardIncome";
-import DashboardSchaedule from "./views/DashboardSchaedule";
+import DashboardSchedule from "./views/DashboardSchedule";
 import Order from "./views/Order";
 import Productcard from "./views/Productcard"
 
@@ -34,12 +34,11 @@ const router = createBrowserRouter([
       { path: "management", element: <AdminManagement />},
       { path: "checkout", element: <Checkout />},
       { path: "order_confirmation", element: <OrderConfirmation />},
-      { path: "login", element: <Login /> }
       { path: "login", element: <Login /> },
       { path: "userprofile", element: <UserProfile /> },
       { path: "dashboard", element: <Dashboard /> },
       { path: "dashboardincome", element: <DashboardIncome /> },
-      { path: "dashbordschaedule", element: <DashboardSchaedule /> },
+      { path: "dashboardschedule", element: <DashboardSchedule /> },
       { path: "order", element: <Order /> },
       { path: "productcard", element: <Productcard /> },
     ],

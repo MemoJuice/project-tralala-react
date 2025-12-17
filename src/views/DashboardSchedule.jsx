@@ -1,4 +1,4 @@
-export default function DashboardSchaedule() {
+export default function DashboardSchedule() {
   return (
     <div class="grid grid-cols-12 gap-6 max-w-7xl mx-auto mt-20 px-6">
       <aside class="col-span-12 md:col-span-3 lg:col-span-2 bg-white shadow-lg rounded-2xl p-8 flex flex-col justify-between min-h-[85vh]">
