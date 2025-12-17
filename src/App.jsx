@@ -8,6 +8,7 @@ import Services from "./views/Services";
 import AdminManagement from "./views/AdminManagement";
 import Checkout from "./views/Checkout";
 import OrderConfirmation from "./views/OrderConfirmation";
+import Login from "./views/Login";
 
 const router = createBrowserRouter([
   {
@@ -26,7 +27,8 @@ const router = createBrowserRouter([
       { path: "caregiver", element: <Caregiver /> },
       { path: "management", element: <AdminManagement />},
       { path: "checkout", element: <Checkout />},
-      { path: "order_confirmation", element: <OrderConfirmation />}
+      { path: "order_confirmation", element: <OrderConfirmation />},
+      { path: "login", element: <Login /> }
     ],
   },
 ]);
