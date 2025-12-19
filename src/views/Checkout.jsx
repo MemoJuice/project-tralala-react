@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 export default function Checkout() {
   return (
     <div>
@@ -134,9 +136,9 @@ export default function Checkout() {
             </div>
           </div>
           <div class="mt-2 mb-8">
-            <a href="order-confirmation.html">
+            <Link to="/order_confirmation">
               <button class="block mx-auto mb-4 rounded-3xl bg-lime-200 px-3 py-2 text-xl font-semibold text-gray-800 outline-1 outline-lime-400 hover:cursor-pointer hover:bg-lime-500 hover:text-gray-100">ยืนยันคำสั่งซื้อ</button>
-            </a>
+            </Link>
           </div>
         </div>
       </section>
