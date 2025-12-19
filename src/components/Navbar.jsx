@@ -29,7 +29,7 @@ export default function Navbar() {
           <Link to="/services">บริการของเรา</Link>
         </li>
         <li className="h-full flex items-center min-w-16 px-2 2xl:px-6 hover:text-black hover:cursor-pointer hover:bg-yellow-100">
-          <Link to="/caregiver">ผู้ดูแลของเรา</Link>
+          <Link to="/caregivers">ผู้ดูแลของเรา</Link>
         </li>
         <li className="h-full flex items-center min-w-16 px-2 2xl:px-6 hover:text-black hover:cursor-pointer hover:bg-yellow-100">
           <Link to="/contact">ติดต่อเรา</Link>

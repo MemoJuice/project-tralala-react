@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 export default function OrderConfirmation() {
   return (
     <div>
@@ -64,15 +66,15 @@ export default function OrderConfirmation() {
                         <div class="flex flex-col items-center md:items-start">
                             <h3 class="text-4xl md:ml-2 mb-2 text-indigo-700 text-center">ขอบคุณที่ไว้วางใจให้เราดูแล</h3>
                             <div class="max-w-100">
-                                <img src="thank-you-order-service-2.png" class="rounded-3xl border-3 border-red-200" />
+                                <img src="images/thank-you-order-service-2.png" class="rounded-3xl border-3 border-red-200" />
                             </div>
                         </div>
                     </div>
                 </div>
                 <div>
-                    <a href="../index.html">
+                    <Link to="/">
                         <button class="block mx-auto md:ml-[25%] mb-4 rounded-3xl bg-violet-200 px-3 py-2 text-xl font-semibold text-gray-800 outline-1 outline-violet-400 hover:cursor-pointer hover:bg-violet-500 hover:text-gray-100">กลับสู่หน้าหลัก</button>
-                    </a>
+                    </Link>
                 </div>
             </div>
         </section>

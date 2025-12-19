@@ -1,11 +1,10 @@
 import { Link } from "react-router";
-import Footer from "../components/Footer";
 
 export default function Home() {
   return (
     <div>
-       <section className="flex h-[calc(100dvh-64px)] w-full font-inter bg-[url(asstes/images/section1-bg.png)] bg-cover bg-position-[center_left_40%] md:bg-center">
-        <div className=" absolute w-full h-80 bg-gradient-to-b from-white to-[rgba(255,255,255,0)]"></div>
+       <section className="flex h-[calc(100dvh-64px)] w-full font-inter bg-[url(images/section1-bg.png)] bg-cover bg-position-[center_left_40%] md:bg-center">
+        <div className=" absolute w-full h-80 bg-linear-to-b from-white to-[rgba(255,255,255,0)]"></div>
         <div className=" absolute w-full h-[calc(100dvh-64px)] bg-radial-[at_0%_0%] from-[rgba(255,255,255,0)] via-[rgb(244, 168, 255,0.1)] via-70% to-pink-300"></div>
         <div className="flex flex-col md:flex-row md:gap-8 justify-between w-full px-4 pb-10 md:pl-30 bg-radial-[at_100%_100%] from-[rgba(255,255,255,0.1)] via-[rgba(255,255,255,0)] via-30% to-white z-1">
 
@@ -59,19 +58,19 @@ export default function Home() {
           <div className="flex flex-col gap-2 md:w-[30%] items-center md:items-end mt-3 sm:mt-5 md:mr-10">
             <div className="h-[70%] sm:h-[60%] md:h-auto">
               <img 
-                src="asstes/images/senior-care-profressional-hero.png"
+                src="images/senior-care-profressional-hero.png"
                 className="rounded-[50px] md:rounded-bl-[150px] md:rounded-tl-[20%] md:rounded-br-[20%] md:rounded-tr-[50px] shadow-xl h-full"
               />
             </div>
             <div className="hidden md:block w-[60%]">
               <img 
-                src="asstes/images/senior_community-2.png"
+                src="images/senior_community-2.png"
                 className="rounded-[50px] md:rounded-bl-[150px] md:rounded-tl-[20%] md:rounded-br-[20%] md:rounded-tr-[50px] shadow-xl"
               />
             </div>
             <div className="hidden md:block w-[30%]">
               <img 
-                src="asstes/images/senior_community-3.png"
+                src="images/senior_community-3.png"
                 className="rounded-[50px] md:rounded-bl-[150px] md:rounded-tl-[20%] md:rounded-br-[20%] md:rounded-tr-[50px] shadow-xl"
               />
             </div>
@@ -244,13 +243,12 @@ export default function Home() {
           
           <div>
             <img
-              src="asstes/images/caregiver_booking.png"
+              src="images/caregiver_booking.png"
               className="rounded-2xl shadow-lg"
             />
           </div>
         </div>
       </section>
-      <Footer></Footer>
 </div>
   );
 }
