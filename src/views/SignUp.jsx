@@ -49,7 +49,7 @@ export default function SignUp(){
                 <Link to="https://myaccount.google.com/personal-info">
                 <button
                   type="button"
-                  className="w-full border border-gray-300 rounded-lg py-3 flex justify-center items-center gap-2 hover:bg-gray-50"
+                  className="w-full border border-gray-300 rounded-lg py-3 flex justify-center items-center gap-2 mt-4 hover:bg-gray-50"
                 >
                   <img src="https://www.google.com/favicon.ico" className="w-5" />
                   เข้าสู่ระบบผ่าน Google
