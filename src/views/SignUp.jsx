@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 export default function SignUp(){
     return (
       <div className="h-[calc(100dvh-112px)] bg-[url(images/senior_community_mobile.png)] sm:bg-[url(images/senior_community.png)] bg-cover bg-center">
@@ -34,13 +36,17 @@ export default function SignUp(){
                     />
                   </div>
                 </div>
+                <Link to="/Register">
                 <button
                   type="submit"
                   className="w-full bg-green-300 hover:bg-green-400 text-gray-800 py-3 rounded-lg font-medium mt-8"
                 >
                   เข้าสู่ระบบ
                 </button>
+                </Link>
 
+
+                <Link to="https://myaccount.google.com/personal-info">
                 <button
                   type="button"
                   className="w-full border border-gray-300 rounded-lg py-3 flex justify-center items-center gap-2 hover:bg-gray-50"
@@ -48,6 +54,7 @@ export default function SignUp(){
                   <img src="https://www.google.com/favicon.ico" className="w-5" />
                   เข้าสู่ระบบผ่าน Google
                 </button>
+                </Link>
               </form>
             </section>
           </main>
