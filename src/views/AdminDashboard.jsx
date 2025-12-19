@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 export default function AdminDashboard() {
     return (
         <div>
@@ -6,12 +8,12 @@ export default function AdminDashboard() {
                 <ul className="flex gap-5 pt-2 ">
 
                     <li className="flex flex-col items-center gap-2">
-                        <a href="inbox"><img className="w-5 " src="images/inbox.png" /></a>
+                        <Link to=""><img className="w-5 " src="images/inbox.png" /></Link>
                         <p className="">inbox</p>
                     </li>
-                    <li><a href="file-manager">File Manager</a></li>
-                    <li><a href="post">Post</a></li>
-                    <li><a href="chat">Chat</a></li>
+                    <li><Link href="">File Manager</Link></li>
+                    <li><Link href="">Post</Link></li>
+                    <li><Link href="">Chat</Link></li>
                 </ul>
             </section>
             <section>

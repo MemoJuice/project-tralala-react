@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 export default function DashboardIncome() {
   return (
     <div class="grid grid-cols-12 gap-6 max-w-7xl mx-auto mt-20 px-6">
@@ -13,18 +15,18 @@ export default function DashboardIncome() {
           </div>
 
           <nav class="flex flex-col gap-3 text-sm mt-4">
-            <a
-              href="#"
-              class="flex items-center gap-3 hover:text-blue-500 font-semibold"
+            <Link
+              to="#"
+              className="flex items-center gap-3 hover:text-blue-500 font-semibold"
             >
               📊 Dashboard
-            </a>
-            <a href="#" class="flex items-center gap-3 hover:text-blue-500">
+            </Link>
+            <Link to="#" className="flex items-center gap-3 hover:text-blue-500">
               📅 Schedule
-            </a>
-            <a href="#" class="flex items-center gap-3 hover:text-blue-500">
+            </Link>
+            <Link to="#" className="flex items-center gap-3 hover:text-blue-500">
               💰 Income
-            </a>
+            </Link>
           </nav>
         </div>
 
