@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 export default function OrderConfirmation() {
   return (
     <div>
@@ -70,9 +72,9 @@ export default function OrderConfirmation() {
                     </div>
                 </div>
                 <div>
-                    <a href="../index.html">
+                    <Link to="/">
                         <button class="block mx-auto md:ml-[25%] mb-4 rounded-3xl bg-violet-200 px-3 py-2 text-xl font-semibold text-gray-800 outline-1 outline-violet-400 hover:cursor-pointer hover:bg-violet-500 hover:text-gray-100">กลับสู่หน้าหลัก</button>
-                    </a>
+                    </Link>
                 </div>
             </div>
         </section>
