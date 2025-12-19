@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 export default function Login() {
   return (
     <div className="h-[calc(100dvh-112px)] bg-[url(images/senior_community_mobile.png)] sm:bg-[url(images/senior_community.png)] bg-cover bg-center">
@@ -39,32 +41,36 @@ export default function Login() {
                 จดจำฉันไว้
               </label>
 
-              <a href="#" className="text-red-600">
+              <Link to="#" className="text-red-600">
                 ลืมรหัสผ่าน?
-              </a>
+              </Link>
             </div>
 
-            <button
-              type="submit"
-              className="w-full bg-teal-300 hover:bg-teal-400 text-gray-800 py-2 rounded-lg"
-            >
-              เข้าสู่ระบบ
-            </button>
+            <Link to="/userdashboard">
+              <button
+                type="submit"
+                className="w-full bg-teal-300 hover:bg-teal-400 text-gray-800 py-2 rounded-lg"
+              >
+                เข้าสู่ระบบ
+              </button>
+            </Link>
 
-            <button
-              type="button"
-              className="w-full border border-gray-300 rounded-lg py-2 flex justify-center items-center gap-2"
-            >
-              <img src="https://www.google.com/favicon.ico" className="w-5" />
-              เข้าสู่ระบบผ่าน Google
-            </button>
+            <Link to="/userdashboard">
+              <button
+                type="button"
+                className="w-full border border-gray-300 rounded-lg py-2 flex justify-center items-center gap-2 mt-4"
+              >
+                <img src="https://www.google.com/favicon.ico" className="w-5" />
+                เข้าสู่ระบบผ่าน Google
+              </button>
+            </Link>
 
-            <footer className="text-center text-sm">
+            <div className="text-center text-sm mt-4">
               ไม่มีบัญชีผู้ใช้?
-              <a href="#" className="text-blue-600">
+              <Link to="/signup" className="text-blue-600">
                 ลงทะเบียน
-              </a>
-            </footer>
+              </Link>
+            </div>
           </form>
         </div>
       </div>
