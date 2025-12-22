@@ -3,7 +3,7 @@ import { Link } from "react-router";
 export default function Home() {
   return (
     <div>
-       <section className="flex h-[calc(100dvh-64px)] w-full font-inter bg-[url(images/section1-bg.png)] bg-cover bg-position-[center_left_40%] md:bg-center">
+       <section className="flex h-[calc(100dvh-64px)] w-full font-inter bg-[url(/images/section1-bg.png)] bg-cover bg-position-[center_left_40%] md:bg-center">
         <div className=" absolute w-full h-80 bg-linear-to-b from-white to-[rgba(255,255,255,0)]"></div>
         <div className=" absolute w-full h-[calc(100dvh-64px)] bg-radial-[at_0%_0%] from-[rgba(255,255,255,0)] via-[rgb(244, 168, 255,0.1)] via-70% to-pink-300"></div>
         <div className="flex flex-col md:flex-row md:gap-8 justify-between w-full px-4 pb-10 md:pl-30 bg-radial-[at_100%_100%] from-[rgba(255,255,255,0.1)] via-[rgba(255,255,255,0)] via-30% to-white z-1">
