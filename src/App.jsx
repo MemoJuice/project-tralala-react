@@ -3,19 +3,29 @@ import Layout from "./components/Layout";
 import Home from "./views/Home";
 import About from "./views/About";
 import Contact from "./views/Contact";
-import Caregiver from "./views/Caregiver";
+import Caregivers from "./views/Caregivers";
 import Services from "./views/Services";
+import AdminManagement from "./views/AdminManagement";
+import Checkout from "./views/Checkout";
+import OrderConfirmation from "./views/OrderConfirmation";
 import Login from "./views/Login";
-import FormSignUp from "./views/Register";
 import AdminDashboard from "./views/AdminDashboard";
 import Register from "./views/Register";
+import SignUp from "./views/SignUp";
+import UserDashboard from "./views/UserDashboard";
+import UserProfile from "./views/UserProfile";
+import Dashboard from "./views/Dashboard";
+import DashboardIncome from "./views/DashboardIncome";
+import DashboardSchedule from "./views/DashboardSchedule";
+import Order from "./views/Order";
+import Productcard from "./views/Productcard"
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
     errorElement: (
-      <div className="mind-h-screen flex justify-center items-center">
+      <div className="min-h-screen flex justify-center items-center">
         <h1 className="text-4xl">404 - Page Not Found</h1>
       </div>
     ),
@@ -24,11 +34,21 @@ const router = createBrowserRouter([
       { path: "about", element: <About /> },
       { path: "services", element: <Services /> },
       { path: "contact", element: <Contact /> },
-      { path: "caregiver", element: <Caregiver /> },
+      { path: "caregivers", element: <Caregivers /> },
+      { path: "management", element: <AdminManagement />},
+      { path: "checkout", element: <Checkout />},
+      { path: "order_confirmation", element: <OrderConfirmation />},
       { path: "login", element: <Login /> },
-      { path: "formsignup", element: <FormSignUp />},
       { path: "admindashboard", element: <AdminDashboard /> },
       { path: "register", element: <Register /> },
+      { path: "signup", element: <SignUp /> },
+      { path: "userdashboard", element: <UserDashboard /> },
+      { path: "userprofile", element: <UserProfile /> },
+      { path: "dashboard", element: <Dashboard /> },
+      { path: "dashboardincome", element: <DashboardIncome /> },
+      { path: "dashboardschedule", element: <DashboardSchedule /> },
+      { path: "order", element: <Order /> },
+      { path: "productcard", element: <Productcard /> },
     ],
   },
 ]);
