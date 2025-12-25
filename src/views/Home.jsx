@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import Searchbox  from "../components/Searchbox";
 
 export default function Home() {
   return (
@@ -9,7 +10,6 @@ export default function Home() {
         <div className="flex flex-col md:flex-row md:gap-8 justify-between w-full px-4 pb-10 md:pl-30 bg-radial-[at_100%_100%] from-[rgba(255,255,255,0.1)] via-[rgba(255,255,255,0)] via-30% to-white z-1">
 
           {/* <!-- Left content --> */}
-
           <div className="flex flex-col md:w-[60%] text-pretty font-noto">
             <h1 className="text-5xl md:text-7xl font-bold leading-tight pt-8 md:pt-12 text-gray-700">
               ความสุขดีๆ... <br className="sm:hidden" />แค่มีคนดูแล
@@ -20,30 +20,8 @@ export default function Home() {
 
             {/* <!-- Search box --> */}
 
-            <form className="md:w-[40%] mt-6 space-y-4 md:mt-20">
-              <input
-                type="text"
-                placeholder="ค้นหาผู้ดูแล"
-                className="w-full border border-gray-300 rounded-xl p-3 bg-white focus:ring-2 focus:ring-sky-400"
-              />
 
-              <select className="w-full border border-gray-300 rounded-xl p-3 bg-white focus:ring-2 focus:ring-sky-400">
-                <option disabled selected>เลือกประเภทบริการ</option>
-                <option>บริการเยี่ยมบ้าน</option>
-                <option>แผนดูแลระยะยาว</option>
-                <option>แผนดูแลรายชั่วโมง</option>
-              </select>
-
-              <div className="flex gap-3">
-                <button type="button" className="w-full md:w-25 py-3 rounded-2xl bg-amber-100 hover:bg-amber-300">
-                  ตัวกรอง
-                </button>
-                <Link to="/productcard"><button type="submit" className="w-full md:w-25 py-3 rounded-2xl bg-sky-500 text-white hover:bg-sky-600">
-                  ค้นหา
-                </button></Link>
-              </div>
-            </form>
-
+            <Searchbox />
             {/* <!-- tabs --> */}
 
             <div className="flex flex-wrap gap-3 mt-8">
@@ -236,11 +214,11 @@ export default function Home() {
 
               <Link to="/productcard"><button className="bg-sky-500 text-white px-8 py-4 rounded-xl text-lg hover:bg-sky-600 pointer-events-auto hover:cursor-pointer">
                 Booking Now
-              </button></Link> 
+              </button></Link>
           </div>
 
           {/* <!-- Image --> */}
-          
+
           <div>
             <img
               src="images/caregiver_booking.png"
