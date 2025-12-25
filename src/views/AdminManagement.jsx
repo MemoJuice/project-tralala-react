@@ -1,4 +1,13 @@
 import ManagementTable from "../components/ManagementTable";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 
 export default function AdminManagement() {
     return (
@@ -92,36 +101,43 @@ export default function AdminManagement() {
                                 <p>Rows per page</p>
                                 <div className="grid grid-cols-1">
                                     <select className="col-start-1 row-start-1 w-fit appearance-none rounded-full bg-white py-1 pr-6 pl-3 mx-2 text-base text-gray-900 outline-1 outline-gray-300 focus:outline-2 focus:outline-indigo-600 hover:cursor-pointer">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                        <option>6</option>
-                                        <option>7</option>
-                                        <option>8</option>
-                                        <option>9</option>
                                         <option>10</option>
-                                        <option>11</option>
-                                        <option>12</option>
-                                        <option>13</option>
-                                    </select>
+                                        <option>20</option>
+                                        <option>50</option>
+                                        <option>100</option>
+\                                    </select>
                                     <svg viewBox="0 0 16 16" fill="currentColor" data-slot="icon" aria-hidden="true" className="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4">
                                         <path d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd" />
                                     </svg>
                                 </div>
                                 <p>of 130 rows</p>
                             </div>
-                            <div className="flex gap-2 ml-auto *:w-7 *:h-7 md:*:w-8 md:*:h-8">
-                                <button className="m-auto rounded-full text-base font-bold text-gray-700 bg-indigo-100 outline-1 outline-gray-300 hover:bg-indigo-300 hover:text-white hover:cursor-pointer focus:bg-indigo-500 focus:text-white">{`<`}{`<`}</button>
-                                <button className="m-auto rounded-full text-base font-bold text-gray-700 bg-indigo-100 outline-1 outline-gray-300 hover:bg-indigo-300 hover:text-white hover:cursor-pointer focus:bg-indigo-500 focus:text-white">{`<`}</button>
-                                <button className="m-auto rounded-full text-base font-bold text-gray-700 bg-indigo-100 outline-1 outline-gray-300 hover:bg-indigo-300 hover:text-white hover:cursor-pointer focus:bg-indigo-500 focus:text-white">1</button>
-                                <button className="m-auto rounded-full text-base font-bold text-gray-700 bg-indigo-100 outline-1 outline-gray-300 hover:bg-indigo-300 hover:text-white hover:cursor-pointer focus:bg-indigo-500 focus:text-white">2</button>
-                                <button className="m-auto rounded-full text-base font-bold text-gray-700 bg-indigo-100 outline-1 outline-gray-300 hover:bg-indigo-300 hover:text-white hover:cursor-pointer focus:bg-indigo-500 focus:text-white">...</button>
-                                <button className="m-auto rounded-full text-base font-bold text-gray-700 bg-indigo-100 outline-1 outline-gray-300 hover:bg-indigo-300 hover:text-white hover:cursor-pointer focus:bg-indigo-500 focus:text-white">12</button>
-                                <button className="m-auto rounded-full text-base font-bold text-gray-700 bg-indigo-100 outline-1 outline-gray-300 hover:bg-indigo-300 hover:text-white hover:cursor-pointer focus:bg-indigo-500 focus:text-white">13</button>
-                                <button className="m-auto rounded-full text-base font-bold text-gray-700 bg-indigo-100 outline-1 outline-gray-300 hover:bg-indigo-300 hover:text-white hover:cursor-pointer focus:bg-indigo-500 focus:text-white">{`>`}</button>
-                                <button className="m-auto rounded-full text-base font-bold text-gray-700 bg-indigo-100 outline-1 outline-gray-300 hover:bg-indigo-300 hover:text-white hover:cursor-pointer focus:bg-indigo-500 focus:text-white">{`>`}{`>`}</button>
+                            <div className="flex ml-auto">
+                                <Pagination>
+                                    <PaginationContent>
+                                        <PaginationItem>
+                                            <PaginationPrevious href="#" />
+                                        </PaginationItem>
+                                        <PaginationItem>
+                                            <PaginationLink href="#" isActive>1</PaginationLink>
+                                        </PaginationItem>
+                                        <PaginationItem>
+                                            <PaginationLink href="#">2</PaginationLink>
+                                        </PaginationItem>
+                                        <PaginationItem>
+                                            <PaginationEllipsis />
+                                        </PaginationItem>
+                                        <PaginationItem>
+                                            <PaginationLink href="#">12</PaginationLink>
+                                        </PaginationItem>
+                                        <PaginationItem>
+                                            <PaginationLink href="#">13</PaginationLink>
+                                        </PaginationItem>
+                                        <PaginationItem>
+                                            <PaginationNext href="#" />
+                                        </PaginationItem>
+                                    </PaginationContent>
+                                </Pagination>
                             </div>
                         </div>
                     </section>
