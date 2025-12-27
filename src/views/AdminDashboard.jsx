@@ -16,19 +16,19 @@ export default function AdminDashboard() {
                                         flex font-bold justify-center gap-10"
                                         >
                         <li className="sm:flex sm:flex-col sm:items-center sm:gap-3 ">
-                            <a href="inbox"><img className="sm:w-5" src="inbox.png" /></a>
-                                <p className=" ">inbox</p>
+                            <Link to=""><img className="sm:w-5" src="inbox.png" /></Link>
+                                <p className="">inbox</p>
                         </li>
                         <li className="sm:flex sm:flex-col sm:items-center sm:gap-3">
-                            <a href="file-manager"><img className="sm:w-5 " src="file-manager.png" /></a>
+                            <Link to="file-manager"><img className="sm:w-5 " src="file-manager.png" /></Link>
                                 <p className="">File Manager</p>
                             </li>
                             <li className="sm:flex sm:flex-col sm:items-center sm:gap-3">
-                                <a href="post"><img className="sm:w-5 " src="post.png" /></a>
+                                <Link to="post"><img className="sm:w-5 " src="post.png" /></Link>
                             <p className=" ">Post</p>
                             </li>
                         <li className="sm:flex sm:flex-col sm:items-center sm:gap-3">
-                                <a href="chat"><img className="w-5 " src="chat.png" /></a>
+                                <Link to="chat"><img className="w-5 " src="chat.png" /></Link>
                             <p className="">Chat</p>
                         </li>
                         </ul>
@@ -133,9 +133,5 @@ export default function AdminDashboard() {
                     </div>
                 </div>
         </section>
-        <Link to="/userdashboard">
-							<button className="block mx-auto md:ml-[25%] mb-4 rounded-3xl bg-violet-200 px-6 py-2 text-xl font-semibold text-gray-800 outline-1 outline-violet-400 hover:cursor-pointer hover:bg-violet-500 hover:text-gray-100">บันทึก</button>
-		</Link>
-
     </div>
     )};
