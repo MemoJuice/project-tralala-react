@@ -19,6 +19,8 @@ import DashboardIncome from "./views/DashboardIncome";
 import DashboardSchedule from "./views/DashboardSchedule";
 import Order from "./views/Order";
 import Productcard from "./views/Productcard"
+import Productslist from "./views/ProductsList";
+import Serviceslist  from "./views/ServicesList";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +51,10 @@ const router = createBrowserRouter([
       { path: "dashboardschedule", element: <DashboardSchedule /> },
       { path: "order", element: <Order /> },
       { path: "productcard", element: <Productcard /> },
+      { path: "productlist", element: <Productslist /> },
+      { path: "productcard", element: <Productcard /> },
+      { path: "Serviceslist", element: <Serviceslist /> },
+
     ],
   },
 ]);
