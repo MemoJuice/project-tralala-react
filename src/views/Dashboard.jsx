@@ -1,38 +1,10 @@
-import { Link } from "react-router";
+import NavbarDashboard from "@/components/NavbarDashboard";
 
 export default function Dashboard() {
   return (
     <div className="grid grid-cols-12 gap-6 max-w-7xl mx-auto mt-20 px-6">
       <aside className="col-span-12 md:col-span-3 lg:col-span-2 bg-white shadow-lg rounded-2xl p-8 flex flex-col justify-between min-h-[85vh]">
-        <div>
-          <div className="text-center">
-            <div className="w-14 h-14 bg-purple-300 text-white flex justify-center items-center rounded-full mx-auto text-xl font-bold">
-              N
-            </div>
-
-            <p className="mt-3 font-semibold text-gray-800">Natalya</p>
-            <p className="text-xs text-gray-500">Caregiver</p>
-          </div>
-
-          <nav className="flex flex-col gap-3 text-sm mt-4">
-            <Link
-              to="#"
-              className="flex items-center gap-3 hover:text-blue-500 font-semibold"
-            >
-              📊 Dashboard
-            </Link>
-            <Link to="#" className="flex items-center gap-3 hover:text-blue-500">
-              📅 Schedule
-            </Link>
-            <Link to="#" className="flex items-center gap-3 hover:text-blue-500">
-              💰 Income
-            </Link>
-          </nav>
-        </div>
-
-        <button className="flex items-center gap-2 text-gray-500 hover:text-red-500 mt-6">
-          ออกจากระบบ
-        </button>
+        <NavbarDashboard />
       </aside>
 
       <section className="col-span-12 md:col-span-9 lg:col-span-10">
