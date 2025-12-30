@@ -12,7 +12,7 @@ export default function ServiceSection (){
             {/* <!-- Card --> */}
 
             <div className="bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-xl">
-              <Link to="/order">
+              <Link to="/serviceslist">
                 <img src="https://www.vnshealth.org/wp-content/smush-webp/2022/05/best-qualities-caregiving-1536x1024.jpg.webp" />
                 <div className="p-5 text-left">
                   <h3 className="text-xl font-semibold">เยี่ยมบ้าน</h3>
@@ -26,7 +26,7 @@ export default function ServiceSection (){
             {/* <!-- Card --> */}
 
             <div className="bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-xl">
-              <Link to="/order">
+              <Link to="/serviceslist">
                 <img src="https://bucknerparkwayplace.org/wp-content/uploads/2023/03/What-Are-the-Duties-of-a-Respite-Caregiver.png" />
                 <div className="p-5 text-left">
                   <h3 className="text-xl font-semibold">บริการระยะสั้น</h3>
@@ -39,7 +39,7 @@ export default function ServiceSection (){
 
             {/* <!-- Card --> */}
             <div className="bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-xl">
-              <Link to="/order">
+              <Link to="/serviceslist">
                 <img src="https://assets.contenthub.wolterskluwer.com/api/public/content/b18f3052df5143139623db4bf6ba83ad?v=3ec1d82d&t=w768l" />
                 <div className="p-5 text-left">
                   <h3 className="text-xl font-semibold">บริการระยะยาว</h3>
