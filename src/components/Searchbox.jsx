@@ -21,7 +21,7 @@ export default function Searchbox (){
                 <button type="button" className="w-full md:w-25 py-3 rounded-2xl bg-amber-100 hover:bg-amber-300">
                   ตัวกรอง
                 </button>
-                <Link to="/productcard"><button type="submit" className="w-full md:w-25 py-3 rounded-2xl bg-sky-500 text-white hover:bg-sky-600">
+                <Link to="/productlist"><button type="submit" className="w-full md:w-25 py-3 rounded-2xl bg-sky-500 text-white hover:bg-sky-600">
                   ค้นหา
                 </button></Link>
               </div>
