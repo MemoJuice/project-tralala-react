@@ -12,16 +12,13 @@ import Login from "./views/Login";
 import AdminDashboard from "./views/AdminDashboard";
 import Register from "./views/Register";
 import SignUp from "./views/SignUp";
-import UserDashboard from "./views/UserDashboard";
-import UserProfile from "./views/UserProfile";
-import Dashboard from "./views/Dashboard";
-import NavbarDashboard from "./components/NavbarDashboard";
-import DashboardIncome from "./views/DashboardIncome";
-import DashboardSchedule from "./views/DashboardSchedule";
 import Order from "./views/Order";
 import Productcard from "./views/Productcard";
 import Productslist from "./views/ProductsList";
 import Serviceslist from "./views/ServicesList";
+import DashboardLayout from "./components/DashboardLayout";
+import UserProfile from "./views/UserProfile";
+import UserDashboard from "./views/UserDashboard";
 
 const router = createBrowserRouter([
   {
@@ -47,15 +44,14 @@ const router = createBrowserRouter([
       { path: "signup", element: <SignUp /> },
       { path: "userdashboard", element: <UserDashboard /> },
       { path: "userprofile", element: <UserProfile /> },
-      { path: "dashboard", element: <Dashboard /> },
-      { path: "dashboardincome", element: <DashboardIncome /> },
-      { path: "dashboardschedule", element: <DashboardSchedule /> },
-      { path: "navbardashboard", element: <NavbarDashboard /> },
       { path: "order", element: <Order /> },
       { path: "productcard", element: <Productcard /> },
       { path: "productlist", element: <Productslist /> },
       { path: "serviceslist", element: <Serviceslist /> },
-
+      {
+        path: "dashboard",
+        element: <DashboardLayout />,
+      },
     ],
   },
 ]);
