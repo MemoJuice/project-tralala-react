@@ -15,12 +15,13 @@ import SignUp from "./views/SignUp";
 import UserDashboard from "./views/UserDashboard";
 import UserProfile from "./views/UserProfile";
 import Dashboard from "./views/Dashboard";
+import NavbarDashboard from "./components/NavbarDashboard";
 import DashboardIncome from "./views/DashboardIncome";
 import DashboardSchedule from "./views/DashboardSchedule";
 import Order from "./views/Order";
-import Productcard from "./views/Productcard"
+import Productcard from "./views/Productcard";
 import Productslist from "./views/ProductsList";
-import Serviceslist  from "./views/ServicesList";
+import Serviceslist from "./views/ServicesList";
 
 const router = createBrowserRouter([
   {
@@ -37,9 +38,9 @@ const router = createBrowserRouter([
       { path: "services", element: <Services /> },
       { path: "contact", element: <Contact /> },
       { path: "caregivers", element: <Caregivers /> },
-      { path: "management", element: <AdminManagement />},
-      { path: "checkout", element: <Checkout />},
-      { path: "order_confirmation", element: <OrderConfirmation />},
+      { path: "management", element: <AdminManagement /> },
+      { path: "checkout", element: <Checkout /> },
+      { path: "order_confirmation", element: <OrderConfirmation /> },
       { path: "login", element: <Login /> },
       { path: "admindashboard", element: <AdminDashboard /> },
       { path: "register", element: <Register /> },
@@ -49,6 +50,7 @@ const router = createBrowserRouter([
       { path: "dashboard", element: <Dashboard /> },
       { path: "dashboardincome", element: <DashboardIncome /> },
       { path: "dashboardschedule", element: <DashboardSchedule /> },
+      { path: "navbardashboard", element: <NavbarDashboard /> },
       { path: "order", element: <Order /> },
       { path: "productcard", element: <Productcard /> },
       { path: "productlist", element: <Productslist /> },
