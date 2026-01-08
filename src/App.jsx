@@ -16,7 +16,7 @@ import Order from "./views/Order";
 import Productcard from "./views/Productcard";
 import Productslist from "./views/ProductsList";
 import Serviceslist from "./views/ServicesList";
-import DashboardLayout from "./components/DashboardLayout";
+import DashboardLayout from "./components/sidebardashborad/DashboardLayout";
 import UserProfile from "./views/UserProfile";
 import UserDashboard from "./views/UserDashboard";
 

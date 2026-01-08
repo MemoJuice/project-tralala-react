@@ -28,7 +28,7 @@ export default function Sidebar({ setCurrentPage }) {
 
   return (
     <nav
-      className={`shadow-md h-screen p-2 flex flex-col duration-500 bg-white ${
+      className={`shadow-md h-screen p-2 flex flex-col duration-500 bg-gray-200 ${
         open ? "w-60" : "w-16"
       }`}
     >
