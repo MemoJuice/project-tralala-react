@@ -10,7 +10,7 @@ import Login from "./views/Login";
 import AdminDashboard from "./views/AdminDashboard";
 import Register from "./views/Register";
 import SignUp from "./views/SignUp";
-import Order from "./views/Order";
+import Cart from "./views/Cart";
 import Productcard from "./views/Productcard";
 import Productslist from "./views/ProductsList";
 import Serviceslist from "./views/ServicesList";
@@ -40,7 +40,7 @@ const router = createBrowserRouter([
       { path: "signup", element: <SignUp /> },
       { path: "userdashboard", element: <UserDashboard /> },
       { path: "userprofile", element: <UserProfile /> },
-      { path: "order", element: <Order /> },
+      { path: "cart", element: <Cart /> },
       { path: "productcard", element: <Productcard /> },
       { path: "productlist", element: <Productslist /> },
       { path: "serviceslist", element: <Serviceslist /> },
