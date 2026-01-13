@@ -21,7 +21,7 @@ export default function TotalPrice (){
 			<Link to="/checkout">
 				<button className="w-full mt-4 bg-lime-200 outline outline-lime-400 text-gray-900 rounded-lg py-3 font-bold hover:bg-lime-500 hover:text-white hover:cursor-pointer">ดำเนินการสั่งซื้อ</button>
 			</Link>
-			<p className="text-muted text-sm mt-2">การชำระเงินปลอดภัย รองรับบัตรเครดิต/เดบิต และโอนผ่านธนาคาร</p>
+			<p className="text-gray-400 text-sm mt-2">การชำระเงินปลอดภัย รองรับบัตรเครดิต/เดบิต และโอนผ่านธนาคาร</p>
 	</div>
     )
 }

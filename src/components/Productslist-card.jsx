@@ -17,13 +17,9 @@ export default function ProductslistCard (){
                     <p className="text-sm text-gray-600 mb-3">
                     Caring hands, trusted hearts — reliable care you can count on.
                     </p>
-
-                    <div className="flex justify-between items-center">
-                        <span className="font-semibold">399 thb</span>
                         <Link to ="/productcard"><button className="bg-green-600 hover:bg-green-700 text-white text-sm px-4 py-2 rounded">
                         จองบริการ
                         </button></Link>
-                    </div>
                     </div>
                 </div>
 
@@ -40,12 +36,9 @@ export default function ProductslistCard (){
                     <p className="text-sm text-gray-600 mb-3">
                         Compassionate caregiver support for your loved ones.
                     </p>
-                    <div className="flex justify-between items-center">
-                        <span className="font-semibold">450 thb</span>
                         <Link to ="/productcard"><button className="bg-green-600 hover:bg-green-700 text-white text-sm px-4 py-2 rounded">
                         จองบริการ
                         </button></Link>
-                    </div>
                     </div>
                 </div>
 
@@ -63,14 +56,11 @@ export default function ProductslistCard (){
                     <p className="text-sm text-gray-600 mb-3">
                         Quality care at home, delivered with kindness.
                     </p>
-                    <div className="flex justify-between items-center">
-                        <span className="font-semibold">499 thb</span>
                         <Link to ="/productcard"><button className="bg-green-600 hover:bg-green-700 text-white text-sm px-4 py-2 rounded">
                         จองบริการ
                         </button></Link>
-                        </div>
-                        </div>
                     </div>
+                </div>
 
                     {/* <!-- Card 4--> */}
 
@@ -86,13 +76,9 @@ export default function ProductslistCard (){
                     <p className="text-sm text-gray-600 mb-3">
                         Helping seniors live safely, comfortably, and with dignity.
                     </p>
-                    
-                    <div className="flex justify-between items-center">
-                        <span className="font-semibold">299 thb</span>
                         <Link to ="/productcard"><button className="bg-green-600 hover:bg-green-700 text-white text-sm px-4 py-2 rounded">
                         จองบริการ
                         </button></Link>
-                    </div>
                 </div>
             </div>
 
@@ -107,14 +93,10 @@ export default function ProductslistCard (){
                     <p className="text-sm text-gray-600 mb-3">
                         Personalized care for every stage of life.
                     </p>
-                    
-                    <div className="flex justify-between items-center">
-                        <span className="font-semibold">350 thb</span>
                         <Link to ="/productcard"><button className="bg-green-600 hover:bg-green-700 text-white text-sm px-4 py-2 rounded">
                         จองบริการ
                         </button></Link>
                     </div>
-                </div>
             </div>
 
                     {/* <!-- Card 6--> */}
@@ -128,16 +110,11 @@ export default function ProductslistCard (){
                     <p className="text-sm text-gray-600 mb-3">
                         Support you need, comfort they deserve.
                     </p>
-                        
-                    <div className="flex justify-between items-center">
-                        <span className="font-semibold">250 thb</span>
                         <Link to ="/productcard"><button className="bg-green-600 hover:bg-green-700 text-white text-sm px-4 py-2 rounded">
-                            จองบริการ
+                         จองบริการ
                         </button></Link>
-                    </div>
                 </div>
             </div>
-
         </div>
     )
 };

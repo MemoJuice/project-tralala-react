@@ -10,6 +10,6 @@ export default function ReportClient (){
               </p>
             </div>
             </div>
-        
+
     )
 }

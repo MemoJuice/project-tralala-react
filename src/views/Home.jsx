@@ -14,28 +14,24 @@ export default function Home() {
 
           {/* <!-- Left content --> */}
           <div className="flex flex-col md:w-[60%] text-pretty font-noto">
-            <h1 className="text-5xl md:text-7xl font-bold leading-tight pt-8 md:pt-12 text-gray-700">
+            <h1 className="text-5xl md:text-200xl font-bold leading-tight pt-8 md:pt-12 text-gray-700">
               ความสุขดีๆ... <br className="sm:hidden" />แค่มีคนดูแล
             </h1>
             <p className="mt-3 text-2xl text-gray-700 md:pt-4 md:text-3xl">
               ค้นหาผู้ดูแลที่เหมาะสม<br className="sm:hidden" />สำหรับคนที่คุณรัก
             </p>
 
-            {/* <!-- Search box --> */}
-
             <Searchbox />
-            {/* <!-- tabs --> */}
 
-            <div className="flex flex-wrap gap-3 mt-8">
+            {/* <div className="flex flex-wrap gap-3 mt-8">
               <button className="px-4 py-2 bg-gray-50 rounded-full outline-1 outline-violet-200 hover:cursor-pointer hover:bg-violet-500 hover:text-white">ยอดนิยม</button>
               <button className="px-4 py-2 bg-gray-50 rounded-full outline-1 outline-violet-200 hover:cursor-pointer hover:bg-violet-500 hover:text-white">คอมมูนิตี้</button>
               <button className="px-4 py-2 bg-gray-50 rounded-full outline-1 outline-violet-200 hover:cursor-pointer hover:bg-violet-500 hover:text-white">กิจกรรม</button>
               <button className="px-4 py-2 bg-gray-50 rounded-full outline-1 outline-violet-200 hover:cursor-pointer hover:bg-violet-500 hover:text-white">สถานที่แนะนำ</button>
-            </div>
+            </div> */}
           </div>
 
-          {/* <!-- Image --> */}
-          <div className="flex flex-col gap-2 md:w-[30%] items-center md:items-end mt-3 sm:mt-5 md:mr-10">
+          {/* <div className="flex flex-col gap-2 md:w-[30%] items-center md:items-end mt-3 sm:mt-5 md:mr-10">
             <div className="h-[70%] sm:h-[60%] md:h-auto">
               <img 
                 src="images/senior-care-profressional-hero.png"
@@ -54,32 +50,12 @@ export default function Home() {
                 className="rounded-[50px] md:rounded-bl-[150px] md:rounded-tl-[20%] md:rounded-br-[20%] md:rounded-tr-[50px] shadow-xl"
               />
             </div>
-          </div>
+          </div> */}
         </div>
-
       </section>
-{/* 
-      <!-- ================================
-          SERVICES SECTION
-      ================================ --> */}
-
       <ServiceSection />
-
-      {/* <!-- ================================
-          USERS  REVIEW
-      ================================ --> */}
-
       <UserReview />
-
-      {/* <!-- ================================
-          TOP CAREGIVER
-      ================================ --> */}
-
       <TopCaregiver />
-
-      {/* <!-- ================================
-          WHY US
-      ================================ --> */}
       <WhyUS />
     </div>
   );
