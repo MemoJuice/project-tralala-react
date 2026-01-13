@@ -7,10 +7,10 @@ export default function Searchbox (){
               <input
                 type="text"
                 placeholder="ค้นหาผู้ดูแล"
-                className="w-full border border-gray-300 rounded-xl p-3 bg-white focus:ring-2 focus:ring-sky-400"
+                className="w-full border border-gray-300 rounded-xl p-3 bg-white focus:ring-2 focus:ring-pink-400"
               />
 
-              <select className="w-full border border-gray-300 rounded-xl p-3 bg-white focus:ring-2 focus:ring-sky-400">
+              <select className="w-full border border-gray-300 rounded-xl p-3 bg-white focus:ring-2 focus:ring-pink-400">
                 <option disabled selected>เลือกประเภทบริการ</option>
                 <option>บริการเยี่ยมบ้าน</option>
                 <option>แผนดูแลระยะยาว</option>
@@ -21,7 +21,7 @@ export default function Searchbox (){
                 <button type="button" className="w-full md:w-25 py-3 rounded-2xl bg-amber-100 hover:bg-amber-300">
                   ตัวกรอง
                 </button>
-                <Link to="/productlist"><button type="submit" className="w-full md:w-25 py-3 rounded-2xl bg-sky-500 text-white hover:bg-sky-600">
+                <Link to="/productlist"><button type="submit" className="w-full md:w-25 py-3 rounded-2xl bg-pink-400 text-white hover:bg-pink-400 ">
                   ค้นหา
                 </button></Link>
               </div>
