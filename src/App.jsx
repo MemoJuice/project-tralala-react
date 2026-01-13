@@ -3,8 +3,6 @@ import Layout from "./components/Layout";
 import Home from "./views/Home";
 import About from "./views/About";
 import Contact from "./views/Contact";
-import Caregivers from "./views/Caregivers";
-import Services from "./views/Services";
 import AdminManagement from "./views/AdminManagement";
 import Checkout from "./views/Checkout";
 import OrderConfirmation from "./views/OrderConfirmation";
@@ -12,11 +10,11 @@ import Login from "./views/Login";
 import AdminDashboard from "./views/AdminDashboard";
 import Register from "./views/Register";
 import SignUp from "./views/SignUp";
-import Order from "./views/Order";
+import Cart from "./views/Cart";
 import Productcard from "./views/Productcard";
 import Productslist from "./views/ProductsList";
 import Serviceslist from "./views/ServicesList";
-import DashboardLayout from "./components/DashboardLayout";
+import DashboardLayout from "./components/sidebardashborad/DashboardLayout";
 import UserProfile from "./views/UserProfile";
 import UserDashboard from "./views/UserDashboard";
 
@@ -32,9 +30,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       { path: "about", element: <About /> },
-      { path: "services", element: <Services /> },
       { path: "contact", element: <Contact /> },
-      { path: "caregivers", element: <Caregivers /> },
       { path: "management", element: <AdminManagement /> },
       { path: "checkout", element: <Checkout /> },
       { path: "order_confirmation", element: <OrderConfirmation /> },
@@ -44,7 +40,7 @@ const router = createBrowserRouter([
       { path: "signup", element: <SignUp /> },
       { path: "userdashboard", element: <UserDashboard /> },
       { path: "userprofile", element: <UserProfile /> },
-      { path: "order", element: <Order /> },
+      { path: "cart", element: <Cart /> },
       { path: "productcard", element: <Productcard /> },
       { path: "productlist", element: <Productslist /> },
       { path: "serviceslist", element: <Serviceslist /> },
