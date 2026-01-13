@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
-    <nav className="flex items-center bg-[#FEFBF2] top-0 w-full h-16 overflow-hidden md:justify-start">
+    <nav className="flex items-center bg-[#FEFBF2] top-0 w-full h-16 overflow-hidden md:justify-start pb-2" >
       <div className="sm:ml-2 h-full min-w-16 hover:cursor-pointer">
         <Link to="/"><img
           alt="tralala"
