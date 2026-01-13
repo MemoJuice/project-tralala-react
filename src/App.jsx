@@ -3,8 +3,6 @@ import Layout from "./components/Layout";
 import Home from "./views/Home";
 import About from "./views/About";
 import Contact from "./views/Contact";
-import Caregivers from "./views/Caregivers";
-import Services from "./views/Services";
 import AdminManagement from "./views/AdminManagement";
 import Checkout from "./views/Checkout";
 import OrderConfirmation from "./views/OrderConfirmation";
@@ -32,9 +30,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       { path: "about", element: <About /> },
-      { path: "services", element: <Services /> },
       { path: "contact", element: <Contact /> },
-      { path: "caregivers", element: <Caregivers /> },
       { path: "management", element: <AdminManagement /> },
       { path: "checkout", element: <Checkout /> },
       { path: "order_confirmation", element: <OrderConfirmation /> },
