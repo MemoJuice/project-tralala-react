@@ -22,7 +22,7 @@ export default function MessageProvider({children}) {
     
     return (
         <MessageContext.Provider 
-            value={{ cart, handleServiceCart}}
+            value={{ cart, setCart, handleServiceCart}}
         >
             {children}
         </MessageContext.Provider>
