@@ -15,8 +15,7 @@ export default function BookingCalendar (){
 							className="hidden md:block w-125 h-auto object-cover rounded-xl" />
 					</div>
 					<div className="flex gap-4 justify-center mt-4 h-12">
-						<p className="text-xl font-medium self-center">เริ่มต้น 300 THB</p>
-							<Link to="/order"><button className="h-full bg-green-200 text-green-900 w-30 rounded-xl text-xl font-medium hover:bg-green-300 hover:cursor-pointer">
+							<Link to="/cart"><button className="h-full bg-pink-400 w-100 rounded-4xl text-xl text-white font-medium hover:bg-pink-600 hover:cursor-pointer">
 								จองบริการ
 							</button></Link>
 					</div>
