@@ -2,20 +2,20 @@ import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
-    <nav className="flex items-center bg-[#FEFBF2] top-0 w-full h-16 overflow-hidden md:justify-start">
+    <nav className="flex items-center bg-[#FEFBF2] top-0 w-full h-16 overflow-hidden md:justify-start pb-2" >
       <div className="sm:ml-2 h-full min-w-16 hover:cursor-pointer">
-        <img
+        <Link to="/"><img
           alt="tralala"
           src="images/tralala_shark_pic_logo_nobg.png"
           className="w-16"
-        />
+        /></Link>
       </div>
 
       <div className="flex flex-col items-start min-w-64 m-2 hover:cursor-pointer">
-        <p className="text-3xl font-semibold text-zinc-800 ">
+        <Link to="/"><p className="text-3xl font-semibold text-zinc-800 ">
           Tralala Prima Care
         </p>
-        <p className="text-xl font-semibold text-zinc-600">For Senior</p>
+        <p className="text-xl font-semibold text-zinc-600">For Senior</p></Link>
       </div>
 
       <ul className="hidden xl:flex ml-auto text-lg 2xl:text-xl font-medium text-zinc-600 font-noto h-full *:h-full">
@@ -26,13 +26,13 @@ export default function Navbar() {
           <Link to="/about">เกี่ยวกับเรา</Link>
         </li>
         <li className="h-full flex items-center min-w-16 px-2 2xl:px-6 hover:text-black hover:cursor-pointer hover:bg-yellow-100">
-          <Link to="/services">บริการของเรา</Link>
+          <Link to="/serviceslist">บริการของเรา</Link>
         </li>
         <li className="h-full flex items-center min-w-16 px-2 2xl:px-6 hover:text-black hover:cursor-pointer hover:bg-yellow-100">
-          <Link to="/caregivers">ผู้ดูแลของเรา</Link>
+          <Link to="/productlist">ผู้ดูแลของเรา</Link>
         </li>
         <li className="h-full flex items-center min-w-16 px-2 2xl:px-6 hover:text-black hover:cursor-pointer hover:bg-yellow-100">
-          <Link to="/contact">ติดต่อเรา</Link>
+          <Link to="/contact">ร่วมงานกับเรา</Link>
         </li>
       </ul>
 
@@ -56,26 +56,26 @@ export default function Navbar() {
       </ul>
 
       {/* Mobile Navbar */}
-      <div class="ml-2 sm:ml-4 flex flex-col gap-2 xl:hidden self-center py-2 pr-4 text-2xl font-noto hover:cursor-pointer">
-        <div class="w-9 h-1 bg-black"></div>
-        <div class="w-9 h-1 bg-black"></div>
-        <div class="w-9 h-1 bg-black"></div>
-        <div class="group fixed w-full hover:w-70 hover:right-0">
-          <div class="h-11 bg-none"></div>
-          <ul class="group-hover:flex flex-col *:py-4 *:text-gray-800">
-            <li class="self-center text-center min-w-full hover:cursor-pointer hover:bg-pink-200 group-hover:bg-pink-50 group-hover:outline-1 outline-pink-200">
+      <div className="ml-2 sm:ml-4 flex flex-col gap-2 xl:hidden self-center py-2 pr-4 text-2xl font-noto hover:cursor-pointer">
+        <div className="w-9 h-1 bg-black"></div>
+        <div className="w-9 h-1 bg-black"></div>
+        <div className="w-9 h-1 bg-black"></div>
+        <div className="group fixed w-full hover:w-70 hover:right-0">
+          <div className="h-11 bg-none"></div>
+          <ul className="group-hover:flex flex-col *:py-4 *:text-gray-800">
+            <li className="self-center text-center min-w-full hover:cursor-pointer hover:bg-pink-200 group-hover:bg-pink-50 group-hover:outline-1 outline-pink-200">
               <a href="">หน้าแรก</a>
             </li>
-            <li class="self-center text-center min-w-full hover:cursor-pointer hover:bg-pink-200 group-hover:bg-pink-50 group-hover:outline-1 outline-pink-200">
+            <li className="self-center text-center min-w-full hover:cursor-pointer hover:bg-pink-200 group-hover:bg-pink-50 group-hover:outline-1 outline-pink-200">
               <a href="">เกี่ยวกับเรา</a>
             </li>
-            <li class="self-center text-center min-w-full hover:cursor-pointer hover:bg-pink-200 group-hover:bg-pink-50 group-hover:outline-1 outline-pink-200">
+            <li className="self-center text-center min-w-full hover:cursor-pointer hover:bg-pink-200 group-hover:bg-pink-50 group-hover:outline-1 outline-pink-200">
               <a href="">บริการของเรา</a>
             </li>
-            <li class="self-center text-center min-w-full hover:cursor-pointer hover:bg-pink-200 group-hover:bg-pink-50 group-hover:outline-1 outline-pink-200">
+            <li className="self-center text-center min-w-full hover:cursor-pointer hover:bg-pink-200 group-hover:bg-pink-50 group-hover:outline-1 outline-pink-200">
               <a href="">เจ้าหน้าที่ของเรา</a>
             </li>
-            <li class="self-center text-center min-w-full hover:cursor-pointer hover:bg-pink-200 group-hover:bg-pink-50 group-hover:outline-1 outline-pink-200 rounded-bl-3xl">
+            <li className="self-center text-center min-w-full hover:cursor-pointer hover:bg-pink-200 group-hover:bg-pink-50 group-hover:outline-1 outline-pink-200 rounded-bl-3xl">
               <a href="">ติดต่อเรา</a>
             </li>
           </ul>

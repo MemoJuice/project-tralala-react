@@ -39,10 +39,8 @@ export default function ServicesList (){
 
               <div className="mt-6">
                 <div className="flex w-full justify-evenly">
-                  <p className="text-2xl font-semibold mb-4">299 thb</p>
-                  <p className="text-2xl">ต่อชั่วโมง</p>
                 </div>
-                <Link to ="/order">
+                <Link to ="/cart">
                   <button className="bg-green-600 hover:bg-green-700 text-white text-sm px-4 py-2 rounded w-full">
                         จองบริการ
                   </button></Link>

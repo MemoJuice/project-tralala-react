@@ -18,7 +18,7 @@ export default function WhyUS (){
               <p className="text-gray-600">บริการที่ได้รับความไว้วางใจจากครอบครัวทั่วประเทศ</p>
             </div>
 
-              <Link to="/productcard"><button className="bg-sky-500 text-white px-8 py-4 rounded-xl text-lg hover:bg-sky-600 pointer-events-auto hover:cursor-pointer">
+              <Link to="/productcard"><button className="bg-pink-400 text-white px-8 py-4 rounded-4xl text-lg hover:bg-pink-600 pointer-events-auto hover:cursor-pointer">
                 Booking Now
               </button></Link>
           </div>
