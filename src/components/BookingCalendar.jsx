@@ -12,6 +12,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import { Link } from "react-router-dom"
 
 export default function BookingCalendar() {
   const [open, setOpen] = React.useState(false)
@@ -28,9 +29,9 @@ export default function BookingCalendar() {
             <Button
               variant="outline"
               id="date-picker"
-              className="w-50 h-12 rounded-4xl justify-between font-normal"
+              className="flex justify-center w-50 h-12  rounded-4xl font-normal"
             >
-              {date ? date.toLocaleDateString() : "Select date"}
+              {date ? date.toLocaleDateString() : "เลือกวันที่ต้องการ"}
               <ChevronDownIcon />
             </Button>
           </PopoverTrigger>
@@ -56,9 +57,12 @@ export default function BookingCalendar() {
           id="time-picker"
           step="1"
           defaultValue="10:30:00"
-          className=" items-center w-50 h-12 text-xl rounded-4xl bg-white appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
+          className=" flex justify-center w-50 h-12 text-xl rounded-4xl bg-white appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
         />
       </div>
+      		<Link to ="/cart"><button className="h-12 mt-10 bg-pink-400 text-white w-50 rounded-4xl text-xl hover:bg-pink-600 hover:cursor-pointer">
+								จองบริการ
+					</button></Link>
     </div>
   )
 }
