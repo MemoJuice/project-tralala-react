@@ -21,7 +21,7 @@ export default function Productcard (){
 					</div>
 					<div className="flex md:flex-row-reverse justify-evenly mt-auto h-12">
 						<p className="text-xl font-medium self-center">เริ่มต้น 300 THB</p>
-							<Link to ="/order"><button className="h-full bg-green-200 text-green-900 w-30 rounded-xl text-xl font-medium hover:bg-green-300 hover:cursor-pointer">
+							<Link to ="/cart"><button className="h-full bg-green-200 text-green-900 w-30 rounded-xl text-xl font-medium hover:bg-green-300 hover:cursor-pointer">
 								จองบริการ
 							</button></Link>
 					</div>

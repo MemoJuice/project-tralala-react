@@ -1,4 +1,5 @@
-export default function CheckoutForm({formType}) {
+export default function CheckoutForm({formType, formData, handleChange, handleSubmit}) {
+    
   return (
     <div>
         { formType==="checkout" &&
@@ -7,7 +8,7 @@ export default function CheckoutForm({formType}) {
             <div className="flex flex-col mt-2 mb-6 gap-2">
                 <div>
                     <label className="block text-xl font-medium text-black">ชื่อ-นามสกุล</label>
-                    <input type="text" placeholder="น้องหลามโลมา ตราลาลา" className="block w-full md:w-[50%] mt-2 mr-auto rounded-xl bg-sky-50 px-3 py-2 text-base text-black outline-1 outline-indigo-400 focus:outline-2 focus:outline-indigo-600 hover:outline-indigo-600" />
+                    <input type="text" className="block w-full md:w-[50%] mt-2 mr-auto rounded-xl bg-sky-50 px-3 py-2 text-base text-black outline-1 outline-indigo-400 focus:outline-2 focus:outline-indigo-600 hover:outline-indigo-600" name="firstName" value={formData.firstName} onChange={handleChange} required />
                 </div>
 
                 <div>
@@ -17,12 +18,12 @@ export default function CheckoutForm({formType}) {
 
                 <div>
                     <label className="block text-xl font-medium text-black">ที่อยู่</label>
-                    <textarea className="block w-full md:w-[65%] h-21 md:h-16 mt-2 mr-auto rounded-xl bg-sky-50 px-3 py-2 text-base text-black outline-1 outline-indigo-400 focus:outline-2 focus:outline-indigo-600 hover:outline-indigo-600">97/684523 หมู่บ้านคงคอย ซอยอุดมชัยใครถาม แขวงยูสพระราม เขตมะขามกินฟรี กรุงแม่น้ำ 101111</textarea>
+                    <textarea className="block w-full md:w-[65%] h-21 md:h-16 mt-2 mr-auto rounded-xl bg-sky-50 px-3 py-2 text-base text-black outline-1 outline-indigo-400 focus:outline-2 focus:outline-indigo-600 hover:outline-indigo-600" />
                 </div>
 
                 <div>
                     <label className="block text-xl font-medium text-black">หมายเหตุ</label>
-                    <textarea className="block w-full md:w-[50%] mt-2 mr-auto rounded-xl bg-sky-50 px-3 py-2 text-base text-black outline-1 outline-indigo-400 focus:outline-2 focus:outline-indigo-600 hover:outline-indigo-600">ขอคนที่ทำกับข้าวเป็น</textarea>
+                    <textarea className="block w-full md:w-[50%] mt-2 mr-auto rounded-xl bg-sky-50 px-3 py-2 text-base text-black outline-1 outline-indigo-400 focus:outline-2 focus:outline-indigo-600 hover:outline-indigo-600" />
                 </div>
 
             </div>
