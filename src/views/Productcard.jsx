@@ -4,31 +4,26 @@ import BookingCalendar from "../components/Booking-calendar";
 
 export default function Productcard (){
     return (
-        <div className="min-h-full mx-4 md:mx-24 mt-24 mb-8 bg-white rounded-2xl shadow p-6 font-noto">
+        <div className="min-h-full mx-4 md:mx-30 mt-24 mb-8 bg-white rounded-2xl shadow p-6 font-noto">
 			<h2 className="text-4xl font-semibold mb-8 text-center">นานา จ๋าจ๋า</h2>
 			<div className="flex flex-col lg:flex-row gap-6 justify-center">
 				<img src="images/p1-post2.png"
 					className="w-100 h-125 object-cover rounded-xl" />
 
 				<div className="flex flex-col">
-					<div className="hidden lg:flex flex-col justify-evenly">
-						<div className="flex gap-3">
+					<div className="hidden md:flex flex-col justify-evenly">
+						<div className="flex-row">
 							<img src="images/p1-post1.png"
-									className="h-100 object-cover rounded-xl" />
-							<img src="images/p1-post3.png"
-									className="h-80 object-cover rounded-xl" />
-						</div>
-					</div>
-					<div className="flex md:flex-row-reverse justify-evenly mt-auto h-12">
-						<p className="text-xl font-medium self-center">เริ่มต้น 300 THB</p>
-							<Link to ="/cart"><button className="h-full bg-green-200 text-green-900 w-30 rounded-xl text-xl font-medium hover:bg-green-300 hover:cursor-pointer">
+								className="h-100 object-cover rounded-xl" />
+							<Link to ="/cart"><button className="h-8  mt-10 bg-pink-400 text-white w-100 rounded-4xl text-xl hover:bg-pink-600 hover:cursor-pointer">
 								จองบริการ
 							</button></Link>
+						</div>
 					</div>
 				</div>
 			</div>
 
-			<div className="flex flex-col gap-8 md:w-[60%] mx-auto mt-8">
+		<div className="flex flex-col gap-8 md:w-[60%] mx-auto mt-8">
 
 		{/* <!-- Overview --> */}
 
@@ -59,10 +54,8 @@ export default function Productcard (){
 						</div>
 					</div>
 				</div>
+			<ReviewCaregiver />
 		</div>
-
-			{/* <!-- Review --> */}
-		<ReviewCaregiver />
 
 		{/* <!-- Booking Calendar  --> */}
 
