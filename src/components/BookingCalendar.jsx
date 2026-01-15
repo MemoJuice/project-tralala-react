@@ -19,7 +19,7 @@ export default function BookingCalendar() {
   const [date, setDate] = React.useState(undefined)
 
   return (
-    <div className="flex gap-4">
+    <div className="flex flex-wrap gap-4 ">
       <div className="flex flex-col gap-3">
         <Label htmlFor="date-picker" className="text-xl">
           วัน
@@ -60,7 +60,10 @@ export default function BookingCalendar() {
           className=" flex justify-center w-50 h-12 text-xl rounded-4xl bg-white appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
         />
       </div>
-      		<Link to ="/cart"><button className="h-12 mt-10 bg-pink-400 text-white w-50 rounded-4xl text-xl hover:bg-pink-600 hover:cursor-pointer">
+          <Link to ="/productlist"><button className="h-12 md:mt-10 bg-sky-300 text-white w-30 rounded-4xl text-xl hover:bg-sky-400 hover:cursor-pointer">
+								เลือกผู้ดูแล
+					</button></Link>
+      		<Link to ="/cart"><button className="h-12 md:mt-10 bg-pink-400 text-white w-50 rounded-4xl text-xl hover:bg-pink-600 hover:cursor-pointer">
 								จองบริการ
 					</button></Link>
     </div>

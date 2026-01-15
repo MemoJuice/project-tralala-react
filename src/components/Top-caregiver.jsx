@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 
 export default function TopCaregiver (){
     return (
-		<div className="py-20 bg-sky-50 font-inter">
+		<div className="py-20 bg-sky-50 ">
      	   <div className="max-w-screen-xl mx-auto">
-          <h2 className="text-3xl text-gray-700 md:text-4xl font-bold text-center mb-8">แนะนำผู้ดูแล</h2>
+          <h2 className="flex justify-center text-4xl font-bold text-sky-700 md:hidden">ผู้ดูแลดีเด่น</h2>
 
           <Link to="/productcard">
           <div className="grid p-8 md:grid-cols-2 gap-20 items-center">
@@ -17,6 +17,7 @@ export default function TopCaregiver (){
             </div>
             {/* <!-- Text --> */}
             <div className=" flex-row justify-start">
+              <h2 className="text-6xl font-bold text-sky-700 hidden mb-10 md:block">ผู้ดูแลดีเด่น</h2>
               <h3 className="text-4xl text-gray-700 font-bold mb-4">นานา จาจา</h3>
               <p className="text-pink-400 text-xl mb-3">ประสบการณ์ 3 ปี</p>
               <p className="text-gray-700 text-xl">

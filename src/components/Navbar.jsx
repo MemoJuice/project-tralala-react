@@ -12,7 +12,7 @@ export default function Navbar() {
       </div>
 
       <div className="flex flex-col items-start min-w-64 m-2 hover:cursor-pointer">
-        <Link to="/"><p className="text-3xl font-semibold text-zinc-800 ">
+        <Link to="/"><p className="text-2xl md:text-3xl font-semibold text-zinc-800 ">
           Tralala Prima Care
         </p>
         <p className="text-xl font-semibold text-zinc-600">For Senior</p></Link>
