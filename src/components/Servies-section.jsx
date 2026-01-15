@@ -2,7 +2,7 @@ import { Link } from "react-router"
 
 export default function ServiceSection (){
     return (
-        <div id="service" className="bg-[#FEFBF2] py-20 font-noto">
+        <div id="service" className="bg-[#FEFBF2] py-20">
         <div className="max-w-screen-xl mx-auto px-4 text-center">
 
           <h2 className="text-3xl md:text-4xl font-bold mb-10">บริการของเรา</h2>

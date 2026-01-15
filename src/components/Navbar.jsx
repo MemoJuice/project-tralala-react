@@ -36,7 +36,7 @@ export default function Navbar() {
         </li>
       </ul>
 
-      <ul className="flex ml-auto gap-1 md:gap-4 sm:text-black-600 font-noto">
+      <ul className="flex ml-auto gap-1 md:gap-4 sm:text-black-600">
         <li className="hidden sm:flex self-center text-center max-w-40 hover:cursor-pointer hover:font-bold">
           <img
             src="images/phone-call.svg"
@@ -50,7 +50,7 @@ export default function Navbar() {
         <li className="flex self-center outline-1 p-2 w-10 bg-white rounded-full hover:cursor-pointer hover:font-bold">
           <img src="images/user.svg" className="w-full" />
         </li>
-        <li className="hidden sm:flex self-center text-center outline-1 py-2 px-3 bg-white rounded-full xl:mr-6 font-bold text-sm md:text-lg hover:cursor-pointer hover:bg-pink-400">
+        <li className="hidden sm:flex self-center text-center outline-1 py-2 px-3 bg-white rounded-full xl:mr-4 font-bold text-sm md:text-lg hover:cursor-pointer hover:bg-pink-400">
           <Link to="/login">เข้าสู่ระบบ</Link>
         </li>
       </ul>
