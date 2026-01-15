@@ -1,8 +1,8 @@
-import { useState } from "react";
 import Sidebar from "./Sidebar";
 import Dashboard from "@/views/dashboard/Dashboard";
 import DashboardSchedule from "@/views/dashboard/DashboardSchedule";
 import DashboardIncome from "@/views/dashboard/DashboardIncome";
+import React, { useState } from "react";
 
 export default function DashboardLayout() {
   const [currentPage, setCurrentPage] = useState("dashboard");

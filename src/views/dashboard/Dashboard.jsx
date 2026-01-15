@@ -1,8 +1,12 @@
-// import {useState} from "react";
-
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
+import axios from "axios";
 
 export default function Dashboard() {
-// const[user, setUser] = useState("");
+  // const[user, setUser] = useState("");
+  const [data, setData] = useState([]);
+
+  useEffect(() => {}, []);
   return (
     <>
       <h2 className="text-2xl font-semibold mb-4">Hello Natalya 👋</h2>

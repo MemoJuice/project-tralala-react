@@ -10,6 +10,8 @@ import Login from "./views/Login";
 import AdminDashboard from "./views/AdminDashboard";
 import Register from "./views/Register";
 import SignUp from "./views/SignUp";
+import LoginFrom from "./components/auth/LoginFrom";
+import SignupFrom from "./components/auth/SignupFrom";
 import Cart from "./views/Cart";
 import Productcard from "./views/Productcard";
 import Productslist from "./views/ProductsList";
@@ -17,6 +19,7 @@ import Serviceslist from "./views/ServicesList";
 import DashboardLayout from "./components/sidebardashborad/DashboardLayout";
 import UserProfile from "./views/UserProfile";
 import UserDashboard from "./views/UserDashboard";
+import RegisterFrom from "./components/auth/SignupFrom";
 
 const router = createBrowserRouter([
   {
@@ -34,10 +37,10 @@ const router = createBrowserRouter([
       { path: "management", element: <AdminManagement /> },
       { path: "checkout", element: <Checkout /> },
       { path: "order_confirmation", element: <OrderConfirmation /> },
-      { path: "login", element: <Login /> },
+      { path: "login", element: <LoginFrom /> },
       { path: "admindashboard", element: <AdminDashboard /> },
-      { path: "register", element: <Register /> },
-      { path: "signup", element: <SignUp /> },
+      { path: "register", element: <RegisterFrom /> },
+      { path: "signup", element: <SignupFrom /> },
       { path: "userdashboard", element: <UserDashboard /> },
       { path: "userprofile", element: <UserProfile /> },
       { path: "cart", element: <Cart /> },
