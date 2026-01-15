@@ -46,11 +46,7 @@ const router = createBrowserRouter([
       { path: "productlist", element: <Productslist /> },
       { path: "serviceslist", element: <Serviceslist /> },
       { path:  "dashboardschedule", element: <DashboardSchedule /> },
-      {
-        path: "dashboard",
-        element: <DashboardLayout />,
-
-      },
+      { path: "dashboard", element: <DashboardLayout /> },
     ],
   },
 ]);

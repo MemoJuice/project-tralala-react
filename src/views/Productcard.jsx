@@ -1,6 +1,6 @@
 import ReviewCaregiver from "../components/Review-caregiver";
 import { Link } from "react-router-dom";
-import BookingCalendar from "../components/Booking-calendar";
+import BookingCalendar from "../components/BookingCalendar";
 
 export default function Productcard (){
     return (
@@ -15,9 +15,6 @@ export default function Productcard (){
 						<div className="flex-row">
 							<img src="images/p1-post1.png"
 								className="h-100 object-cover rounded-xl" />
-							<Link to ="/cart"><button className="h-8  mt-10 bg-pink-400 text-white w-100 rounded-4xl text-xl hover:bg-pink-600 hover:cursor-pointer">
-								จองบริการ
-							</button></Link>
 						</div>
 					</div>
 				</div>
@@ -55,11 +52,13 @@ export default function Productcard (){
 					</div>
 				</div>
 			<ReviewCaregiver />
-		</div>
+			<div children="flex justify-center">
+				<BookingCalendar />
+			</div>
+		</div>	
 
 		{/* <!-- Booking Calendar  --> */}
 
-		<BookingCalendar />
         </div>
     )
 }
