@@ -1,4 +1,10 @@
 import { Link } from "react-router"
+import BookingCalendar from "@/components/BookingCalendar";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card"
 
 export default function ServicesList (){
     return (
@@ -18,36 +24,32 @@ export default function ServicesList (){
             <div className="p-4 flex flex-col justify-between">
               
               <div>
-                <p className="tracking-widest text-gray-500 text-sm">SERVICE</p>
+                <p className="tracking-widest text-gray-700 text-sm">SERVICE</p>
 
-                <h1 className="text-3xl font-bold mt-2">
+                <h1 className="text-3xl font-bold mt-2 text-gray-700">
                   บริการระยะสั้น
                 </h1>
 
-                <p className="text-gray-600 mt-4 leading-relaxed">
+                <p className="text-gray-700 mt-4 leading-relaxed">
                   Short-term care services provide temporary support for individuals who need assistance after illness, surgery, or when the family caregiver needs a break. Our professional caregivers help with daily activities, personal care, medication reminders, and companionship to ensure safety and comfort at home.
                 </p>
 
-                <p className="text-gray-500 text-sm mt-4">
-                    Booking confirmation in few steps.
-                </p>
-
-                <a href="#" className="text-sm mt-1 underline text-gray-500">
-                  View more details
-                </a>
+                <div className="mt-4">
+                  <HoverCard>
+                      <HoverCardTrigger className="text-blue-400">อ่านเพิ่มเติม</HoverCardTrigger>
+                      <HoverCardContent>
+                        ติดต่อล่วงหน้าอย่างน้อย 3 วัน <br/>เพื่อให้เราจัดเตรียมการดูแลที่เหมาะสมกับความต้องการของท่านได้อย่างเต็มที่ บริการนี้เหมาะสำหรับผู้ที่ต้องการการดูแลผู้ป่วยชราภาพคราวหลังการเจ็บป่วยหรือผ่าตัด หรือในช่วงเวลาที่ผู้ดูแลหลักต้องการพักผ่อน
+                      </HoverCardContent>
+                    </HoverCard>
               </div>
 
               <div className="mt-6">
                 <div className="flex w-full justify-evenly">
+                 <BookingCalendar />
                 </div>
-                <Link to ="/cart">
-                  <button className="bg-green-600 hover:bg-green-700 text-white text-sm px-4 py-2 rounded w-full">
-                        จองบริการ
-                  </button></Link>
               </div>
-
             </div>
-          </div>
-  
+       </div>
+    </div>
   );
 }
