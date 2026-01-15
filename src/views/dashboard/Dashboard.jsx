@@ -1,8 +1,5 @@
-// import {useState} from "react";
-
 
 export default function Dashboard() {
-// const[user, setUser] = useState("");
   return (
     <>
       <h2 className="text-2xl font-semibold mb-4">Hello Natalya 👋</h2>
