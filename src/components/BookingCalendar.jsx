@@ -60,7 +60,7 @@ export default function BookingCalendar() {
           className=" flex justify-center w-50 h-12 text-xl rounded-4xl bg-white appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
         />
       </div>
-          <Link to ="/productlist"><button className="h-12 md:mt-10 bg-sky-300 text-white w-30 rounded-4xl text-xl hover:bg-sky-400 hover:cursor-pointer">
+          <Link to ="/ourcaregiver"><button className="h-12 md:mt-10 bg-sky-300 text-white w-30 rounded-4xl text-xl hover:bg-sky-400 hover:cursor-pointer">
 								เลือกผู้ดูแล
 					</button></Link>
       		<Link to ="/cart"><button className="h-12 md:mt-10 bg-pink-400 text-white w-50 rounded-4xl text-xl hover:bg-pink-600 hover:cursor-pointer">
