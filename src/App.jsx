@@ -17,6 +17,7 @@ import Serviceslist from "./views/ServicesList";
 import DashboardLayout from "./components/sidebardashborad/DashboardLayout";
 import UserProfile from "./views/UserProfile";
 import UserDashboard from "./views/UserDashboard";
+import DashboardSchedule from "./views/dashboard/DashboardSchedule";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,7 @@ const router = createBrowserRouter([
       { path: "productcard", element: <Productcard /> },
       { path: "productlist", element: <Productslist /> },
       { path: "serviceslist", element: <Serviceslist /> },
+      { path:  "dashboardschedule", element: <DashboardSchedule /> },
       { path: "dashboard", element: <DashboardLayout /> },
     ],
   },
