@@ -19,20 +19,20 @@ export default function Navbar() {
       </div>
 
       <ul className="hidden xl:flex ml-auto text-lg 2xl:text-xl font-medium text-zinc-600 font-noto h-full *:h-full">
-        <li className="h-full flex items-center min-w-16 px-2 2xl:px-6 hover:text-black hover:cursor-pointer hover:bg-yellow-100">
+        <li className="h-full flex items-center min-w-16 px-2 2xl:px-6 hover:text-black hover:cursor-pointer hover:bg-pink-400">
           <Link to="/">หน้าแรก</Link>
         </li>
-        <li className="h-full flex items-center min-w-16 px-2 2xl:px-6 hover:text-black hover:cursor-pointer hover:bg-yellow-100">
+        <li className="h-full flex items-center min-w-16 px-2 2xl:px-6 hover:text-black hover:cursor-pointer hover:bg-pink-400">
           <Link to="/about">เกี่ยวกับเรา</Link>
         </li>
-        <li className="h-full flex items-center min-w-16 px-2 2xl:px-6 hover:text-black hover:cursor-pointer hover:bg-yellow-100">
+        <li className="h-full flex items-center min-w-16 px-2 2xl:px-6 hover:text-black hover:cursor-pointer hover:bg-pink-400">
           <Link to="/serviceslist">บริการของเรา</Link>
         </li>
-        <li className="h-full flex items-center min-w-16 px-2 2xl:px-6 hover:text-black hover:cursor-pointer hover:bg-yellow-100">
+        <li className="h-full flex items-center min-w-16 px-2 2xl:px-6 hover:text-black hover:cursor-pointer hover:bg-pink-400">
           <Link to="/productlist">ผู้ดูแลของเรา</Link>
         </li>
-        <li className="h-full flex items-center min-w-16 px-2 2xl:px-6 hover:text-black hover:cursor-pointer hover:bg-yellow-100">
-          <Link to="/contact">ร่วมงานกับเรา</Link>
+        <li className="h-full flex items-center min-w-16 px-2 2xl:px-6 hover:text-black hover:cursor-pointer hover:bg-pink-400">
+          <Link to="/contact">สมัครเป็นผู้ดูแล</Link>
         </li>
       </ul>
 
@@ -50,7 +50,7 @@ export default function Navbar() {
         <li className="flex self-center outline-1 p-2 w-10 bg-white rounded-full hover:cursor-pointer hover:font-bold">
           <img src="images/user.svg" className="w-full" />
         </li>
-        <li className="hidden sm:flex self-center text-center outline-1 py-2 px-3 bg-white rounded-full xl:mr-6 font-bold text-sm md:text-lg hover:cursor-pointer hover:bg-pink-600">
+        <li className="hidden sm:flex self-center text-center outline-1 py-2 px-3 bg-white rounded-full xl:mr-6 font-bold text-sm md:text-lg hover:cursor-pointer hover:bg-pink-400">
           <Link to="/login">เข้าสู่ระบบ</Link>
         </li>
       </ul>
@@ -76,7 +76,7 @@ export default function Navbar() {
               <Link to="/productlist">ผู้ดูแลของเรา</Link>
             </li>
             <li className="self-center text-center min-w-full hover:cursor-pointer hover:bg-pink-200 group-hover:bg-pink-50 group-hover:outline-1 outline-pink-200 rounded-bl-3xl">
-              <Link to="/contact">ร่วมงานกับเรา</Link>
+              <Link to="/contact">สมัครเป็นผู้ดูแล</Link>
             </li>
           </ul>
         </div>
