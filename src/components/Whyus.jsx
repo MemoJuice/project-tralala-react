@@ -7,20 +7,14 @@ export default function WhyUS (){
 
           {/* <!-- Text --> */}
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">ทำไมต้องเลือกเรา</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-700">ทำไมต้องเลือกเรา</h2>
 
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-700 mb-6 text-xl">
               เรามีทีมผู้ดูแลที่ผ่านการอบรม พร้อมบริการคุณภาพสูงระดับมืออาชีพ
             </p>
-
-            <div className="mb-8">
-              <h3 className="text-xl font-semibold">Trusted by Thousands</h3>
-              <p className="text-gray-600">บริการที่ได้รับความไว้วางใจจากครอบครัวทั่วประเทศ</p>
-            </div>
-
-              <Link to="/productcard"><button className="bg-pink-400 text-white px-8 py-4 rounded-4xl text-lg hover:bg-pink-600 pointer-events-auto hover:cursor-pointer">
-                Booking Now
-              </button></Link>
+            <Link to="/serviceslist"><button type="submit" className="w-90 md:w-100 md:text-2xl py-3 rounded-4xl bg-pink-400 text-white hover:bg-pink-600 ">
+                  จองบริการตอนนี้
+            </button></Link>
           </div>
 
           {/* <!-- Image --> */}

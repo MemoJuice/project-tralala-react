@@ -1,10 +1,13 @@
 export default function PaymentSummary({order}) {
   return (
     <div className="rounded-xl p-4 bg-white shadow-sm">
-        <h3 className="text-2xl font-semibold text-indigo-900 mb-2">สรุปยอดชำระ</h3>
+        <h3 className="text-2xl font-semibold text-indigo-900 mb-2">รายการที่สั่งซื้อ</h3>
         <dl className="space-y-2">
             <div className="grid grid-cols-[1fr_auto]">
-                <dt className="text-black">ยอดรวมสินค้า</dt>
+                <dt className="flex flex-col text-black">
+                    <p>{order.name}</p>
+                    <p className="text-sm font-semibold">วันที่: {order.startDate}</p>
+                </dt>
                 <dd className="font-bold px-2">
                     { order.price==="" ?
                         `-`
