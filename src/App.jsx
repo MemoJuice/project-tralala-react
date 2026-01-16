@@ -6,12 +6,10 @@ import Contact from "./views/Contact";
 import AdminManagement from "./views/AdminManagement";
 import Checkout from "./views/Checkout";
 import OrderConfirmation from "./views/OrderConfirmation";
-import Login from "./views/Login";
 import AdminDashboard from "./views/AdminDashboard";
-import Register from "./views/Register";
-import SignUp from "./views/SignUp";
+import RegisterForm from "./components/auth/RegisterForm";
 import LoginFrom from "./components/auth/LoginFrom";
-import SignupFrom from "./components/auth/SignupFrom";
+import ProfileInfoForm from "./views/ProfileInfoForm";
 import Cart from "./views/Cart";
 import Productcard from "./views/Productcard";
 import Productslist from "./views/ProductsList";
@@ -19,7 +17,7 @@ import Serviceslist from "./views/ServicesList";
 import DashboardLayout from "./components/sidebardashborad/DashboardLayout";
 import UserProfile from "./views/UserProfile";
 import UserDashboard from "./views/UserDashboard";
-import RegisterFrom from "./components/auth/SignupFrom";
+import RoleSelection from "./components/auth/RoleSelection";
 
 const router = createBrowserRouter([
   {
@@ -39,14 +37,15 @@ const router = createBrowserRouter([
       { path: "order_confirmation", element: <OrderConfirmation /> },
       { path: "login", element: <LoginFrom /> },
       { path: "admindashboard", element: <AdminDashboard /> },
-      { path: "register", element: <RegisterFrom /> },
-      { path: "signup", element: <SignupFrom /> },
+      { path: "profile-infoform", element: <ProfileInfoForm /> },
+      { path: "register", element: <RegisterForm /> },
       { path: "userdashboard", element: <UserDashboard /> },
       { path: "userprofile", element: <UserProfile /> },
       { path: "cart", element: <Cart /> },
       { path: "productcard", element: <Productcard /> },
       { path: "productlist", element: <Productslist /> },
       { path: "serviceslist", element: <Serviceslist /> },
+      { path: "roleselection", element: <RoleSelection /> },
       {
         path: "dashboard",
         element: <DashboardLayout />,

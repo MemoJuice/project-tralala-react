@@ -6,7 +6,6 @@ export default function AuthLayout({ title, children }) {
           <h1 className="text-xl md:text-2xl font-bold text-center mb-8">
             {title}
           </h1>
-
           {children}
         </div>
       </div>
