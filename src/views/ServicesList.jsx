@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 
@@ -9,8 +10,13 @@ import MenuBar from "@/components/serviceslist/MenuBar";
 
 
 export default function ServicesList (){
-
+    
+    // const { type } = useParams(); 
     const [ view, setView ] = useState("dailyplan");
+
+  //   useEffect(() => {
+  //   if (type) setView(type);
+  // }, [type]);
 
     return (
         <div className="flex flex-col justify-evenly px-10 pb-10 items-center">

@@ -14,5 +14,5 @@ export default function OurCareGiver (){
                 {/* <!-- Body --> */}
             <ProductslistCard />
         </div>
-    )
+    );
 }

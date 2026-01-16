@@ -47,6 +47,7 @@ const router = createBrowserRouter([
       { path: "serviceslist", element: <Serviceslist /> },
       { path: "dashboardschedule", element: <DashboardSchedule /> },
       { path: "dashboard", element: <DashboardLayout /> },
+
     ],
   },
 ]);

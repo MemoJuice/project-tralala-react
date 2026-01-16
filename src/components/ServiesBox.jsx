@@ -34,7 +34,7 @@ const frameworks = [
   }
 ]
 
-export default function ServiesBox() {
+export default function ServiesBox({ value, onChange }) {
   const [open, setOpen] = React.useState(false)
   const [value, setValue] = React.useState("")
 
@@ -65,6 +65,7 @@ export default function ServiesBox() {
                   key={framework.value}
                   value={framework.value}
                   onSelect={(currentValue) => {
+                    onChange(currentValue) 
                     setValue(currentValue === value ? "" : currentValue)
                     setOpen(false)
                   }}
