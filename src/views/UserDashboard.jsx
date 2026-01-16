@@ -11,7 +11,7 @@ export default function UserDashboard() {
         Health Overview
       </h1>
 
-      {/* section 3blocks of measurement  */}
+      {/-* section 3blocks of measurement */}
       <div className="flex gap-50 ">
         <UserProfileCard />
         <div className="flex justify-self-end flex-1 gap-4 *:mr-4 *:mb-4">
