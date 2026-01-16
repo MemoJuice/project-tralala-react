@@ -14,7 +14,7 @@ export default function Searchbox (){
               <ServiesBox value={service} onChange={setService}/>
               <div className="flex gap-3">
 
-                <Link to={`/serviceslist/${service}`}>
+                <Link to={`/serviceslist`}>
                 <button type="serviesbutton" className="w-90 md:w-100 md:text-2xl py-3 rounded-4xl bg-pink-400 text-white hover:bg-pink-600 ">
                   ค้นหา
                 </button></Link>
