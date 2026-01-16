@@ -1,7 +1,8 @@
 
 export default function HealthCard({info}) {
   return (
-    <div class="w-32 h-40 div-4 bg-white rounded-lg shadow-sm">
+    
+    <div class="w-40 h-40  bg-white rounded-lg  text-sm font-medium shadow-sm mt-10  p-2 ">
       { info==="heartrate" && <h3>Heart Rate</h3>}
       { info==="bloodpressure" && <h3>Blood Pressure</h3>}
       { info==="bloodsugar" && <h3>Blood Sugar</h3>}
@@ -22,5 +23,6 @@ export default function HealthCard({info}) {
         class="w-full mx-auto items-center py-2"
       />}
     </div>
+    
   )
 }
