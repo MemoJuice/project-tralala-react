@@ -2,39 +2,59 @@ import { useState } from "react";
 import { MessageContext } from "./MessageContext";
 
 export default function MessageProvider({children}) {
-    const [cart, setCart] = useState({
-        name: "",
-        price: "",
-        description: "",
-        startDate: "",
-        endDate: ""
-    });
+    const API = import.meta.env.VITE_API_URL;
 
-  const handleServiceCart = async (e) => {
-    setCart({
-        name: e.name,
-        price: e.price,
-        description: e.description,
-        startDate: e.startDate,
-        endDate: e.endDate
-    });
-  };
+    const [cart, setCart] = useState(() => {
+      const savedCart = localStorage.getItem("cart");
+
+      return savedCart
+        ? JSON.parse(savedCart)
+        : {
+            packageID: "",
+            name: "",
+            price: "",
+            description: "",
+            startDate: "",
+            endDate: "",
+        };
+      }
+    );
+
+    const handleServiceCart = async (e) => {
+        setCart({
+            packageID: e.packageID,
+            name: e.name,
+            price: e.price,
+            description: e.description,
+            startDate: e.startDate,
+            endDate: e.endDate
+        });
+    };
+
+    const [bookingID, setBookingID] = useState(() =>
+    localStorage.getItem("bookingID")
+    );
+      
+    const [paymentID, setPaymentID] = useState(() =>
+    localStorage.getItem("paymentID")
+    );
     
     const [purchaseSummary, setPurchaseSummary] = useState({
         billingFirstName: "",
         billingLastName: "",
         billingPhone: "",
         billingAddress: "",
-        clientNote: "",
         seniorId: "",
         seniorFirstName: "",
         seniorLlastName: "",
-        seniorAge: ""
+        seniorAge: "",
+        location: "",
+        clientNote: ""
     });
 
     return (
         <MessageContext.Provider 
-            value={{ cart, setCart, handleServiceCart, purchaseSummary, setPurchaseSummary}}
+            value={{ API, cart, setCart, handleServiceCart, bookingID, setBookingID, paymentID, setPaymentID, purchaseSummary, setPurchaseSummary}}
         >
             {children}
         </MessageContext.Provider>

@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { MessageContext } from "../context/MessageContext";
@@ -8,18 +9,19 @@ import PaymentForm from "../components/PaymentForm";
 export default function Checkout() {
   const navigate = useNavigate();
   const formType = "checkout";
-  const {cart, setPurchaseSummary} = useContext(MessageContext);
+  const {API, cart, bookingID, paymentID, setPurchaseSummary} = useContext(MessageContext);
   const [submitting, setSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     billingFirstName: "",
     billingLastName: "",
     billingPhone: "",
     billingAddress: "",
+    seniorId: "",
     clientNote: "",
-    seniorId: ""
+    location: ""
   });
   const [seniorData, setSeniorData] = useState({
-    id: "001",
+    id: "65a03001f1a2b3c4d5e6f501",
     firstName: "นางรื่นรมย์",
     lastName: "คมบาดใจ",
     age: "65"
@@ -36,19 +38,50 @@ export default function Checkout() {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
+
+    if (!bookingID) {
+      console.error("Missing bookingID");
+      return;
+    } else if (!paymentID) {
+      console.error("Missing paymentID");
+    }
+
     try {
-    //   await axios.post(`${API}`, formData);
+      const bookingSeniorInfo = {
+        seniorID: seniorData.id,
+        clientNote: formData.clientNote,
+        location: formData.location
+      };
+
+      console.log(bookingSeniorInfo);
+      await axios.patch(`${API}/bookings/${bookingID}`, bookingSeniorInfo);
+
+      const paymentUpdatedInfo = {
+        billingSnapshot: {
+          firstName: formData.billingFirstName,
+          lastName: formData.billingLastName,
+          phone: formData.billingPhone,
+          address: formData.billingAddress
+        },
+        paymentMethod: "TRANSFER",
+        status: "PAID"
+      };
+
+      console.log(paymentUpdatedInfo);
+      await axios.patch(`${API}/bookings/${bookingID}/payments/${paymentID}`, paymentUpdatedInfo);
+
       console.log(formData);
       setPurchaseSummary({
         billingFirstName: formData.billingFirstName,
         billingLastName: formData.billingLastName,
         billingPhone: formData.billingPhone,
         billingAddress: formData.billingAddress,
-        clientNote: formData.clientNote,
         seniorId: formData.seniorId,
         seniorFirstName: seniorData.firstName,
         seniorLastName: seniorData.lastName,
-        seniorAge: seniorData.age
+        seniorAge: seniorData.age,
+        location: formData.location,
+        clientNote: formData.clientNote
       });
       setFormData({
         billingFirstName: "",
@@ -71,7 +104,7 @@ export default function Checkout() {
         <form onSubmit={handleFormSubmit} className="bg-white my-4 mx-auto w-[90%] rounded-[3rem] font-noto">
           <h1 className="block text-center py-6 px-10 font-bold text-3xl">ข้อมูลใบเสร็จ</h1>
           <div className="grid grid-cols-1 md:grid-cols-2 pb-4">
-            <CheckoutForm formType={formType} submitting={submitting} formData={formData} handleFormChange={handleFormChange} handleFormSubmit={handleFormSubmit} seniorData={seniorData} />
+            <CheckoutForm formType={formType} submitting={submitting} formData={formData} handleFormChange={handleFormChange} seniorData={seniorData} />
             <div className="px-6 sm:px-12">
               <PaymentSummary order={cart} />
               <PaymentForm />
