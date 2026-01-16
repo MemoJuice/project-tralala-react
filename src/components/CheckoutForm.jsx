@@ -58,6 +58,11 @@ export default function CheckoutForm({formType, formData, handleFormChange, seni
                 </div>
 
                 <div>
+                    <label className="block text-xl font-medium text-black">สถานที่รับบริการ</label>
+                    <textarea className="block w-[75%] mt-2 mr-auto rounded-xl bg-sky-50 px-3 py-2 text-base text-black outline-1 outline-indigo-400 focus:outline-2 focus:outline-indigo-600 hover:outline-indigo-600" name="location" value={formData.location} onChange={handleFormChange} required />
+                </div>
+
+                <div>
                     <label className="block text-xl font-medium text-black">หมายเหตุ</label>
                     <textarea className="block w-[75%] mt-2 mr-auto rounded-xl bg-sky-50 px-3 py-2 text-base text-black outline-1 outline-indigo-400 focus:outline-2 focus:outline-indigo-600 hover:outline-indigo-600" name="clientNote" value={formData.clientNote} onChange={handleFormChange} required />
                 </div>

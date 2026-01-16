@@ -6,17 +6,21 @@ import TotalPrice from "../components/Totalprice";
 
 export default function Cart() {
 	const mockService = {
+		packageID: "659e1001f1a2b3c4d5e6f002",
 		name: "บริการดูแลผู้สูงอายุที่บ้าน(รายวัน)",
-		price: "1,500",
+		price: "1500",
 		description: "ดูแลผู้สูงอายุ 1 วัน (ไม่เกิน 12 ชั่วโมง) ช่วยเหลือการทำกิจวัตรพื้นฐาน จัดยาและอาหารตามเวลา วัดและบันทึกสัญญาณชีพ พูดคุยให้กำลังใจผู้สูงอายุ",
-		startDate: "05/01/2026",
-		endDate: "05/01/2026"
+		startDate: "2026-03-14",
+		endDate: "2026-03-14"
 	};
 
-    const {setCart} = useContext(MessageContext);
+    const {cart, setCart} = useContext(MessageContext);
 	useEffect(() => {
 		setCart(mockService);
-	}, []); 
+		localStorage.setItem("cart", JSON.stringify(cart));
+		console.log(cart);
+	}, []);
+
 	return (
 		<div className="w-full px-[5%] pt-4 pb-6">
 			<h2 className="text-2xl mb-2 font-semibold">รายการที่เลือก</h2>
@@ -28,12 +32,12 @@ export default function Cart() {
 					<li className="justify-self-center md:pl-2">ราคา</li>
 				</ul>
 
-				<OrderCard order={mockService} />
+				<OrderCard order={cart} />
 
 				<div className="grid grid-cols-1 md:grid-cols-[1fr_.8fr] gap-4 mt-4">
 					<Discontfrom />
 
-					<TotalPrice order={mockService} />
+					<TotalPrice />
 
 				</div>
 			</div>
