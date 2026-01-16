@@ -12,7 +12,7 @@ import Register from "./views/Register";
 import SignUp from "./views/SignUp";
 import Cart from "./views/Cart";
 import Productcard from "./views/Productcard";
-import Productslist from "./views/ProductsList";
+import OurCareGiver from "./views/OurCareGiver";
 import Serviceslist from "./views/ServicesList";
 import DashboardLayout from "./components/sidebardashborad/DashboardLayout";
 import UserProfile from "./views/UserProfile";
@@ -43,10 +43,11 @@ const router = createBrowserRouter([
       { path: "userprofile", element: <UserProfile /> },
       { path: "cart", element: <Cart /> },
       { path: "productcard", element: <Productcard /> },
-      { path: "productlist", element: <Productslist /> },
+      { path: "ourcaregiver", element: <OurCareGiver /> },
       { path: "serviceslist", element: <Serviceslist /> },
-      { path:  "dashboardschedule", element: <DashboardSchedule /> },
+      { path: "dashboardschedule", element: <DashboardSchedule /> },
       { path: "dashboard", element: <DashboardLayout /> },
+
     ],
   },
 ]);

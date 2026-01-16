@@ -12,7 +12,7 @@ export default function Navbar() {
       </div>
 
       <div className="flex flex-col items-start min-w-64 m-2 hover:cursor-pointer">
-        <Link to="/"><p className="text-3xl font-semibold text-zinc-800 ">
+        <Link to="/"><p className="text-2xl md:text-3xl font-semibold text-zinc-800 ">
           Tralala Prima Care
         </p>
         <p className="text-xl font-semibold text-zinc-600">For Senior</p></Link>
@@ -29,7 +29,7 @@ export default function Navbar() {
           <Link to="/serviceslist">บริการของเรา</Link>
         </li>
         <li className="h-full flex items-center min-w-16 px-2 2xl:px-6 hover:text-black hover:cursor-pointer hover:bg-pink-400">
-          <Link to="/productlist">ผู้ดูแลของเรา</Link>
+          <Link to="/ourcaregiver">ผู้ดูแลของเรา</Link>
         </li>
         <li className="h-full flex items-center min-w-16 px-2 2xl:px-6 hover:text-black hover:cursor-pointer hover:bg-pink-400">
           <Link to="/contact">สมัครเป็นผู้ดูแล</Link>
@@ -73,7 +73,7 @@ export default function Navbar() {
               <Link to="/serviceslist">บริการของเรา</Link>
             </li>
             <li className="self-center text-center min-w-full hover:cursor-pointer hover:bg-pink-200 group-hover:bg-pink-50 group-hover:outline-1 outline-pink-200">
-              <Link to="/productlist">ผู้ดูแลของเรา</Link>
+              <Link to="/ourcaregiver">ผู้ดูแลของเรา</Link>
             </li>
             <li className="self-center text-center min-w-full hover:cursor-pointer hover:bg-pink-200 group-hover:bg-pink-50 group-hover:outline-1 outline-pink-200 rounded-bl-3xl">
               <Link to="/contact">สมัครเป็นผู้ดูแล</Link>

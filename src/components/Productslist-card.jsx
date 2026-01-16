@@ -16,7 +16,7 @@ export default function ProductslistCard (){
                     <p className="text-sm text-gray-600 mb-3">
                     Caring hands, trusted hearts — reliable care you can count on.
                     </p>
-                        <Link to ="/productcard"><button className="bg-pink-400 hover:bg-pink-600 text-white text-sm px-4 py-2 rounded-4xl">
+                        <Link to ="/cart"><button className="bg-pink-400 hover:bg-pink-600 text-white text-sm px-4 py-2 rounded-4xl">
                         จองบริการ
                         </button></Link>
                     </div>
@@ -35,7 +35,7 @@ export default function ProductslistCard (){
                     <p className="text-sm text-gray-600 mb-3">
                         Compassionate caregiver support for your loved ones.
                     </p>
-                        <Link to ="/productcard"><button className="bg-pink-400 hover:bg-pink-600 text-white text-sm px-4 py-2 rounded-4xl">
+                        <Link to ="/cart"><button className="bg-pink-400 hover:bg-pink-600 text-white text-sm px-4 py-2 rounded-4xl">
                         จองบริการ
                         </button></Link>
                     </div>
@@ -55,7 +55,7 @@ export default function ProductslistCard (){
                     <p className="text-sm text-gray-600 mb-3">
                         Quality care at home, delivered with kindness.
                     </p>
-                        <Link to ="/productcard"><button className="bg-pink-400 hover:bg-pink-600 text-white text-sm px-4 py-2 rounded-4xl">
+                        <Link to ="/cart"><button className="bg-pink-400 hover:bg-pink-600 text-white text-sm px-4 py-2 rounded-4xl">
                         จองบริการ
                         </button></Link>
                     </div>
@@ -75,7 +75,7 @@ export default function ProductslistCard (){
                     <p className="text-sm text-gray-600 mb-3">
                         Helping seniors live safely, comfortably, and with dignity.
                     </p>
-                        <Link to ="/productcard"><button className="bg-pink-400 hover:bg-pink-600 text-white text-sm px-4 py-2 rounded-4xl">
+                        <Link to ="/cart"><button className="bg-pink-400 hover:bg-pink-600 text-white text-sm px-4 py-2 rounded-4xl">
                         จองบริการ
                         </button></Link>
                 </div>
@@ -92,7 +92,7 @@ export default function ProductslistCard (){
                     <p className="text-sm text-gray-600 mb-3">
                         Personalized care for every stage of life.
                     </p>
-                        <Link to ="/productcard"><button className="bg-pink-400 hover:bg-pink-600 text-white text-sm px-4 py-2 rounded-4xl">
+                        <Link to ="/cart"><button className="bg-pink-400 hover:bg-pink-600 text-white text-sm px-4 py-2 rounded-4xl">
                         จองบริการ
                         </button></Link>
                     </div>
@@ -109,7 +109,7 @@ export default function ProductslistCard (){
                     <p className="text-sm text-gray-600 mb-3">
                         Support you need, comfort they deserve.
                     </p>
-                        <Link to ="/productcard"><button className="bg-pink-400 hover:bg-pink-600 text-white text-sm px-4 py-2 rounded-4xl">
+                        <Link to ="/cart"><button className="bg-pink-400 hover:bg-pink-600 text-white text-sm px-4 py-2 rounded-4xl">
                          จองบริการ
                         </button></Link>
                 </div>
