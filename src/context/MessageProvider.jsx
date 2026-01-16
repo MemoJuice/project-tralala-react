@@ -20,9 +20,21 @@ export default function MessageProvider({children}) {
     });
   };
     
+    const [purchaseSummary, setPurchaseSummary] = useState({
+        billingFirstName: "",
+        billingLastName: "",
+        billingPhone: "",
+        billingAddress: "",
+        clientNote: "",
+        seniorId: "",
+        seniorFirstName: "",
+        seniorLlastName: "",
+        seniorAge: ""
+    });
+
     return (
         <MessageContext.Provider 
-            value={{ cart, setCart, handleServiceCart}}
+            value={{ cart, setCart, handleServiceCart, purchaseSummary, setPurchaseSummary}}
         >
             {children}
         </MessageContext.Provider>
