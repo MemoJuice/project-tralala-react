@@ -6,7 +6,7 @@ import { MessageContext } from "../context/MessageContext";
 
 export default function TotalPrice (){
   const navigate = useNavigate();
-  const {API, cart, setBookingID, bookingID, setPaymentID, paymentID} = useContext(MessageContext);
+  const {API, cart, setBookingID, bookingID, setBillingID, billingID} = useContext(MessageContext);
   const [submitting, setSubmitting] = useState(false);
 
   const handleBookingSubmit = async (e) => {
@@ -20,7 +20,7 @@ export default function TotalPrice (){
 			startDate: new Date(cart.startDate),
 			endDate: new Date(cart.endDate)
 		},
-		status: "SCHEDULED"
+		status: "PENDING"
       };
 
       console.log(booking);
@@ -29,7 +29,7 @@ export default function TotalPrice (){
 	  const bookingInfoID = bookingResponse.data.data._id;
 	  setBookingID(bookingInfoID);
 
-      const payment = {
+      const billing = {
 		clientID: "65a02001f1a2b3c4d5e6f401",
 		shoppingCart: [
 			{
@@ -43,11 +43,11 @@ export default function TotalPrice (){
 		status: "PENDING"
       };
 
-      console.log(payment);
+      console.log(billing);
 
-      const paymentResponse = await axios.post(`${API}/bookings/${bookingInfoID}/payments`, payment);
-	  const paymentInfoID = paymentResponse.data.data._id;
-	  setPaymentID(paymentInfoID);
+      const billingResponse = await axios.post(`${API}/bookings/${bookingInfoID}/billings`, billing);
+	  const billingInfoID = billingResponse.data.data._id;
+	  setBillingID(billingInfoID);
 	  
       navigate("/checkout");
 
@@ -65,10 +65,10 @@ export default function TotalPrice (){
 	}, [bookingID]);
 
 	useEffect(() => {
-	if (paymentID) {
-		localStorage.setItem("paymentID", paymentID);
+	if (billingID) {
+		localStorage.setItem("billingID", billingID);
 	}
-	}, [paymentID]);
+	}, [billingID]);
 
     return (
 	<div className="rounded-xl p-4 bg-white shadow-sm">

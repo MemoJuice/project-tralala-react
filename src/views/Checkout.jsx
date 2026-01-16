@@ -9,7 +9,7 @@ import PaymentForm from "../components/PaymentForm";
 export default function Checkout() {
   const navigate = useNavigate();
   const formType = "checkout";
-  const {API, cart, bookingID, paymentID, setPurchaseSummary} = useContext(MessageContext);
+  const {API, cart, bookingID, billingID, setPurchaseSummary} = useContext(MessageContext);
   const [submitting, setSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     billingFirstName: "",
@@ -42,21 +42,23 @@ export default function Checkout() {
     if (!bookingID) {
       console.error("Missing bookingID");
       return;
-    } else if (!paymentID) {
-      console.error("Missing paymentID");
+    } else if (!billingID) {
+      console.error("Missing billingID");
     }
 
     try {
       const bookingSeniorInfo = {
         seniorID: seniorData.id,
         clientNote: formData.clientNote,
-        location: formData.location
+        location: formData.location,
+        billingID: billingID,
+        status: "SCHEDULED"
       };
 
       console.log(bookingSeniorInfo);
       await axios.patch(`${API}/bookings/${bookingID}`, bookingSeniorInfo);
 
-      const paymentUpdatedInfo = {
+      const billingUpdatedInfo = {
         billingSnapshot: {
           firstName: formData.billingFirstName,
           lastName: formData.billingLastName,
@@ -67,11 +69,10 @@ export default function Checkout() {
         status: "PAID"
       };
 
-      console.log(paymentUpdatedInfo);
-      await axios.patch(`${API}/bookings/${bookingID}/payments/${paymentID}`, paymentUpdatedInfo);
+      console.log(billingUpdatedInfo);
+      await axios.patch(`${API}/bookings/${bookingID}/billings/${billingID}`, billingUpdatedInfo);
 
-      console.log(formData);
-      setPurchaseSummary({
+      const summary = {
         billingFirstName: formData.billingFirstName,
         billingLastName: formData.billingLastName,
         billingPhone: formData.billingPhone,
@@ -82,7 +83,12 @@ export default function Checkout() {
         seniorAge: seniorData.age,
         location: formData.location,
         clientNote: formData.clientNote
-      });
+      };
+
+      setPurchaseSummary(summary);
+      localStorage.setItem("purchaseSummary", JSON.stringify(summary));
+      console.log(summary);
+
       setFormData({
         billingFirstName: "",
         billingLastName: "",

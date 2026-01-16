@@ -35,26 +35,34 @@ export default function MessageProvider({children}) {
     localStorage.getItem("bookingID")
     );
       
-    const [paymentID, setPaymentID] = useState(() =>
-    localStorage.getItem("paymentID")
+    const [billingID, setBillingID] = useState(() =>
+    localStorage.getItem("billingID")
     );
     
-    const [purchaseSummary, setPurchaseSummary] = useState({
-        billingFirstName: "",
-        billingLastName: "",
-        billingPhone: "",
-        billingAddress: "",
-        seniorId: "",
-        seniorFirstName: "",
-        seniorLlastName: "",
-        seniorAge: "",
-        location: "",
-        clientNote: ""
-    });
+    const [purchaseSummary, setPurchaseSummary] = useState(() => {
+      const savedPurchaseSummary = localStorage.getItem("purchaseSummary");
+
+      return savedPurchaseSummary
+        ? JSON.parse(savedPurchaseSummary)
+        : {
+            billingFirstName: "",
+            billingLastName: "",
+            billingPhone: "",
+            billingAddress: "",
+            seniorId: "",
+            seniorFirstName: "",
+            seniorLlastName: "",
+            seniorAge: "",
+            location: "",
+            clientNote: ""
+        };
+      }
+    );
+
 
     return (
         <MessageContext.Provider 
-            value={{ API, cart, setCart, handleServiceCart, bookingID, setBookingID, paymentID, setPaymentID, purchaseSummary, setPurchaseSummary}}
+            value={{ API, cart, setCart, handleServiceCart, bookingID, setBookingID, billingID, setBillingID, purchaseSummary, setPurchaseSummary}}
         >
             {children}
         </MessageContext.Provider>
