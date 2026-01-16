@@ -28,7 +28,7 @@ export default function Sidebar({ setCurrentPage }) {
 
   return (
     <nav
-      className={`shadow-md h-screen p-2 flex flex-col duration-500 bg-gray-200 ${
+      className={`shadow-md h-screen p-2 flex flex-col duration-200 bg-gray-200 ${
         open ? "w-60" : "w-16"
       }`}
     >
@@ -36,7 +36,7 @@ export default function Sidebar({ setCurrentPage }) {
       <div className="px-3 py-2 h-20 flex justify-between items-center">
         <MdMenuOpen
           size={34}
-          className={`duration-500 cursor-pointer ${!open && "rotate-180"}`}
+          className={`duration-200 cursor-pointer ${!open && "rotate-180"}`}
           onClick={() => setOpen(!open)}
         />
       </div>
@@ -54,7 +54,7 @@ export default function Sidebar({ setCurrentPage }) {
             <p
               className={`${
                 !open && "w-0 translate-x-24"
-              } duration-500 overflow-hidden`}
+              } duration-400 overflow-hidden`}
             >
               {item.label}
             </p>
@@ -79,7 +79,7 @@ export default function Sidebar({ setCurrentPage }) {
         <div
           className={`leading-5 ${
             !open && "w-0 translate-x-24"
-          } duration-500 overflow-hidden`}
+          } duration-400 overflow-hidden`}
         >
           <p>Saheb</p>
           <span className="text-xs">saheb@gmail.com</span>
