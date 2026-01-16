@@ -1,7 +1,8 @@
 export default function DashboardIncome() {
   return (
     <>
-      <div>Income</div>
+     <h1></h1>
+     <table/>
     </>
   );
 }

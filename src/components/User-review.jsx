@@ -4,31 +4,31 @@ export default function UserReview (){
       <div className="py-20">
       
         <div className="max-w-screen-xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold">Users Review</h2>
-          <p className="text-gray-600 mt-2 mb-10">What our users say about us</p>
+          <h2 className="text-2xl text-gray-700 md:text-4xl font-bold">รีวิวจากผู้ใช้งาน</h2>
+          <p className="text-gray-700 mt-2 mb-10">สิ่งที่ผู้ใช้งานชอบบริการเรา</p>
 
           <div className="grid md:grid-cols-3 gap-10">
               <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-lg pointer-events-auto">
-                <div className="text-4xl">🏠</div>
-                <h3 className="text-xl font-semibold mt-3">Feel Like Home</h3>
-                <p className="text-gray-600 mt-2">
-                    Caring team, warm atmosphere, trusted by families.
+                <div className="text-4xl hover:scale-125">👤</div>
+                <h3 className="text-2xl font-semibold mt-3">มืออาชีพและปลอดภัย</h3>
+                <p className="text-gray-700 mt-2">
+                    ทีมผู้ดูแลมีความเป็นมืออาชีพ ตรงเวลา ใส่ใจรายละเอียด และทำงานได้อย่างน่าเชื่อถือ
                 </p>
             </div>
 
             <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-lg pointer-events-auto">
-                <div className="text-4xl">👤</div>
-                <h3 className="text-xl font-semibold mt-3">Professional</h3>
-                <p className="text-gray-600 mt-2">
-                  Skilled caregivers with experience and dedication.
+                <div className="text-4xl hover:scale-125">❤️</div>
+                <h3 className="text-2xl font-semibold mt-3">ความใส่ใจ</h3>
+                <p className="text-gray-700 mt-2">
+                    ใส่ใจรายละเอียดเล็กน้อยของผู้สูงอายุ ทั้งร่างกาย อารมณ์ และความต้องการเฉพาะบุคคล
                 </p>
             </div>
 
-            <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-lg pointer-events-auto">
-                <div className="text-4xl">❤️</div>
-                <h3 className="text-xl font-semibold mt-3">Lovely</h3>
-                <p className="text-gray-600 mt-2">
-                  Compassion and empathy in every service we deliver.
+            <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-lg pointer-events-auto ">
+                <div className="text-4xl hover:scale-125">🏠</div>
+                <h3 className="text-2xl font-semibold mt-3">ดูแลเหมือนเป็นคนในบ้าน</h3>
+                <p className="text-gray-700 mt-2">
+                  ดูแลด้วยความจริงใจเหมือนคนในครอบครัว อบอุ่นและเป็นกันเองฅ
                 </p>
             </div>
 

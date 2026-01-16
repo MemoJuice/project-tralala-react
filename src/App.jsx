@@ -12,12 +12,13 @@ import LoginFrom from "./components/auth/LoginFrom";
 import ProfileInfoForm from "./views/ProfileInfoForm";
 import Cart from "./views/Cart";
 import Productcard from "./views/Productcard";
-import Productslist from "./views/ProductsList";
+import OurCareGiver from "./views/OurCareGiver";
 import Serviceslist from "./views/ServicesList";
 import DashboardLayout from "./components/sidebardashborad/DashboardLayout";
 import UserProfile from "./views/UserProfile";
 import UserDashboard from "./views/UserDashboard";
 import RoleSelection from "./components/auth/RoleSelection";
+import DashboardSchedule from "./views/dashboard/DashboardSchedule";
 
 const router = createBrowserRouter([
   {
@@ -43,13 +44,12 @@ const router = createBrowserRouter([
       { path: "userprofile", element: <UserProfile /> },
       { path: "cart", element: <Cart /> },
       { path: "productcard", element: <Productcard /> },
-      { path: "productlist", element: <Productslist /> },
+      { path: "ourcaregiver", element: <OurCareGiver /> },
       { path: "serviceslist", element: <Serviceslist /> },
       { path: "roleselection", element: <RoleSelection /> },
-      {
-        path: "dashboard",
-        element: <DashboardLayout />,
-      },
+      { path: "dashboardschedule", element: <DashboardSchedule /> },
+      { path: "dashboard", element: <DashboardLayout /> },
+
     ],
   },
 ]);

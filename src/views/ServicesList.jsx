@@ -1,53 +1,66 @@
-import { Link } from "react-router"
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+
+import DailyPlanCard from "@/components/serviceslist/DailyPlanCard";
+import MonthlyplanCard from "@/components/serviceslist/MonthlyplanCard";
+import HospitalPlanCard from "@/components/serviceslist/HospitalPlanCard";
+import MenuBar from "@/components/serviceslist/MenuBar";
+
 
 export default function ServicesList (){
+    
+    // const { type } = useParams(); 
+    const [ view, setView ] = useState("dailyplan");
+
+  //   useEffect(() => {
+  //   if (type) setView(type);
+  // }, [type]);
+
     return (
-     <div className="min-h-full mx-4 md:mx-12 mt-12 mb- bg-white rounded-2xl shadow p-6 grid grid-cols-1 md:grid-cols-2 overflow-hidden">
-         {/* <!-- Heading --> */}
+        <div className="flex flex-col justify-evenly px-10 pb-10 items-center">
+          <MenuBar setView={setView} />
+          
+          <main className="items-center w-full justify-center">
+            <AnimatePresence mode="wait">
+          {view === "hospitalplan" && (
+            <motion.div
+              key="hospital"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -40 }}
+              transition={{ duration: 0.4 }}
+            >
+              <HospitalPlanCard />
+            </motion.div>
+          )}
 
-            {/* <!-- IMAGE --> */}
-            <div className="bg-gray-50 flex items-center justify-center overflow-hidden">
-              <img 
-                src="https://bucknerparkwayplace.org/wp-content/uploads/2023/03/What-Are-the-Duties-of-a-Respite-Caregiver.png"
-                alt="Service Image" 
-                className="w-full object-contain rounded-2xl shadow-2xs"
-              />
-            </div>
+          {view === "dailyplan" && (
+            <motion.div
+              key="daily"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -40 }}
+              transition={{ duration: 0.4 }}
+            >
+              <DailyPlanCard />
+            </motion.div>
+          )}
 
-            {/* <!-- CONTENT --> */}
-            <div className="p-4 flex flex-col justify-between">
-              
-              <div>
-                <p className="tracking-widest text-gray-500 text-sm">SERVICE</p>
-
-                <h1 className="text-3xl font-bold mt-2">
-                  บริการระยะสั้น
-                </h1>
-
-                <p className="text-gray-600 mt-4 leading-relaxed">
-                  Short-term care services provide temporary support for individuals who need assistance after illness, surgery, or when the family caregiver needs a break. Our professional caregivers help with daily activities, personal care, medication reminders, and companionship to ensure safety and comfort at home.
-                </p>
-
-                <p className="text-gray-500 text-sm mt-4">
-                    Booking confirmation in few steps.
-                </p>
-
-                <a href="#" className="text-sm mt-1 underline text-gray-500">
-                  View more details
-                </a>
-              </div>
-
-              <div className="mt-6">
-                <div className="flex w-full justify-evenly">
-                </div>
-                <Link to ="/cart">
-                  <button className="bg-green-600 hover:bg-green-700 text-white text-sm px-4 py-2 rounded w-full">
-                        จองบริการ
-                  </button></Link>
-              </div>
-
-            </div>
-          </div>
-  
+          {view === "monthlyplan" && (
+            <motion.div
+              key="monthly"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -40 }}
+              transition={{ duration: 0.4 }}
+            >
+              <MonthlyplanCard />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </main>
+        </div>
   );
 }
