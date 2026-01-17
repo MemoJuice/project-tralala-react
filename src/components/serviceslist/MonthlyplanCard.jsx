@@ -13,7 +13,7 @@ export default function MonthlyplanCard (){
             {/* <!-- IMAGE --> */}
             <div className="bg-gray-50 flex items-center justify-center overflow-hidden">
               <img 
-                src="../public/images/cargive-monthly.jpg"
+                src="images/cargive-monthly.jpg"
                 alt="Service Image" 
                 className="w-full object-contain rounded-2xl shadow-2xs"
               />

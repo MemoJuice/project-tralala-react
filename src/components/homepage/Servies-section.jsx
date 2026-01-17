@@ -13,7 +13,7 @@ export default function ServiceSection (){
 
             <div className="bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-xl">
               <Link to="/serviceslist">
-                <img src="../public/images/caregiving-hos.jpg" />
+                <img src="images/caregiving-hos.jpg" />
                 <div className="p-5 gap-0.5 text-left">
                   <h3 className="text-2xl text-gray-700 mb-1 font-bold">พาไปหาหมอ</h3>
                   <p className="text-gray-700 mb-1">บริการพาไปพบแพทย์ ดูแลตั้งแต่การเดินทาง การรอพบแพทย์ การรับยา และดูแลอย่างใกล้ชิดตลอดการนัดหมาย</p>
@@ -26,7 +26,7 @@ export default function ServiceSection (){
 
             <div className="bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-xl">
               <Link to="/serviceslist">
-                <img src="../public/images/caregiver-daily.jpg" />
+                <img src="images/caregiver-daily.jpg" />
                 <div className="p-5 text-left">
                   <h3 className="text-2xl text-gray-700 mb-1 font-bold">บริการดูแลรายวัน</h3>
                   <p className="text-gray-700 mb-1"> เหมาะสำหรับครอบครัวที่ต้องการผู้ดูแลในช่วงเวลาสั้น ๆ หรือเป็นบางวัน ดูแลสุขอนามัย การรับประทานอาหาร การใช้ชีวิตประจำวัน</p>
@@ -38,7 +38,7 @@ export default function ServiceSection (){
             {/* <!-- Card --> */}
             <div className="bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-xl">
               <Link to="/serviceslist">
-                <img src="../public/images/cargive-monthly.jpg" />
+                <img src="images/cargive-monthly.jpg" />
                 <div className="p-5 text-left">
                   <h3 className="text-2xl text-gray-700 mb-1 font-bold">บริการดูแลรายเดือน</h3>
                   <p className="text-gray-700 mb-1">เหมาะสำหรับการดูแลต่อเนื่องระยะยาว โดยทีมผู้ดูแลคุณภาพที่มีประสบการณ์และผ่านการอบรม พร้อมดูแลทั้งร่างกายและจิตใจ</p>

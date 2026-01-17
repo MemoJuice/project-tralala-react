@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import ServiesBox from "./ServiesBox";
+import ServiesBox from "../ServiesBox";
 import { useState } from "react"
 
 

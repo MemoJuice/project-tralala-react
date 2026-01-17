@@ -1,8 +1,8 @@
-import Searchbox  from "../components/Searchbox";
-import ServiceSection from "../components/Servies-section";
-import UserReview from "../components/User-review";
-import TopCaregiver from "../components/Top-caregiver";
-import WhyUS from "../components/Whyus";
+import Searchbox  from "../components/homepage/Searchbox";
+import ServiceSection from "../components/homepage/Servies-section";
+import UserReview from "../components/homepage/User-review";
+import TopCaregiver from "../components/homepage/Top-caregiver";
+import WhyUS from "../components/homepage/Whyus";
 
 export default function Home() {
   return (
