@@ -23,14 +23,20 @@ const frameworks = [
   {
     value: "hospitalplan",
     label: "พาไปหาหมอ",
+    view: "hospitalplan",
+    setValue: "hospitalplan",
   },
   {
     value: "dailyplan",
     label: "บริการดูแลรายวัน",
+    view: "dailyplan",
+    setValue: "dailyplan",
   },
   {
     value: "monthlyplan",
     label: "บริการดูแลรายเดือน",
+    view: "monthlyplan",
+    setValue: "monthlyplan",
   }
 ]
 

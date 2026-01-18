@@ -1,4 +1,4 @@
-import BookingCalendar from "@/components/BookingCalendar";
+import BookingCalendarDaily from "@/components/serviceslist/BookingCalendarDaily";
 import {
   HoverCard,
   HoverCardContent,
@@ -43,7 +43,7 @@ export default function DailyPlanCard (){
 
               <div className="mt-6">
                 <div className="flex w-full justify-evenly">
-                 <BookingCalendar />
+                 <BookingCalendarDaily />
                 </div>
               </div>
             </div>
