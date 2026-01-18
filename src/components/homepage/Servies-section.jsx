@@ -12,7 +12,7 @@ export default function ServiceSection (){
             {/* <!-- Card --> */}
 
             <div className="bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-xl">
-              <Link to="/serviceslist">
+              <Link to="/serviceslist?view=hospitalplan">
                 <img src="images/caregiving-hos.jpg" />
                 <div className="p-5 gap-0.5 text-left">
                   <h3 className="text-2xl text-gray-700 mb-1 font-bold">พาไปหาหมอ</h3>
@@ -25,7 +25,7 @@ export default function ServiceSection (){
             {/* <!-- Card --> */}
 
             <div className="bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-xl">
-              <Link to="/serviceslist">
+              <Link to="/serviceslist?view=dailyplan">
                 <img src="images/caregiver-daily.jpg" />
                 <div className="p-5 text-left">
                   <h3 className="text-2xl text-gray-700 mb-1 font-bold">บริการดูแลรายวัน</h3>
@@ -37,7 +37,7 @@ export default function ServiceSection (){
 
             {/* <!-- Card --> */}
             <div className="bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-xl">
-              <Link to="/serviceslist">
+              <Link to="/serviceslist?view=monthlyplan">
                 <img src="images/cargive-monthly.jpg" />
                 <div className="p-5 text-left">
                   <h3 className="text-2xl text-gray-700 mb-1 font-bold">บริการดูแลรายเดือน</h3>
