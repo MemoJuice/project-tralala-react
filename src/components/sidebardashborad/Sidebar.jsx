@@ -1,25 +1,24 @@
 import { useState } from "react";
 import { MdMenuOpen } from "react-icons/md";
-import { FaUserCircle } from "react-icons/fa";
 import { RxDashboard } from "react-icons/rx";
 import { GrSchedules } from "react-icons/gr";
-import { RiMoneyDollarBoxLine } from "react-icons/ri";
+import { FaNotesMedical } from "react-icons/fa";
 
 const menuItems = [
   {
-    icons: <RxDashboard size={24} />,
+    icons: <RxDashboard size={20} />,
     label: "Dashboard",
     page: "dashboard",
   },
   {
-    icons: <GrSchedules size={24} />,
+    icons: <GrSchedules size={20} />,
     label: "Schedules",
     page: "dashboardschedule",
   },
   {
-    icons: <RiMoneyDollarBoxLine size={24} />,
-    label: "Income",
-    page: "dashboardincome",
+    icons: <FaNotesMedical size={20} />,
+    label: "Care Log",
+    page: "dashboardLog",
   },
 ];
 
@@ -28,7 +27,7 @@ export default function Sidebar({ setCurrentPage }) {
 
   return (
     <nav
-      className={`shadow-md h-screen p-2 flex flex-col duration-200 bg-gray-200 ${
+      className={`shadow-md h-screen p-2 flex flex-col duration-200 bg-gray-200  ${
         open ? "w-60" : "w-16"
       }`}
     >
@@ -72,19 +71,6 @@ export default function Sidebar({ setCurrentPage }) {
           </li>
         ))}
       </ul>
-
-      {/* Footer */}
-      <div className="flex items-center gap-2 px-3 py-2">
-        <FaUserCircle size={30} />
-        <div
-          className={`leading-5 ${
-            !open && "w-0 translate-x-24"
-          } duration-400 overflow-hidden`}
-        >
-          <p>Saheb</p>
-          <span className="text-xs">saheb@gmail.com</span>
-        </div>
-      </div>
     </nav>
   );
 }

@@ -1,3 +1,5 @@
+import {Clock} from 'lucide-react';
+
 export default function ReportClient() {
   return (
     <div className="col-span-12 md:col-span-8 flex justify-end items-start pt-6">
