@@ -2,7 +2,6 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 
 export default function ServiesBox() {
-  // const [open, setOpen] = React.useState(false)
   const [ view, setView] = useState("")
   return (
     <div className="flex flex-col gap-4 mt-3">
