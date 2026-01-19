@@ -11,6 +11,7 @@ export default function RegisterForm() {
     username: "",
     email: "",
     password: "",
+    role: "",
   });
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -24,10 +25,16 @@ export default function RegisterForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!formData.role) {
+      setError("กรุณาเลือกบทบาทก่อนสมัคร");
+      return;
+    }
+
     try {
       await axios.post("http://localhost:3000/api/v1/auth/register", formData);
       alert("User registered successfully");
-      navigate("/RoleSelection");
+      navigate("/login");
     } catch (error) {
       console.error(error);
       setError(error.response?.data?.message || "Register failed");
@@ -76,18 +83,50 @@ export default function RegisterForm() {
             value={formData.password}
             onChange={handleChang}
             required
-            className="w-full px-4 py-3 pr-12 border-2 border-gray-300 rounded-2xl focus:outline-none focus:border-pink-500 transition"
+            className="w-full px-4 py-3 pr-12 border-2 border-gray-300 rounded-2xl focus:outline-none focus:border-pink-500 transition "
           />
           <button
+            type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-3 top-3.5 text-gray-500 hover:text-gray-700"
+            className="hover:cursor-pointer absolute right-3 top-3.5 text-gray-500 hover:text-gray-700"
           >
             {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
           </button>
         </div>
+        <div className="flex flex-col md:flex-row md:items-center">
+          <label className="w-full md:w-1/3 text-gray-700">เลือกบทบาท</label>
+
+          <div className="flex gap-3 w-full">
+            <button
+              type="button"
+              onClick={() => setFormData({ ...formData, role: "CUSTOMER" })}
+              className={`flex-1 py-2 rounded-xl border-2 transition hover:cursor-pointer
+        ${
+          formData.role === "CUSTOMER"
+            ? "bg-pink-500 text-white border-pink-500"
+            : "border-gray-300 text-gray-700"
+        }`}
+            >
+              หาผู้ดูแล
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setFormData({ ...formData, role: "CAREGIVER" })}
+              className={`flex-1 py-2 rounded-xl border-2 transition hover:cursor-pointer
+        ${
+          formData.role === "CAREGIVER"
+            ? "bg-pink-500 text-white border-pink-500"
+            : "border-gray-300 text-gray-700"
+        }`}
+            >
+              ผู้ดูแล
+            </button>
+          </div>
+        </div>
         <button
           type="submit"
-          className="w-full bg-pink-400 hover:bg-pink-600 text-gray-800 py-3 rounded-lg font-medium mt-2"
+          className="w-full hover:cursor-pointer bg-pink-400  hover:bg-pink-600 text-gray-800 py-3 rounded-lg font-medium mt-2"
         >
           สมัครสมาชิก
         </button>

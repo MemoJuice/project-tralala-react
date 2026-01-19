@@ -57,8 +57,9 @@ function LoginFrom() {
             className="w-full px-4 py-3 pr-12 border-2 border-gray-300 rounded-2xl focus:outline-none focus:border-pink-500 transition"
           />
           <button
+            type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-3 top-3.5 text-gray-500 hover:text-gray-700"
+            className="hover:cursor-pointer absolute right-3 top-3.5 text-gray-500 hover:text-gray-700"
           >
             {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
           </button>
@@ -78,7 +79,7 @@ function LoginFrom() {
         <Link to="/userdashboard">
           <button
             type="submit"
-            className="w-full bg-pink-400 hover:bg-pink-600 text-gray-800 py-3 rounded-lg"
+            className="w-full bg-pink-400 hover:bg-pink-600 text-gray-800 hover:cursor-pointer py-3 rounded-lg"
           >
             เข้าสู่ระบบ
           </button>
@@ -87,7 +88,7 @@ function LoginFrom() {
         <Link to="/userdashboard">
           <button
             type="button"
-            className="w-full border border-gray-300 rounded-lg py-2 flex justify-center items-center gap-2 mt-4"
+            className="w-full border border-gray-300 hover:cursor-pointer rounded-lg py-2 flex justify-center items-center gap-2 mt-4"
           >
             <img src="https://www.google.com/favicon.ico" className="w-5" />
             เข้าสู่ระบบผ่าน Google
