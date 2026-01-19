@@ -10,7 +10,7 @@ import { DayPicker, getDefaultClassNames } from "react-day-picker";
 import { cn } from "@/lib/utils"
 import { Button, buttonVariants } from "@/components/ui/button"
 
-function Calendar({
+function HospitalCalendar({
   className,
   classNames,
   showOutsideDays = true,
@@ -183,4 +183,4 @@ function CalendarDayButton({
   );
 }
 
-export { Calendar, CalendarDayButton }
+export { HospitalCalendar, CalendarDayButton }

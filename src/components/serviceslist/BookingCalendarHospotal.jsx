@@ -4,7 +4,7 @@ import * as React from "react"
 import { ChevronDownIcon } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
-import { Calendar } from "@/components/ui/calendar"
+import { HospitalCalendar } from "@/components/serviceslist/HospitalCalendar"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {
@@ -36,7 +36,7 @@ export default function BookingCalendarHospotal() {
             </Button>
           </PopoverTrigger>
           <PopoverContent className="w-auto overflow-hidden p-0" align="start">
-            <Calendar
+            <HospitalCalendar
               mode="single"
               selected={date}
               captionLayout="dropdown"
