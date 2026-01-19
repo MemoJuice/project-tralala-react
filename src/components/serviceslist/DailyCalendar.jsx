@@ -10,7 +10,7 @@ import { DayPicker, getDefaultClassNames } from "react-day-picker";
 import { cn } from "@/lib/utils"
 import { Button, buttonVariants } from "@/components/ui/button"
 
-function Calendar({
+function DailyCalendar({
   className,
   classNames,
   showOutsideDays = true,
@@ -24,9 +24,6 @@ function Calendar({
 
   return (
     <DayPicker
-      // numerals="thai" 
-      //  locale="th-TH"
-      //  locale={enUS} numerals="latn" 
 
       showOutsideDays={showOutsideDays}
       className={cn(
@@ -35,7 +32,6 @@ function Calendar({
         String.raw`rtl:**:[.rdp-button\_previous>svg]:rotate-180`,
         className
       )}
-      captionLayout={captionLayout}
       formatters={{
         
         formatCaption: (date) =>
@@ -47,6 +43,7 @@ function Calendar({
         ...formatters,
       }}
       classNames={{
+        
         root: cn("w-80 h-fit", defaultClassNames.root),
         months: cn("flex gap-4 flex-col md:flex-row relative", defaultClassNames.months),
         month: cn("flex flex-col w-full gap-4", defaultClassNames.month),
@@ -183,4 +180,4 @@ function CalendarDayButton({
   );
 }
 
-export { Calendar, CalendarDayButton }
+export { DailyCalendar, CalendarDayButton }

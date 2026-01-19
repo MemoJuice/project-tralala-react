@@ -1,6 +1,8 @@
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useContext, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { MessageContext } from "../context/MessageContext";
+import { useSearchParams } from "react-router-dom";
+
 
 
 import DailyPlanCard from "@/components/serviceslist/DailyPlanCard";
@@ -9,14 +11,19 @@ import HospitalPlanCard from "@/components/serviceslist/HospitalPlanCard";
 import MenuBar from "@/components/serviceslist/MenuBar";
 
 
-export default function ServicesList (){
-    
-    // const { type } = useParams(); 
-    const [ view, setView ] = useState("dailyplan");
 
-  //   useEffect(() => {
-  //   if (type) setView(type);
-  // }, [type]);
+export default function ServicesList (){
+ 
+  const [view, setView] = useState("hospitalplan"); 
+    // const {view, setView} = useContext(MessageContext);
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    const viewFromLink = searchParams.get("view");
+    if (viewFromLink) {
+      setView(viewFromLink);
+    }
+  }, [searchParams]);
 
     return (
         <div className="flex flex-col justify-evenly px-10 pb-10 items-center">

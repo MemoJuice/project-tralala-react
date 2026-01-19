@@ -1,4 +1,4 @@
-import BookingCalendar from "@/components/BookingCalendar";
+import BookingCalendarDaily from "@/components/serviceslist/BookingCalendarDaily";
 import {
   HoverCard,
   HoverCardContent,
@@ -13,7 +13,7 @@ export default function DailyPlanCard (){
             {/* <!-- IMAGE --> */}
             <div className="bg-gray-50 flex items-center justify-center overflow-hidden">
               <img 
-                src="../public/images/caregiver-daily.jpg"
+                src="images/caregiver-daily.jpg"
                 alt="Service Image" 
                 className="w-full object-contain rounded-2xl shadow-2xs"
               />
@@ -43,7 +43,7 @@ export default function DailyPlanCard (){
 
               <div className="mt-6">
                 <div className="flex w-full justify-evenly">
-                 <BookingCalendar />
+                 <BookingCalendarDaily />
                 </div>
               </div>
             </div>
