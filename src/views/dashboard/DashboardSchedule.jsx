@@ -56,12 +56,12 @@ export default function DashboardSchedule() {
             </thead>
             <tbody>
               {schedules.map((schedule, index) => (
-                <tr 
+                <tr
                   key={schedule.id}
                   className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
                 >
                   <td className="px-6 py-4 border-b text-gray-700">
-                    {String(schedule.id).padStart(2, '0')}
+                    {String(schedule.id).padStart(2, "0")}
                   </td>
                   <td className="px-6 py-4 border-b text-gray-700">
                     {schedule.date}
@@ -73,63 +73,27 @@ export default function DashboardSchedule() {
                     {schedule.income}
                   </td>
                   <td className="px-6 py-4 border-b">
-                    <span className={`px-3 py-1 rounded-full text-sm font-medium ${schedule.statusColor}`}>
+                    <span
+                      className={`px-3 py-1 rounded-full text-sm font-medium ${schedule.statusColor}`}
+                    >
                       {schedule.status}
                     </span>
                   </td>
                 </tr>
-              </thead>
-              <tbody>
-                {schedules.map((schedule, index) => (
-                  <tr
-                    key={schedule.id}
-                    className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
-                  >
-                    <td className="px-6 py-4 border-b text-gray-700">
-                      {String(schedule.id).padStart(2, "0")}
-                    </td>
-                    <td className="px-6 py-4 border-b text-gray-700">
-                      {schedule.date}
-                    </td>
-                    <td className="px-6 py-4 border-b text-gray-700">
-                      {schedule.detail}
-                    </td>
-                    <td className="px-6 py-4 border-b text-gray-700">
-                      {schedule.income.toLocaleString()}.-
-                    </td>
-                    <td className="px-6 py-4 border-b">
-                      <span
-                        className={`px-3 py-1 rounded-full text-sm font-medium ${schedule.statusColor}`}
-                      >
-                        {schedule.status}
-                      </span>
-                    </td>
-                  </tr>
-                ))}
+              ))}
 
-                {/* Empty rows */}
-                {[...Array(3)].map((_, index) => (
-                  <tr key={`empty-${index}`} className="bg-white">
-                    <td className="px-6 py-4 border-b">&nbsp;</td>
-                    <td className="px-6 py-4 border-b">&nbsp;</td>
-                    <td className="px-6 py-4 border-b">&nbsp;</td>
-                    <td className="px-6 py-4 border-b">&nbsp;</td>
-                    <td className="px-6 py-4 border-b">&nbsp;</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          {/* Total Income Section */}
-          <div className="bg-yellow-100 rounded-2xl shadow-lg p-6 mt-4 flex justify-between items-center">
-            <span className="text-lg font-bold text-gray-800">
-              รายได้รวมทั้งหมด
-            </span>
-            <span className="text-lg font-bold text-green-600">
-              {totalIncome.toLocaleString()}.- บาท
-            </span>
-          </div>
+              {/* Empty rows */}
+              {[...Array(3)].map((_, index) => (
+                <tr key={`empty-${index}`} className="bg-white">
+                  <td className="px-6 py-4 border-b">&nbsp;</td>
+                  <td className="px-6 py-4 border-b">&nbsp;</td>
+                  <td className="px-6 py-4 border-b">&nbsp;</td>
+                  <td className="px-6 py-4 border-b">&nbsp;</td>
+                  <td className="px-6 py-4 border-b">&nbsp;</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
