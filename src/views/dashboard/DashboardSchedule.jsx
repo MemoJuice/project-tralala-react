@@ -6,7 +6,7 @@ export default function DashboardSchedule() {
       detail: "ดูแลรายวันเวลา 10.00-18.00 น.",
       income: 1500,
       status: "สำเร็จ",
-      statusColor: "text-green-600 bg-green-50"
+      statusColor: "text-green-600 bg-green-50",
     },
     {
       id: 2,
@@ -14,7 +14,7 @@ export default function DashboardSchedule() {
       detail: "พาผู้ป่วยไปหาหมอและพากลับบ้าน",
       income: 1200,
       status: "กำลังดำเนินการ",
-      statusColor: "text-blue-600 bg-blue-50"
+      statusColor: "text-blue-600 bg-blue-50",
     },
     {
       id: 3,
@@ -22,19 +22,22 @@ export default function DashboardSchedule() {
       detail: "ดูแลรายวันเวลา 8.00-16.00 น.",
       income: 1500,
       status: "กำลังดำเนินการ",
-      statusColor: "text-blue-600 bg-blue-50"
-    }
+      statusColor: "text-blue-600 bg-blue-50",
+    },
   ];
 
   // คำนวณรายได้รวม
-  const totalIncome = schedules.reduce((sum, schedule) => sum + schedule.income, 0);
+  const totalIncome = schedules.reduce(
+    (sum, schedule) => sum + schedule.income,
+    0,
+  );
 
   return (
     <div className="min-h-screen bg-pink-300 p-8">
       <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
         ตารางงาน
       </h1>
-      
+
       <div className="flex justify-center">
         <div className="w-full max-w-6xl">
           <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
@@ -60,12 +63,12 @@ export default function DashboardSchedule() {
               </thead>
               <tbody>
                 {schedules.map((schedule, index) => (
-                  <tr 
+                  <tr
                     key={schedule.id}
                     className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
                   >
                     <td className="px-6 py-4 border-b text-gray-700">
-                      {String(schedule.id).padStart(2, '0')}
+                      {String(schedule.id).padStart(2, "0")}
                     </td>
                     <td className="px-6 py-4 border-b text-gray-700">
                       {schedule.date}
@@ -77,13 +80,15 @@ export default function DashboardSchedule() {
                       {schedule.income.toLocaleString()}.-
                     </td>
                     <td className="px-6 py-4 border-b">
-                      <span className={`px-3 py-1 rounded-full text-sm font-medium ${schedule.statusColor}`}>
+                      <span
+                        className={`px-3 py-1 rounded-full text-sm font-medium ${schedule.statusColor}`}
+                      >
                         {schedule.status}
                       </span>
                     </td>
                   </tr>
                 ))}
-                
+
                 {/* Empty rows */}
                 {[...Array(3)].map((_, index) => (
                   <tr key={`empty-${index}`} className="bg-white">
@@ -100,7 +105,9 @@ export default function DashboardSchedule() {
 
           {/* Total Income Section */}
           <div className="bg-yellow-100 rounded-2xl shadow-lg p-6 mt-4 flex justify-between items-center">
-            <span className="text-lg font-bold text-gray-800">รายได้รวมทั้งหมด</span>
+            <span className="text-lg font-bold text-gray-800">
+              รายได้รวมทั้งหมด
+            </span>
             <span className="text-lg font-bold text-green-600">
               {totalIncome.toLocaleString()}.- บาท
             </span>

@@ -1,20 +1,20 @@
 import Sidebar from "./Sidebar";
 import Dashboard from "@/views/dashboard/Dashboard";
 import DashboardSchedule from "@/views/dashboard/DashboardSchedule";
-import DashboardIncome from "@/views/dashboard/DashboardIncome";
+import DashboardLog from "@/views/dashboard/DashboardLog";
 import React, { useState } from "react";
 
 export default function DashboardLayout() {
   const [currentPage, setCurrentPage] = useState("dashboard");
 
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="flex h-screen bg-gray-100  ">
       <Sidebar setCurrentPage={setCurrentPage} />
 
       <main className="flex-1 p-6 overflow-auto">
         {currentPage === "dashboard" && <Dashboard />}
         {currentPage === "dashboardschedule" && <DashboardSchedule />}
-        {currentPage === "dashboardincome" && <DashboardIncome />}
+        {currentPage === "dashboardLog" && <DashboardLog />}
       </main>
     </div>
   );
