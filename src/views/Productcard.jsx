@@ -1,6 +1,6 @@
 import ReviewCaregiver from "../components/Review-caregiver";
 import { Link } from "react-router-dom";
-import BookingCalendar from "../components/BookingCalendar";
+import BookingCalendarDaily from "../components/serviceslist/BookingCalendarDaily";
 
 export default function Productcard (){
     return (
@@ -53,12 +53,9 @@ export default function Productcard (){
 				</div>
 			<ReviewCaregiver />
 			<div children="flex justify-center">
-				<BookingCalendar />
+				<BookingCalendarDaily />
 			</div>
 		</div>	
-
-		{/* <!-- Booking Calendar  --> */}
-
         </div>
     )
 }

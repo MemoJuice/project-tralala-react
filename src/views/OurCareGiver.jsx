@@ -26,6 +26,6 @@ export default function OurCareGiver (){
       ) : (
         <ProductslistCard data={caregivers} />
       )} */}
-        </div>
+        </div>  
     );
 }       
