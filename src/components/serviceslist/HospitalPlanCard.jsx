@@ -42,7 +42,7 @@ export default function HospitalPlanCard (){
               </div>
 
               <div className="mt-6">
-                <div className="flex w-full justify-evenly">
+                <div className="flex w-full h-auto justify-evenly">
                  <BookingCalendarHospotal />
                 </div>
               </div>
