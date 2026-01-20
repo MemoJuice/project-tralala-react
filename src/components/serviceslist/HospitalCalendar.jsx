@@ -5,6 +5,7 @@ import {
   ChevronRightIcon,
 } from "lucide-react"
 import { DayPicker, getDefaultClassNames } from "react-day-picker";
+import { enUS } from "react-day-picker/locale";
 
 
 import { cn } from "@/lib/utils"
@@ -24,9 +25,8 @@ function HospitalCalendar({
 
   return (
     <DayPicker
-      // numerals="thai" 
-      //  locale="th-TH"
-      //  locale={enUS} numerals="latn" 
+      captionLayout="dropdown" mode="single" required timeZone="Asia/Bangkok" locale={enUS} numerals="latn" 
+      startMonth={new Date(2026, 0)} endMonth={new Date(2026, 12)}
 
       showOutsideDays={showOutsideDays}
       className={cn(
@@ -35,7 +35,6 @@ function HospitalCalendar({
         String.raw`rtl:**:[.rdp-button\_previous>svg]:rotate-180`,
         className
       )}
-      captionLayout={captionLayout}
       formatters={{
         
         formatCaption: (date) =>
