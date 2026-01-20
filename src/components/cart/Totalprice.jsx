@@ -14,8 +14,8 @@ export default function TotalPrice (){
     setSubmitting(true);
     try {
       const booking = {
-		clientID: "65a02001f1a2b3c4d5e6f401",
-		packageID: cart.packageID,
+		customerID: "65a02001f1a2b3c4d5e6f401",
+		serviceID: cart.serviceID,
 		schedule: {
 			startDate: new Date(cart.startDate),
 			endDate: new Date(cart.endDate)
@@ -30,11 +30,11 @@ export default function TotalPrice (){
 	  setBookingID(bookingInfoID);
 
       const billing = {
-		clientID: "65a02001f1a2b3c4d5e6f401",
+		customerID: "65a02001f1a2b3c4d5e6f401",
 		shoppingCart: [
 			{
 				"bookingID": bookingInfoID,
-				"packageID": booking.packageID
+				"serviceID": booking.serviceID
 			}
 		],
 		numberPackage: 1,

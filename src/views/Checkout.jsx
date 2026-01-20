@@ -17,9 +17,10 @@ export default function Checkout() {
     billingPhone: "",
     billingAddress: "",
     seniorId: "",
-    clientNote: "",
-    location: ""
-  });
+    customerNote: "",
+    location: "",
+    paymentMethod: ""
+});
   const [seniorData, setSeniorData] = useState({
     id: "65a03001f1a2b3c4d5e6f501",
     firstName: "นางรื่นรมย์",
@@ -49,7 +50,7 @@ export default function Checkout() {
     try {
       const bookingSeniorInfo = {
         seniorID: seniorData.id,
-        clientNote: formData.clientNote,
+        customerNote: formData.customerNote,
         location: formData.location,
         billingID: billingID,
         status: "SCHEDULED"
@@ -65,7 +66,7 @@ export default function Checkout() {
           phone: formData.billingPhone,
           address: formData.billingAddress
         },
-        paymentMethod: "TRANSFER",
+        paymentMethod: formData.paymentMethod,
         status: "PAID"
       };
 
@@ -82,7 +83,7 @@ export default function Checkout() {
         seniorLastName: seniorData.lastName,
         seniorAge: seniorData.age,
         location: formData.location,
-        clientNote: formData.clientNote
+        customerNote: formData.customerNote
       };
 
       setPurchaseSummary(summary);
@@ -94,12 +95,13 @@ export default function Checkout() {
         billingLastName: "",
         billingPhone: "",
         billingAddress: "",
-        clientNote: ""
+        customerNote: ""
       });
       navigate("/order_confirmation");
 
       //  Generate ai suggestion after navigate to not delay the page changing
-      await axios.patch(`${API}/bookings/${bookingID}/ai/suggestion`);
+      const response = await axios.patch(`${API}/bookings/${bookingID}/ai/suggestion`);
+      console.log(response.data.data);
 
     } catch (error) {
       console.error("Error submitting checkout info:", error);
@@ -117,7 +119,7 @@ export default function Checkout() {
             <CheckoutForm formType={formType} submitting={submitting} formData={formData} handleFormChange={handleFormChange} seniorData={seniorData} />
             <div className="px-6 sm:px-12">
                 <PaymentSummary order={cart} />
-                <PaymentForm />
+                <PaymentForm formData={formData} handleFormChange={handleFormChange} />
 
                 <div className="mt-12 mb-2">
                   { cart.price &&
