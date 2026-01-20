@@ -9,9 +9,6 @@ import {
 export default function HospitalPlanCard (){
     return (
         <div className="flex items-center w-[100%] mt-8 bg-white rounded-2xl shadow-2xs p-4 grid grid-cols-1 md:grid-cols-2 overflow-hidden">
-         {/* <!-- Heading --> */}
-
-            {/* <!-- IMAGE --> */}
             <div className="bg-gray-50 flex items-center justify-center overflow-hidden">
               <img 
                 src="images/caregiving-hos.jpg"
@@ -20,9 +17,7 @@ export default function HospitalPlanCard (){
               />
             </div>
 
-            {/* <!-- CONTENT --> */}
-            <div className="p-4 flex flex-col justify-between">
-              
+         <div className="p-4 flex flex-col justify-between">
               <div>
                 <h1 className="text-3xl font-bold mt-2 text-gray-700">
                   บริการพาไปโรงพยาบาล
