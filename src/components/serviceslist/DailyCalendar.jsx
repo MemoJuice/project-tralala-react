@@ -4,8 +4,9 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
 } from "lucide-react"
-import { DayPicker, getDefaultClassNames } from "react-day-picker";
-
+import { getDefaultClassNames } from "react-day-picker";
+import { DayPicker } from "react-day-picker/buddhist";
+import { enUS } from "react-day-picker/locale";
 
 import { cn } from "@/lib/utils"
 import { Button, buttonVariants } from "@/components/ui/button"
@@ -24,6 +25,8 @@ function DailyCalendar({
 
   return (
     <DayPicker
+      captionLayout="dropdown" mode="range" required timeZone="Asia/Bangkok" locale={enUS} numerals="latn" min={1} max={7}
+      startMonth={new Date(2026, 0)} endMonth={new Date(2026, 12)}
 
       showOutsideDays={showOutsideDays}
       className={cn(

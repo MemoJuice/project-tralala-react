@@ -1,16 +1,20 @@
-import * as React from "react"
+import { useState } from "react";
+import * as React from "react";
 import {
   ChevronDownIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
 } from "lucide-react"
-import { DayPicker, getDefaultClassNames } from "react-day-picker";
-
+import { getDefaultClassNames } from "react-day-picker";
+import { DayPicker } from "react-day-picker/buddhist";
+import { enUS } from "react-day-picker/locale";
 
 import { cn } from "@/lib/utils"
 import { Button, buttonVariants } from "@/components/ui/button"
 
-function Calendar({
+
+
+function MonthlyCalendar({
   className,
   classNames,
   showOutsideDays = true,
@@ -22,11 +26,11 @@ function Calendar({
 }) {
   const defaultClassNames = getDefaultClassNames()
 
-  return (
+
+return (
     <DayPicker
-      // numerals="thai" 
-      //  locale="th-TH"
-      //  locale={enUS} numerals="latn" 
+      captionLayout="dropdown" mode="single" required timeZone="Asia/Bangkok" locale={enUS} numerals="latn" 
+      startMonth={new Date(2026, 0)} endMonth={new Date(2026, 12)}
 
       showOutsideDays={showOutsideDays}
       className={cn(
@@ -35,7 +39,6 @@ function Calendar({
         String.raw`rtl:**:[.rdp-button\_previous>svg]:rotate-180`,
         className
       )}
-      captionLayout={captionLayout}
       formatters={{
         
         formatCaption: (date) =>
@@ -47,6 +50,7 @@ function Calendar({
         ...formatters,
       }}
       classNames={{
+        
         root: cn("w-80 h-fit", defaultClassNames.root),
         months: cn("flex gap-4 flex-col md:flex-row relative", defaultClassNames.months),
         month: cn("flex flex-col w-full gap-4", defaultClassNames.month),
@@ -183,4 +187,4 @@ function CalendarDayButton({
   );
 }
 
-export { Calendar, CalendarDayButton }
+export { MonthlyCalendar, CalendarDayButton }
