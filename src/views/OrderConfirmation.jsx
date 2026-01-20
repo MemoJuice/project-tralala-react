@@ -1,8 +1,8 @@
 import { Link } from "react-router";
 import { useState, useContext } from "react";
 import { MessageContext } from "../context/MessageContext";
-import CheckoutForm from "../components/CheckoutForm";
-import PaymentSummary from "../components/PaymentSummary";
+import CheckoutForm from "../components/checkout/CheckoutForm";
+import PaymentSummary from "../components/checkout/PaymentSummary";
 
 export default function OrderConfirmation() {
   const [formType, setFormType] = useState("confirmation");
@@ -12,7 +12,10 @@ export default function OrderConfirmation() {
     <div>
         <section className="flex">
             <div className="bg-white my-4 mx-auto w-[90%] rounded-[3rem] font-noto">
+                <div children="flex items-center">
+                <img src="/images/check-mark-icon.png" className="w-25 h-25" />
                 <h1 className="block text-center py-6 px-10 font-bold text-3xl">รายการสั่งซื้อสำเร็จ</h1>
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 pb-4">
                     <CheckoutForm formType={formType} purchaseSummary={purchaseSummary} />
                     <div className="px-6 sm:px-12">
