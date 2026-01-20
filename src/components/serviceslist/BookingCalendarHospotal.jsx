@@ -58,14 +58,16 @@ export default function BookingCalendarHospotal() {
           className=" flex justify-center w-50 text-xl h-12 rounded-4xl bg-white appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
         />
       </div>
-      <div className="flex justify-center flex-wrap gap-4 mt-2 md:mt-2 md:flex-row md:gap-4">
-          <Link to ="/ourcaregiver"><button className="h-12 bg-sky-400 text-white w-50 rounded-4xl text-xl hover:bg-sky-500 hover:cursor-pointer">
-								เลือกผู้ดูแล
-					</button></Link>
-      		<Link to ="/cart"><button className="h-12 bg-pink-400 text-white w-50 rounded-4xl text-xl hover:bg-pink-600 hover:cursor-pointer">
-								จองบริการ
-					</button></Link>
-      </div>
+          <div className="flex justify-center flex-wrap gap-4 mt-2 md:gap-4 md:mt-10">
+            <Link to ="/ourcaregiver">
+            <button type="caregiver" className="h-12 bg-sky-400 text-shadow-2xs text-white w-50 rounded-4xl text-xl hover:bg-sky-500 hover:cursor-pointer">
+                  เลือกผู้ดูแล
+            </button></Link>
+
+            <Link to ="/cart"><button type="booking" className="h-12 bg-pink-400 text-white w-50 rounded-4xl text-xl hover:bg-pink-600 hover:cursor-pointer">
+                  จองบริการ
+            </button></Link>
+          </div>
     </div>
   )
 }

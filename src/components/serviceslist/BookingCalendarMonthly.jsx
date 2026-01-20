@@ -77,7 +77,7 @@ export default function BookingCalendarMonthly() {
         </Popover>
       </div>
       </div>
-          <div className="flex justify-center flex-wrap gap-4 mt-2 md:flex-warp md:gap-4">
+          <div className="flex justify-center flex-wrap gap-4 mt-2 md:gap-4 md:mt-10">
             <Link to ="/ourcaregiver">
             <button type="caregiver" className="h-12 bg-sky-400 text-shadow-2xs text-white w-50 rounded-4xl text-xl hover:bg-sky-500 hover:cursor-pointer">
                   เลือกผู้ดูแล
