@@ -96,7 +96,11 @@ export default function Checkout() {
         billingAddress: "",
         clientNote: ""
       });
-      navigate("/order_confirmation"); 
+      navigate("/order_confirmation");
+
+      //  Generate ai suggestion after navigate to not delay the page changing
+      await axios.patch(`${API}/bookings/${bookingID}/ai/suggestion`);
+
     } catch (error) {
       console.error("Error submitting checkout info:", error);
     } finally {
