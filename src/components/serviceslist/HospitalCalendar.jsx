@@ -35,7 +35,6 @@ function HospitalCalendar({
         String.raw`rtl:**:[.rdp-button\_previous>svg]:rotate-180`,
         className
       )}
-      captionLayout={captionLayout}
       formatters={{
         
         formatCaption: (date) =>
