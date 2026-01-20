@@ -21,7 +21,7 @@ export default function UserDashboard() {
         </div>
       </div>
 
-      <div className="flex gap-10 justify-center">
+      <div className="flex gap- justify-center">
       <ViewHistoryLog/>
       <ReportClient/>
       </div>
