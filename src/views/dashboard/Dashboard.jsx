@@ -1,5 +1,6 @@
 import TodayTaskCard from "./TodayTaskCard";
 import SeniorsCard from "./SeniorsCard";
+import DashboardSchedule from "./DashboardSchedule";
 
 export default function Dashboard() {
   return (
@@ -12,6 +13,7 @@ export default function Dashboard() {
         <TodayTaskCard />
         <SeniorsCard />
       </div>
+      <DashboardSchedule/>
     </div>
   );
 }
