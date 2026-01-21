@@ -2,9 +2,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { MessageContext } from "../context/MessageContext";
-import CheckoutForm from "../components/CheckoutForm";
-import PaymentSummary from "../components/PaymentSummary";
-import PaymentForm from "../components/PaymentForm";
+import CheckoutForm from "../components/checkout/CheckoutForm";
+import PaymentSummary from "../components/checkout/PaymentSummary";
+import PaymentForm from "../components/checkout/PaymentForm";
 
 export default function Checkout() {
   const navigate = useNavigate();
@@ -17,9 +17,10 @@ export default function Checkout() {
     billingPhone: "",
     billingAddress: "",
     seniorId: "",
-    clientNote: "",
-    location: ""
-  });
+    customerNote: "",
+    location: "",
+    paymentMethod: ""
+});
   const [seniorData, setSeniorData] = useState({
     id: "65a03001f1a2b3c4d5e6f501",
     firstName: "นางรื่นรมย์",
@@ -49,7 +50,7 @@ export default function Checkout() {
     try {
       const bookingSeniorInfo = {
         seniorID: seniorData.id,
-        clientNote: formData.clientNote,
+        customerNote: formData.customerNote,
         location: formData.location,
         billingID: billingID,
         status: "SCHEDULED"
@@ -65,7 +66,7 @@ export default function Checkout() {
           phone: formData.billingPhone,
           address: formData.billingAddress
         },
-        paymentMethod: "TRANSFER",
+        paymentMethod: formData.paymentMethod,
         status: "PAID"
       };
 
@@ -82,7 +83,7 @@ export default function Checkout() {
         seniorLastName: seniorData.lastName,
         seniorAge: seniorData.age,
         location: formData.location,
-        clientNote: formData.clientNote
+        customerNote: formData.customerNote
       };
 
       setPurchaseSummary(summary);
@@ -94,9 +95,14 @@ export default function Checkout() {
         billingLastName: "",
         billingPhone: "",
         billingAddress: "",
-        clientNote: ""
+        customerNote: ""
       });
-      navigate("/order_confirmation"); 
+      navigate("/order_confirmation");
+
+      //  Generate ai suggestion after navigate to not delay the page changing
+      const response = await axios.patch(`${API}/bookings/${bookingID}/ai/suggestion`);
+      console.log(response.data.data);
+
     } catch (error) {
       console.error("Error submitting checkout info:", error);
     } finally {
@@ -108,18 +114,19 @@ export default function Checkout() {
     <div>
       <section className="flex">
         <form onSubmit={handleFormSubmit} className="bg-white my-4 mx-auto w-[90%] rounded-[3rem] font-noto">
-          <h1 className="block text-center py-6 px-10 font-bold text-3xl">ข้อมูลใบเสร็จ</h1>
+          <h1 className="block text-center text-gray-700 py-6 px-10 font-bold text-4xl">ข้อมูลคำสั่งซื้อ</h1>
           <div className="grid grid-cols-1 md:grid-cols-2 pb-4">
             <CheckoutForm formType={formType} submitting={submitting} formData={formData} handleFormChange={handleFormChange} seniorData={seniorData} />
             <div className="px-6 sm:px-12">
-              <PaymentSummary order={cart} />
-              <PaymentForm />
+                <PaymentSummary order={cart} />
+                <PaymentForm formData={formData} handleFormChange={handleFormChange} />
+
+                <div className="mt-12 mb-2">
+                  { cart.price &&
+                    <button type="submit" className="block mx-auto w-100 text-2xl bg-lime-300  outline-lime-400 text-gray-700 rounded-4xl py-3 font-bold hover:bg-lime-500 hover:text-white hover:cursor-pointer">ยืนยันคำสั่งซื้อ</button>
+                  }
+                </div>
             </div>
-          </div>
-          <div className="mt-2 mb-8">
-              { cart.price &&
-                <button type="submit" className="block mx-auto mb-4 rounded-3xl bg-lime-200 px-3 py-2 text-xl font-semibold text-gray-800 outline-1 outline-lime-400 hover:cursor-pointer hover:bg-lime-500 hover:text-gray-100">ยืนยันคำสั่งซื้อ</button>
-             }
           </div>
         </form>
       </section>

@@ -1,4 +1,4 @@
-import Searchbox  from "../components/homepage/Searchbox";
+import ServiesBox  from "../components/homepage/ServiesBox";
 import ServiceSection from "../components/homepage/Servies-section";
 import UserReview from "../components/homepage/User-review";
 import TopCaregiver from "../components/homepage/Top-caregiver";
@@ -14,13 +14,13 @@ export default function Home() {
 
           {/* <!-- Left content --> */}
           <div className="flex flex-col md:w-[60%] text-pretty font-noto">
-            <h1 className="text-5xl font-bold leading-tight pt-8 md:pt-40 md:text-6xl text-gray-700">
+            <h1 className="text-5xl font-bold leading-tight pt-8 md:pt-40 text-shadow-2xs md:text-6xl text-gray-700">
               ความสุขดีๆ... <br className="sm:hidden" />แค่มีคนดูแล
             </h1>
-            <p className="mt-105 text-2xl text-gray-700 md:mt-5 md:text-4xl">
+            <p className="mt-105 text-2xl font-semibold text-gray-700 text-shadow-2xs md:mt-5 md:text-4xl">
               ค้นหาผู้ดูแลที่เหมาะสม<br className="sm:hidden" />สำหรับคนที่คุณรัก
             </p>
-            <Searchbox />
+            <ServiesBox />
           </div>
         </div>
       </section>

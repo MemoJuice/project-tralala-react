@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
-import { MessageContext } from "../context/MessageContext";
+import { MessageContext } from "../../context/MessageContext";
 
 
 export default function TotalPrice (){
@@ -14,8 +14,8 @@ export default function TotalPrice (){
     setSubmitting(true);
     try {
       const booking = {
-		clientID: "65a02001f1a2b3c4d5e6f401",
-		packageID: cart.packageID,
+		customerID: "65a02001f1a2b3c4d5e6f401",
+		serviceID: cart.serviceID,
 		schedule: {
 			startDate: new Date(cart.startDate),
 			endDate: new Date(cart.endDate)
@@ -30,11 +30,11 @@ export default function TotalPrice (){
 	  setBookingID(bookingInfoID);
 
       const billing = {
-		clientID: "65a02001f1a2b3c4d5e6f401",
+		customerID: "65a02001f1a2b3c4d5e6f401",
 		shoppingCart: [
 			{
 				"bookingID": bookingInfoID,
-				"packageID": booking.packageID
+				"serviceID": booking.serviceID
 			}
 		],
 		numberPackage: 1,
@@ -88,7 +88,7 @@ export default function TotalPrice (){
 				<dd className="bg-blue-50 border border-dashed border-accent rounded px-2 py-1 text-green-600 font-bold">{cart.price} บาท</dd>
 			</div>
 		</div>
-			<button className="w-full mt-4 bg-lime-200 outline outline-lime-400 text-gray-900 rounded-lg py-3 font-bold hover:bg-lime-500 hover:text-white hover:cursor-pointer" onClick={handleBookingSubmit}>
+			<button className="w-full mt-4 text-2xl bg-lime-300 outline outline-lime-400 text-gray-700 rounded-4xl py-3 font-bold hover:bg-lime-500 hover:text-white hover:cursor-pointer" onClick={handleBookingSubmit}>
 				ดำเนินการสั่งซื้อ
 			</button>
 			<p className="text-gray-400 text-sm mt-2">การชำระเงินปลอดภัย รองรับบัตรเครดิต/เดบิต และโอนผ่านธนาคาร</p>
