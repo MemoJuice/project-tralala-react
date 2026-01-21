@@ -13,8 +13,9 @@ export default function OurCareGiver (){
   const { searchQuestion } = useContext(MessageContext);
 
 
-  const [caregivers, setCaregivers] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [caregivers, setCaregivers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const checkSession = sessionStorage.getItem("checkSession");
 
 //   useEffect(() => {
 //     fetch("http://localhost:3000/caregivers")
@@ -40,10 +41,6 @@ export default function OurCareGiver (){
     } catch {
       alert("Failed to fetch users");
     }
-    console.log(caregivers)
-    console.log(API)
-
-
     setLoading(false);
   };
 
@@ -115,9 +112,7 @@ export default function OurCareGiver (){
             <section className="w-full flex justify-center mb-6">
                 <div className="w-full max-w-3xl bg-pink-50 rounded-2xl p-5">
                     <div className="font-bold text-lg">ค้นหาผู้ดูแลที่เหมาะสม</div>
-                    {/* {authLoading ? (
-                        <div className="text-sm mt-2">Checking login…</div>
-                    ) : user ? ( */}
+                    {/* {checkSession  ? ( */}
                         <form onSubmit={askAi} className="mt-3 flex gap-x-2">
                         <input
                             value={question}
@@ -128,14 +123,14 @@ export default function OurCareGiver (){
                         <button
                             type="submit"
                             disabled={askLoading}
-                            className="bg-pink-400 hover:bg-pink-600 rounded-4xl px-2  disabled:bg-sky-300 text-white px-4 py-2 rounded"
+                            className="bg-pink-400 hover:bg-pink-600 rounded-4xl  disabled:bg-sky-300 text-white px-4 py-2"
                         >
                             {askLoading ? "กำลังค้นหา..." : "ค้นหา"}
                         </button>
                         </form>
                     {/* ) : (
                         <div className="text-sm mt-2 font-bold">
-                        Please log in to use the AI feature
+                        เข้าสู่ระบบเพื่อใช้งานการค้นหา
                         </div>
                     )} */}
 

@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import AuthLayout from "./AuthLayout";
 import { Eye, EyeOff } from "lucide-react";
 import axios from "axios";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { MessageContext } from "../../context/MessageContext";
 
 export default function LoginForm() {
@@ -33,15 +33,16 @@ export default function LoginForm() {
       const { token, user } = res.data;
 
       // เลือกว่าจะเก็บที่ไหน เก็บไว้ถาวร ไม่ต้อง login ใหม่
-      if (rememberMe) {
-        // เลือก "จดจำฉันไว้" → localStorage
-        localStorage.setItem("token", token);
-        localStorage.setItem("user", JSON.stringify(user));
-      } else {
+      // if (rememberMe) {
+      //   // เลือก "จดจำฉันไว้" → localStorage
+      //   localStorage.setItem("token", token);
+      //   localStorage.setItem("user", JSON.stringify(user));
+      // } else {
         // ไม่เลือก → sessionStorage ปิดแท็บแล้วต้อง login ใหม่
         sessionStorage.setItem("token", token);
         sessionStorage.setItem("user", JSON.stringify(user));
-      }
+        sessionStorage.setItem("checkSession", true);
+      // }
 
       setMessage?.({
         type: "success",
@@ -49,7 +50,8 @@ export default function LoginForm() {
       });
 
       setFormData({ email: "", password: "" });
-      setRememberMe(false);
+      // setRememberMe(false);
+      console.log(user.role);
 
       navigate(user.role === "CAREGIVER" ? "/dashboard" : "/userdashboard");
     } catch (error) {
@@ -60,6 +62,18 @@ export default function LoginForm() {
       });
     }
   };
+
+  
+  useEffect(() => {
+    const checkSession = sessionStorage.getItem("checkSession");
+
+    if (checkSession) {
+      console.log("AUTHORIZED, NAVIGATE TO DASHBOARD");
+      const user = JSON.parse(sessionStorage.getItem("user"));
+      navigate(user.role === "CAREGIVER" ? "/dashboard" : "/userdashboard");
+    }
+  }, []);
+  
 
   return (
     <AuthLayout title="ยินดีต้อนรับ">
