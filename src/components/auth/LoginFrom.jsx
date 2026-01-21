@@ -1,34 +1,58 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, Link } from "react-router-dom";
 import AuthLayout from "./AuthLayout";
-import { Link } from "react-router";
 import { Eye, EyeOff } from "lucide-react";
+import axios from "axios";
+import { useContext } from "react";
+import { MessageContext } from "../../context/MessageContext";
 
 function LoginFrom() {
+  const { API, setMessage } = useContext(MessageContext);
   const [showPassword, setShowPassword] = useState(false);
-  const [formData, setFromData] = useState({
+  const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-  const [error, setError] = useState("");
-  const navigation = useNavigate();
 
-  const handleChang = (e) => {
-    setFromData({
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefult();
-  //   try {
-  //   } catch (error) {}
-  // };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const res = await axios.post(`${API}/auth/login`, formData);
+      const { token, user } = res.data;
+
+      // เก็บ token
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
+
+      setMessage?.({
+        type: "success",
+        text: "เข้าสู่ระบบสำเร็จ",
+      });
+
+      navigate(user.role === "CAREGIVER" ? "/dashboard" : "/userdashboard");
+    } catch (error) {
+      console.error(error);
+      setMessage?.({
+        type: "error",
+        text: "อีเมลหรือรหัสผ่านไม่ถูกต้อง",
+      });
+    }
+  };
 
   return (
     <AuthLayout title="ยินดีต้อนรับ">
-      <form className="space-y-6">
+      <form className="space-y-6 " onSubmit={handleSubmit}>
         <div className="flex flex-col md:flex-row md:items-center">
           <label htmlFor="email" className="w-full md:w-1/3 text-gray-700">
             อีเมล
@@ -38,7 +62,7 @@ function LoginFrom() {
             name="email"
             placeholder="email"
             value={formData.email}
-            onChange={handleChang}
+            onChange={handleChange}
             required
             className="w-full px-4 py-3 pr-12 border-2 border-gray-300 rounded-2xl focus:outline-none focus:border-pink-500 transition"
           />
@@ -52,7 +76,7 @@ function LoginFrom() {
             type={showPassword ? "text" : "password"}
             name="password"
             value={formData.password}
-            onChange={handleChang}
+            onChange={handleChange}
             required
             className="w-full px-4 py-3 pr-12 border-2 border-gray-300 rounded-2xl focus:outline-none focus:border-pink-500 transition"
           />
@@ -76,14 +100,13 @@ function LoginFrom() {
           </Link>
         </div>
 
-        <Link to="/userdashboard">
-          <button
-            type="submit"
-            className="w-full bg-pink-400 hover:bg-pink-600 text-gray-800 hover:cursor-pointer py-3 rounded-lg"
-          >
-            เข้าสู่ระบบ
-          </button>
-        </Link>
+        <button
+          type="submit"
+          disabled={loading}
+          className="w-full bg-pink-400 hover:bg-pink-600 text-gray-800 hover:cursor-pointer py-3 rounded-lg"
+        >
+          {loading ? "กำลังเข้าสู่ระบบ..." : "เข้าสู่ระบบ"}
+        </button>
 
         <Link to="/userdashboard">
           <button
