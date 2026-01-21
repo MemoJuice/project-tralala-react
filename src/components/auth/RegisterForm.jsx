@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router";
+import { useNavigate, Link } from "react-router-dom";
 import AuthLayout from "./AuthLayout";
-import { Link } from "react-router";
 import { Eye, EyeOff } from "lucide-react";
+import { useContext } from "react";
+import { MessageContext } from "../../context/MessageContext";
 
 export default function RegisterForm() {
+  const { API } = useContext(MessageContext);
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
@@ -32,7 +34,7 @@ export default function RegisterForm() {
     }
 
     try {
-      await axios.post("http://localhost:3000/api/v1/auth/register", formData);
+      await axios.post(`${API}/auth/register`, formData);
       alert("User registered successfully");
       navigate("/login");
     } catch (error) {
