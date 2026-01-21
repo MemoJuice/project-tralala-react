@@ -6,7 +6,7 @@ import TotalPrice from "../components/cart/Totalprice";
 
 export default function Cart() {
 	const mockService = {
-		packageID: "659e1001f1a2b3c4d5e6f002",
+		serviceID: "659e1001f1a2b3c4d5e6f002",
 		name: "บริการดูแลผู้สูงอายุที่บ้าน(รายวัน)",
 		price: "1500",
 		description: "ดูแลผู้สูงอายุ 1 วัน (ไม่เกิน 12 ชั่วโมง) ช่วยเหลือการทำกิจวัตรพื้นฐาน จัดยาและอาหารตามเวลา วัดและบันทึกสัญญาณชีพ พูดคุยให้กำลังใจผู้สูงอายุ",
@@ -17,7 +17,7 @@ export default function Cart() {
     const {cart, setCart} = useContext(MessageContext);
 	useEffect(() => {
 		setCart(mockService);
-		localStorage.setItem("cart", JSON.stringify(cart));
+		localStorage.setItem("cart", JSON.stringify(mockService));
 		console.log(cart);
 	}, []);
 

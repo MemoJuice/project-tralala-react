@@ -11,7 +11,8 @@ import RegisterForm from "./components/auth/RegisterForm";
 import LoginFrom from "./components/auth/LoginFrom";
 import ProfileInfoForm from "./views/ProfileInfoForm";
 import Cart from "./views/Cart";
-import Productcard from "./views/Productcard";
+import Productcard from "./views/CareGiverCard";
+import CareGiverCard from "./views/CareGiverCard";
 import OurCareGiver from "./views/OurCareGiver";
 import Serviceslist from "./views/ServicesList";
 import DashboardLayout from "./components/sidebardashborad/DashboardLayout";
@@ -43,7 +44,7 @@ const router = createBrowserRouter([
       { path: "userdashboard", element: <UserDashboard /> },
       { path: "userprofile", element: <UserProfile /> },
       { path: "cart", element: <Cart /> },
-      { path: "productcard", element: <Productcard /> },
+      { path: "caregivercard", element: <CareGiverCard /> },
       { path: "ourcaregiver", element: <OurCareGiver /> },
       { path: "serviceslist", element: <Serviceslist /> },
       { path: "roleselection", element: <RoleSelection /> },

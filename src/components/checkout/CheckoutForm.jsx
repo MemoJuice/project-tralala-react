@@ -1,31 +1,31 @@
 export default function CheckoutForm({formType, formData, handleFormChange, seniorData, purchaseSummary}) {
     
   return (
-    <div>
+    <div className="bg-sky-50 rounded-2xl shadow-2xs pt-8 px-6 sm:px-12 m-10">
         { formType==="checkout" &&
-        <div className="px-6 sm:px-12">
+        <div className="px-2 sm:px-4">
             <h2 className="text-3xl mb-4 font-semibold text-gray-700">ผู้สั่งซื้อ</h2>
 
             <div className="flex flex-col mt-2 mb-6 gap-2">
                 <div className="flex gap-4">
                     <div>
                         <label className="block text-xl font-semibold text-gray-700">ชื่อ</label>
-                        <input type="text" className="block w-full mt-2 mr-auto rounded-4xl bg-sky-50 px-3 py-2 text-base text-gray outline-1 outline-sky-600 focus:outline-2 focus:outline-pink-600 " name="billingFirstName" value={formData.billingFirstName} onChange={handleFormChange} required />
+                        <input type="text" className="block w-full mt-2 mr-auto rounded-4xl bg-sky-50 px-3 py-2 text-base text-gray outline-1 outline-pink-400 focus:outline-2 focus:outline-pink-600 " name="billingFirstName" value={formData.billingFirstName} onChange={handleFormChange} required />
                     </div>
                     <div>
                         <label className="block text-xl font-semibold text-gray-700">นามสกุล</label>
-                        <input type="text" className="block w-full mt-2 mr-auto rounded-4xl bg-sky-50 px-3 py-2 text-base text-gray outline-1 outline-sky-600 focus:outline-2 focus:outline-pink-600" name="billingLastName" value={formData.billingLastName} onChange={handleFormChange} required />
+                        <input type="text" className="block w-full mt-2 mr-auto rounded-4xl bg-sky-50 px-3 py-2 text-base text-gray outline-1 outline-pink-400 focus:outline-2 focus:outline-pink-600 v" name="billingLastName" value={formData.billingLastName} onChange={handleFormChange} required />
                     </div>
                 </div>
 
                 <div>
                     <label className="lock text-xl font-semibold text-gray-700">เบอร์โทรศัพท์</label>
-                    <input type="text" className="block w-full md:w-40 mt-2 mr-auto rounded-4xl bg-sky-50 px-3 py-2 text-base text-gray outline-1 outline-sky-400 focus:outline-2 focus:outline-pink-600 " name="billingPhone" value={formData.billingPhone} onChange={handleFormChange} required />
+                    <input type="text" className="block w-full md:w-40 mt-2 mr-auto rounded-4xl bg-sky-50 px-3 py-2 text-base text-gray outline-1 outline-pink-400 focus:outline-2 focus:outline-pink-600 " name="billingPhone" value={formData.billingPhone} onChange={handleFormChange} required />
                 </div>
 
                 <div>
                     <label className="lock text-xl font-semibold text-gray-700">ที่อยู่</label>
-                    <textarea className="block w-full md:w-[65%] h-21 md:h-16 mt-2 mr-auto rounded-2xl bg-sky-50 px-3 py-2 text-base text-gray outline-1 outline-sky-400 focus:outline-2 focus:outline-pink-600 appearance-none" name="billingAddress" value={formData.billingAddress} onChange={handleFormChange} required />
+                    <textarea className="block w-full md:w-[65%] h-21 md:h-16 mt-2 mr-auto rounded-2xl bg-sky-50 px-3 py-2 text-base text-gray outline-1 outline-pink-400 focus:outline-2 focus:outline-pink-600 appearance-none" name="billingAddress" value={formData.billingAddress} onChange={handleFormChange} required />
                 </div>
 
             </div>
@@ -64,7 +64,7 @@ export default function CheckoutForm({formType, formData, handleFormChange, seni
 
                 <div>
                     <label className="lock text-xl font-semibold text-gray-700">หมายเหตุ</label>
-                    <textarea className="block w-[75%] mt-2 mr-auto rounded-4xl bg-sky-50 px-3 py-2 text-base text-gray outline-1 outline-sky-400 focus:outline-2 focus:outline-pink-600" name="clientNote" value={formData.clientNote} onChange={handleFormChange} required />
+                    <textarea className="block w-[75%] mt-2 mr-auto rounded-4xl bg-sky-50 px-3 py-2 text-base text-gray outline-1 outline-sky-400 focus:outline-2 focus:outline-pink-600" name="customerNote" value={formData.customerNote} onChange={handleFormChange} required />
                 </div>
             </div>
 
@@ -104,7 +104,7 @@ export default function CheckoutForm({formType, formData, handleFormChange, seni
                 </div>
                 <div>
                     <h3 className="lock text-xl font-semibold text-gray-700">หมายเหตุ</h3>
-                    <p className="block w-fit max-w-140 mt-2 mr-auto rounded-xl bg-sky-50 px-3 py-2 text-base text-gray">{purchaseSummary.clientNote}</p>
+                    <p className="block w-fit max-w-140 mt-2 mr-auto rounded-xl bg-sky-50 px-3 py-2 text-base text-gray">{purchaseSummary.customerNote}</p>
                 </div>
             </div>
         </div>

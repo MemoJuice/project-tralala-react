@@ -1,20 +1,63 @@
-export default function PaymentForm() {
+export default function PaymentForm({formData, handleFormChange}) {
   return (
     <div className="flex flex-col mt-8 items-start gap-4 bg-green-50 p-4 border-3 shadow-2xs rounded-2xl">
     <h2 className="text-2xl font-semibold text-gray-700">เลือกวิธีการชำระเงิน</h2>
     <div className="flex flex-col md:flex-row md:gap-4">
+
         <div className="flex">
-            <input id="payment-radio-2" name="payment-radio" type="radio" value="" defaultChecked className="w-4 h-4" />
-            <label htmlFor="default-radio-2" className="select-none ms-2 text-xl font-medium text-heading">Visa</label>
+            <input
+            id="payment-online"
+            name="paymentMethod"
+            type="radio"
+            value="ONLINE_BANKING"
+            checked={formData.paymentMethod === "ONLINE_BANKING"}
+            onChange={handleFormChange}
+            className="w-4 h-4"
+            />
+            <label
+            htmlFor="payment-online"
+            className="select-none ms-2 text-xl font-medium text-heading"
+            >
+            ธนาคารออนไลน์
+            </label>
         </div>
+
         <div className="flex">
-            <input id="payment-radio-2" name="payment-radio" type="radio" value="" className="w-4 h-4" />
-            <label htmlFor="default-radio-2" className="select-none ms-2 text-xl font-medium text-heading">MasterCard</label>
+            <input
+            id="payment-mastercard"
+            name="paymentMethod"
+            type="radio"
+            value="MASTERCARD"
+            checked={formData.paymentMethod === "MASTERCARD"}
+            onChange={handleFormChange}
+            className="w-4 h-4"
+            />
+            <label
+            htmlFor="payment-mastercard"
+            className="select-none ms-2 text-xl font-medium text-heading"
+            >
+            MasterCard
+            </label>
         </div>
+
         <div className="flex">
-            <input id="payment-radio-1" name="payment-radio" type="radio" value="" className="w-4 h-4" />
-            <label htmlFor="default-radio-1" className="select-none ms-2 text-xl font-medium text-heading">ธนาคารออนไลน์</label>
-        </div>
+            <input
+            id="payment-visa"
+            name="paymentMethod"
+            type="radio"
+            value="VISA"
+            checked={formData.paymentMethod === "VISA"}
+            onChange={handleFormChange}
+            className="w-4 h-4"
+            />
+            <label
+            htmlFor="payment-visa"
+            className="select-none ms-2 text-xl font-medium text-heading"
+            >
+            Visa
+            </label>
+    </div>
+
     </div>
     <div className="flex flex-col w-full gap-4">
         <div className="flex flex-col w-full">
