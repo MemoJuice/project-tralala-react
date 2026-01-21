@@ -10,6 +10,8 @@ export default function OurCareGiver (){
   const [askError, setAskError] = useState(null);
   const [askResult, setAskResult] = useState(null);
   const [suggestedCaregivers, setSuggestedCaregivers] = useState([]);
+  const { searchQuestion } = useContext(MessageContext);
+
 
   const [caregivers, setCaregivers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -23,6 +25,13 @@ export default function OurCareGiver (){
 //         setLoading(false)
 //       })
 //   }, [])
+
+  useEffect(() => {
+    if (searchQuestion) {
+      setQuestion(searchQuestion); // keep in sync
+    }
+  }, [searchQuestion]);
+
 
   const fetchCaregivers = async () => {
     setLoading(true);
@@ -86,6 +95,13 @@ export default function OurCareGiver (){
     }
   };
 
+  useEffect(() => { 
+    if(setQuestion){
+    setQuestion(searchQuestion)
+    askAi()
+  }
+  },[]
+)
 
     return (
         <div className="min-h-full mx-4 md:mx-24 mt-16 mb-12 bg-white rounded-2xl shadow p-6">
@@ -102,12 +118,12 @@ export default function OurCareGiver (){
                             value={question}
                             onChange={(e) => setQuestion(e.target.value)}
                             placeholder='ใส่คุณสมบัติของผู้ดูแลที่คุณต้องการ'
-                            className="flex-1 border rounded px-3 py-2 bg-white"
+                            className="flex-1 border rounded-4xl px-3 py-2 bg-white"
                         />
                         <button
                             type="submit"
                             disabled={askLoading}
-                            className="bg-sky-500 hover:bg-sky-600 disabled:bg-sky-300 text-white px-4 py-2 rounded"
+                            className="bg-pink-400 hover:bg-pink-600 rounded-4xl  disabled:bg-sky-300 text-white px-4 py-2"
                         >
                             {askLoading ? "กำลังค้นหา..." : "ค้นหา"}
                         </button>
@@ -164,4 +180,4 @@ export default function OurCareGiver (){
       )} */}
         </div>  
     );
-}       
+}   
