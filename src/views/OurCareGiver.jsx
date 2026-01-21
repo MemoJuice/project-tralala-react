@@ -98,6 +98,13 @@ export default function OurCareGiver (){
     }
   };
 
+  useEffect(() => { 
+    if(setQuestion){
+    setQuestion(searchQuestion)
+    askAi()
+  }
+  },[]
+)
 
     return (
         <div className="min-h-full mx-4 md:mx-24 mt-16 mb-12 bg-white rounded-2xl shadow p-6">
