@@ -79,6 +79,7 @@
               
               <div className="flex-wrap md:justify-evenly items-start ">
               <Link to="/caregivercard">
+              {/* <Link to={`/ourcaregiver/${caregiver.id}`}> */}
                 <button
                 type="readmore"
                 className="w-35 mr-6  bg-sky-300 hover:bg-sky-500 text-white text-xl text-shadow-2xs px-4 py-2 rounded-4xl">

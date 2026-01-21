@@ -15,10 +15,11 @@ import {
 import { Link } from "react-router-dom"
 
 export default function BookingCalendarDaily() {
-    const [openStart, setOpenStart] = React.useState(false);
+  const [openStart, setOpenStart] = React.useState(false);
   const [openEnd, setOpenEnd] = React.useState(false);
   const [date, setDate] = React.useState(undefined);
   const [endDate, setEndDate] = React.useState(undefined);
+  const [shift, setShift] = useState("")
 
   const navigate = useNavigate();
 
@@ -57,7 +58,7 @@ export default function BookingCalendarDaily() {
 
   function handleEndDate(selectedEnd) {
     if (!date) {
-      alert("กรุณาเลือกวันเริ่มก่อน");
+      alert("กรุณาเลือกวันเริ่มบริการก่อน");
       return;
     }
 
@@ -83,7 +84,6 @@ export default function BookingCalendarDaily() {
   return (
     <div className="flex flex-wrap gap-4 ">
       <div className="flex flex-wrap gap-4">
-        {/* Start Date */}
         <div className="flex-col flex gap-2">
           <Label htmlFor="start-date-picker" className="text-xl">
             วันเริ่มที่ใช้บริการ
@@ -105,7 +105,6 @@ export default function BookingCalendarDaily() {
           </Popover>
         </div>
 
-        {/* End Date */}
         <div className="flex-col flex gap-2">
           <Label htmlFor="end-date-picker" className="text-xl">
             ใช้บริการถึงวันที่
@@ -128,7 +127,19 @@ export default function BookingCalendarDaily() {
         </div>
       </div>
 
-      {/* Action Buttons */}
+        <select
+          name="shift"
+          value={shift}
+          onChange={(e) => setShift(e.target.value)}
+           className=" flex justify-center items-center md:mt-10 border-solid border-2
+             pl-5 w-50 h-12 text-xl rounded-4xl bg-white appearance-none shadow-2xs hover:bg-pink-200 ">
+          <option value="" disabled>
+            เวลาที่ต้องการ
+          </option>
+          <option value="dayshift">เวรเช้า (8.00-19.00)</option>
+          <option value="nightshift">เวรดึก (19.00-8.00)</option>
+          </select> 
+
       <div className="flex justify-center flex-wrap gap-4 mt-2 md:gap-4 md:mt-10">
         <Link to="/ourcaregiver">
           <button
