@@ -64,7 +64,7 @@ export default function CheckoutForm({formType, formData, handleFormChange, seni
 
                 <div>
                     <label className="lock text-xl font-semibold text-gray-700">หมายเหตุ</label>
-                    <textarea className="block w-[75%] mt-2 mr-auto rounded-4xl bg-sky-50 px-3 py-2 text-base text-gray outline-1 outline-sky-400 focus:outline-2 focus:outline-pink-600" name="clientNote" value={formData.clientNote} onChange={handleFormChange} required />
+                    <textarea className="block w-[75%] mt-2 mr-auto rounded-4xl bg-sky-50 px-3 py-2 text-base text-gray outline-1 outline-sky-400 focus:outline-2 focus:outline-pink-600" name="customerNote" value={formData.customerNote} onChange={handleFormChange} required />
                 </div>
             </div>
 
@@ -104,7 +104,7 @@ export default function CheckoutForm({formType, formData, handleFormChange, seni
                 </div>
                 <div>
                     <h3 className="lock text-xl font-semibold text-gray-700">หมายเหตุ</h3>
-                    <p className="block w-fit max-w-140 mt-2 mr-auto rounded-xl bg-sky-50 px-3 py-2 text-base text-gray">{purchaseSummary.clientNote}</p>
+                    <p className="block w-fit max-w-140 mt-2 mr-auto rounded-xl bg-sky-50 px-3 py-2 text-base text-gray">{purchaseSummary.customerNote}</p>
                 </div>
             </div>
         </div>
