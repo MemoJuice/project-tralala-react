@@ -4,15 +4,15 @@ import { useState, useEffect, useContext } from "react";
 import { MessageContext } from "../context/MessageContext";
 
 export default function OurCareGiver (){
-  const {API} = useContext(MessageContext);
+  const {API, caregiverID, setCaregiverID} = useContext(MessageContext);
   const [question, setQuestion] = useState("");
   const [askLoading, setAskLoading] = useState(false);
   const [askError, setAskError] = useState(null);
   const [askResult, setAskResult] = useState(null);
-  const [askResultCaregiver, setAskResultCaregiver] = useState(null);
+  const [suggestedCaregivers, setSuggestedCaregivers] = useState([]);
 
-    // const [caregivers, setCaregivers] = useState([])
-// const [loading, setLoading] = useState(true)
+  const [caregivers, setCaregivers] = useState([])
+  const [loading, setLoading] = useState(true)
 
 //   useEffect(() => {
 //     fetch("http://localhost:3000/caregivers")
@@ -23,6 +23,21 @@ export default function OurCareGiver (){
 //       })
 //   }, [])
 
+  const fetchCaregivers = async () => {
+    try {
+      const res = await axios.get(`${API}/caregivers`);
+      setCaregivers(res.data);
+      setLoading(false);
+    } catch {
+      alert("Failed to fetch users");
+    }
+  };
+
+  useEffect(() => {
+    fetchCaregivers();
+  }, []);
+
+//   Ask AI to search suitable caregiver feature
   const askAi = async (e) => {
     e.preventDefault();
     const q = String(question || "").trim();
@@ -39,10 +54,23 @@ export default function OurCareGiver (){
         { question: q, topK: 5 },
         { withCredentials: true }
       );
+      console.log(response);
 
       const responseAnswer = JSON.parse(response.data?.data.answer.replace(/\s*```$/, ""));
       console.log(responseAnswer);
       setAskResult(responseAnswer || null);
+
+      const matchedCaregiverId = caregivers.filter((cg) =>
+        responseAnswer.caregiverID.includes(cg._id)
+      );
+
+      setSuggestedCaregivers(matchedCaregiverId);
+
+      const unmatchedCaregiverId = caregivers.filter((cg) =>
+        !responseAnswer.caregiverID.includes(cg._id)
+      );
+
+      setCaregivers(unmatchedCaregiverId);
 
     } catch (error) {
       const message =
@@ -63,8 +91,8 @@ export default function OurCareGiver (){
                 <h2 className="text-4xl text-gray-700 font-bold">ผู้ดูแลของเรา</h2>
                 <p className="text-gray-700">ทีมผู้ดูแลที่ผ่านการอบรม มีประสบการณ์ ใส่ใจ และดูแลด้วยความอบอุ่นเหมือนคนในครอบครัว</p>
             </div>
-            <section className="w-full flex flex-col lg:flex-row gap-6 mb-6">
-                <div className="w-full max-w-3xl bg-pink-100 rounded-2xl p-5">
+            <section className="w-full flex justify-center mb-6">
+                <div className="w-full max-w-3xl bg-pink-50 rounded-2xl p-5">
                     <div className="font-bold text-lg">ค้นหาผู้ดูแลที่เหมาะสม</div>
                     {/* {authLoading ? (
                         <div className="text-sm mt-2">Checking login…</div>
@@ -97,7 +125,7 @@ export default function OurCareGiver (){
                     ) : null}
 
                     {askResult ? (
-                        <div className="mt-3 text-sm">
+                        <div className="mt-3 text-md py-3">
                             <div className="font-bold">ผลการค้นหา</div>
                             <div className="mt-1 whitespace-pre-wrap">
                                 {askResult.answer || "ไม่มีผลลัพธ์"}
@@ -118,18 +146,14 @@ export default function OurCareGiver (){
                         </div>
                     ) : null}
                 </div>
+            </section>
+            <section className="flex flex-col gap-6">
                 {askResult ?
-                    <div className="min-w-[50%] bg-pink-50 rounded-2xl">
-                        <ul>
-                        {askResult.caregiverID.map((name, index) => (
-                            <li key={index}>caregiverID: {name}</li>
-                        ))}
-                        </ul>
-                    </div>
+                    <ProductslistCard caregivers={suggestedCaregivers} askResult={askResult} recommended={true} caregiverID={caregiverID} setCaregiverID={setCaregiverID} />
                     : null
                 }
+                <ProductslistCard caregivers={caregivers} askResult={askResult} caregiverID={caregiverID} setCaregiverID={setCaregiverID} />
             </section>
-                <ProductslistCard/>
              {/* {loading ? (
         <p className="text-center text-gray-500">กำลังโหลดข้อมูล...</p>
       ) : (

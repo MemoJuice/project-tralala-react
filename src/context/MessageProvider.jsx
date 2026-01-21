@@ -16,6 +16,7 @@ export default function MessageProvider({children}) {
             description: "",
             startDate: "",
             endDate: "",
+            caregiverID: "",
         };
       }
     );
@@ -27,18 +28,23 @@ export default function MessageProvider({children}) {
             price: e.price,
             description: e.description,
             startDate: e.startDate,
-            endDate: e.endDate
+            endDate: e.endDate,
+            caregiverID: e.caregiverID
         });
     };
 
     const [bookingID, setBookingID] = useState(() =>
-    localStorage.getItem("bookingID")
+        localStorage.getItem("bookingID")
     );
       
     const [billingID, setBillingID] = useState(() =>
-    localStorage.getItem("billingID")
+        localStorage.getItem("billingID")
     );
-    
+
+    const [caregiverID, setCaregiverID] = useState(() =>
+        localStorage.getItem("billingID")
+    );
+
     const [purchaseSummary, setPurchaseSummary] = useState(() => {
       const savedPurchaseSummary = localStorage.getItem("purchaseSummary");
 
@@ -62,7 +68,7 @@ export default function MessageProvider({children}) {
 
     return (
         <MessageContext.Provider 
-            value={{ API, cart, setCart, handleServiceCart, bookingID, setBookingID, billingID, setBillingID, purchaseSummary, setPurchaseSummary}}
+            value={{ API, cart, setCart, handleServiceCart, bookingID, setBookingID, billingID, setBillingID, purchaseSummary, setPurchaseSummary, caregiverID, setCaregiverID}}
         >
             {children}
         </MessageContext.Provider>
