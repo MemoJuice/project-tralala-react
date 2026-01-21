@@ -17,6 +17,33 @@ import { Input } from "../ui/input"
 export default function BookingCalendarHospotal() {
   const [open, setOpen] = React.useState(false)
   const [date, setDate] = React.useState(undefined)
+  const [time, setTime] = useState("10:30:00");
+
+  async function handleBooking() {
+  if (!date || !time) {
+    alert("กรุณาเลือกวันและเวลา");
+    return;
+  }
+
+  try {
+    const res = await fetch("/api/bookings", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        date: date.toISOString().split("T")[0], // format YYYY-MM-DD
+        time, // HH:mm:ss
+      }),
+    });
+
+    if (!res.ok) throw new Error("Booking failed");
+    const data = await res.json();
+    console.log("Booking success:", data);
+    // redirect or show success message
+  } catch (err) {
+    console.error(err);
+    alert("เกิดข้อผิดพลาดในการจอง");
+  }
+}
 
   return (
     <div className="flex flex-wrap gap-4 ">
@@ -55,6 +82,8 @@ export default function BookingCalendarHospotal() {
           id="time-picker"
           step="1"
           defaultValue="10:30:00"
+          value={time}
+          onChange={(e) => setTime(e.target.value)}
           className=" flex justify-center w-50 text-xl h-12 rounded-4xl bg-white appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
         />
       </div>
@@ -64,7 +93,10 @@ export default function BookingCalendarHospotal() {
                   เลือกผู้ดูแล
             </button></Link>
 
-            <Link to ="/cart"><button type="booking" className="h-12 bg-pink-400 text-white w-50 rounded-4xl text-xl hover:bg-pink-600 hover:cursor-pointer">
+            <Link to ="/cart">
+            <button type="booking"
+              onClick={handleBooking}
+              className="h-12 bg-pink-400 text-white w-50 rounded-4xl text-xl hover:bg-pink-600 hover:cursor-pointer">
                   จองบริการ
             </button></Link>
           </div>
