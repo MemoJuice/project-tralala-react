@@ -46,7 +46,7 @@ export default function MessageProvider({children}) {
     );
 
     const [purchaseSummary, setPurchaseSummary] = useState(() => {
-      const savedPurchaseSummary = localStorage.getItem("purchaseSummary");
+      const savedPurchaseSummary = localStorage.getItem("purchaseSummary")
 
       return savedPurchaseSummary
         ? JSON.parse(savedPurchaseSummary)
@@ -65,10 +65,12 @@ export default function MessageProvider({children}) {
       }
     );
 
+    const [searchQuestion, setSearchQuestion] = useState("");
+
 
     return (
         <MessageContext.Provider 
-            value={{ API, cart, setCart, handleServiceCart, bookingID, setBookingID, billingID, setBillingID, purchaseSummary, setPurchaseSummary, caregiverID, setCaregiverID}}
+            value={{ API, cart, setCart, handleServiceCart, bookingID, setBookingID, billingID, setBillingID, purchaseSummary, setPurchaseSummary, caregiverID, setCaregiverID, searchQuestion, setSearchQuestion }}
         >
             {children}
         </MessageContext.Provider>
