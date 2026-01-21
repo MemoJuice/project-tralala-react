@@ -4,15 +4,21 @@ import { useState, useEffect, useContext } from "react";
 import { MessageContext } from "../context/MessageContext";
 
 export default function OurCareGiver (){
-  const {API} = useContext(MessageContext);
+  const {API, caregiverID, setCaregiverID} = useContext(MessageContext);
   const [question, setQuestion] = useState("");
   const [askLoading, setAskLoading] = useState(false);
   const [askError, setAskError] = useState(null);
   const [askResult, setAskResult] = useState(null);
-  const [askResultCaregiver, setAskResultCaregiver] = useState(null);
+  const [suggestedCaregivers, setSuggestedCaregivers] = useState([]);
+  const { searchQuestion } = useContext(MessageContext);
 
-    // const [caregivers, setCaregivers] = useState([])
-// const [loading, setLoading] = useState(true)
+
+  const [caregivers, setCaregivers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const checkSession = sessionStorage.getItem("checkSession");
+  const [caregiversLoaded, setCaregiversLoaded] = useState(false);
+  const [inputQuestion, setInputQuestion] = useState("");
+  const [submittedQuestion, setSubmittedQuestion] = useState("");
 
 //   useEffect(() => {
 //     fetch("http://localhost:3000/caregivers")
@@ -23,12 +29,30 @@ export default function OurCareGiver (){
 //       })
 //   }, [])
 
-  const askAi = async (e) => {
-    e.preventDefault();
-    const q = String(question || "").trim();
+  const fetchCaregivers = async () => {
+    setLoading(true);
+    try {
+      const res = await axios.get(`${API}/caregivers`);
+      setCaregivers(res.data);
+      setCaregiversLoaded(true); // ✅ IMPORTANT
+    } catch {
+      alert("Failed to fetch users");
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const q = inputQuestion.trim();
     if (!q) return;
 
+    setSubmittedQuestion(q); // ✅ ONLY here
+  };
+
+
+//   Ask AI to search suitable caregiver feature
+  const askAi = async (q) => {
     setAskLoading(true);
     setAskError(null);
     setAskResult(null);
@@ -40,53 +64,84 @@ export default function OurCareGiver (){
         { withCredentials: true }
       );
 
-      const responseAnswer = JSON.parse(response.data?.data.answer.replace(/\s*```$/, ""));
-      console.log(responseAnswer);
+      const responseAnswer = JSON.parse(
+        response.data?.data.answer.replace(/\s*```$/, "")
+      );
+
       setAskResult(responseAnswer || null);
 
+      const matched = caregivers.filter((cg) =>
+        responseAnswer.caregiverID.includes(cg._id)
+      );
+
+      const unmatched = caregivers.filter((cg) =>
+        !responseAnswer.caregiverID.includes(cg._id)
+      );
+
+      setSuggestedCaregivers(matched);
+      setCaregivers(unmatched);
+
+      setInputQuestion(""); // clear input after submit
     } catch (error) {
-      const message =
+      setAskError(
         error?.response?.data?.message ||
-        error?.response?.data?.error ||
-        error?.response?.data?.details ||
-        error?.message;
-      setAskError(message || "Failed to ask AI");
+        error?.message ||
+        "Failed to ask AI"
+      );
     } finally {
       setAskLoading(false);
     }
   };
 
+  useEffect(() => {
+    fetchCaregivers();
+  }, []);
 
+  useEffect(() => {
+    if (!caregiversLoaded) return;
+    if (!searchQuestion) return;
+
+    setQuestion(searchQuestion);           // keep UI in sync
+    setSubmittedQuestion(searchQuestion);  // ✅ trigger askAI
+    setInputQuestion(searchQuestion);
+  }, [searchQuestion, caregiversLoaded]);
+
+  useEffect(() => {
+    if (!caregiversLoaded) return;
+    if (!submittedQuestion) return;
+
+    askAi(submittedQuestion);
+  }, [submittedQuestion, caregiversLoaded]);
+  
     return (
         <div className="min-h-full mx-4 md:mx-24 mt-16 mb-12 bg-white rounded-2xl shadow p-6">
             <div className="mb-6">
                 <h2 className="text-4xl text-gray-700 font-bold">ผู้ดูแลของเรา</h2>
                 <p className="text-gray-700">ทีมผู้ดูแลที่ผ่านการอบรม มีประสบการณ์ ใส่ใจ และดูแลด้วยความอบอุ่นเหมือนคนในครอบครัว</p>
             </div>
-            <section className="w-full flex flex-col lg:flex-row gap-6 mb-6">
-                <div className="w-full max-w-3xl bg-pink-100 rounded-2xl p-5">
+            <section className="w-full flex justify-center mb-6">
+                <div className="w-full max-w-3xl bg-pink-50 rounded-2xl p-5">
                     <div className="font-bold text-lg">ค้นหาผู้ดูแลที่เหมาะสม</div>
-                    {/* {authLoading ? (
-                        <div className="text-sm mt-2">Checking login…</div>
-                    ) : user ? ( */}
-                        <form onSubmit={askAi} className="mt-3 flex gap-x-2">
+                    {/* {checkSession  ? ( */}
+                        <form onSubmit={handleSubmit} className="mt-3 flex gap-x-2">
                         <input
-                            value={question}
-                            onChange={(e) => setQuestion(e.target.value)}
+                            value={inputQuestion}
+                            onChange={(e) => setInputQuestion(e.target.value)}
+                            disabled={askLoading}
                             placeholder='ใส่คุณสมบัติของผู้ดูแลที่คุณต้องการ'
-                            className="flex-1 border rounded px-3 py-2 bg-white"
+                            className="flex-1 border rounded-4xl px-3 py-2 bg-white"
                         />
                         <button
                             type="submit"
                             disabled={askLoading}
-                            className="bg-sky-500 hover:bg-sky-600 disabled:bg-sky-300 text-white px-4 py-2 rounded"
+                            className="bg-pink-400 hover:bg-pink-600 rounded-4xl  disabled:bg-sky-300 text-white px-4 py-2"
                         >
                             {askLoading ? "กำลังค้นหา..." : "ค้นหา"}
                         </button>
                         </form>
                     {/* ) : (
                         <div className="text-sm mt-2 font-bold">
-                        Please log in to use the AI feature
+                        เข้าสู่ระบบเพื่อใช้งานการค้นหา
                         </div>
                     )} */}
 
@@ -97,7 +152,7 @@ export default function OurCareGiver (){
                     ) : null}
 
                     {askResult ? (
-                        <div className="mt-3 text-sm">
+                        <div className="mt-3 text-md py-3">
                             <div className="font-bold">ผลการค้นหา</div>
                             <div className="mt-1 whitespace-pre-wrap">
                                 {askResult.answer || "ไม่มีผลลัพธ์"}
@@ -118,18 +173,17 @@ export default function OurCareGiver (){
                         </div>
                     ) : null}
                 </div>
-                {askResult ?
-                    <div className="min-w-[50%] bg-pink-50 rounded-2xl">
-                        <ul>
-                        {askResult.caregiverID.map((name, index) => (
-                            <li key={index}>caregiverID: {name}</li>
-                        ))}
-                        </ul>
-                    </div>
-                    : null
-                }
             </section>
-                <ProductslistCard/>
+            {loading ? 
+                <div className="text-4xl font-bold animate-bounce text-black text-center">Loading...</div>
+                : <section className="flex flex-col gap-6">
+                    {askResult && askResult.caregiverID ?
+                        <ProductslistCard caregivers={suggestedCaregivers} askResult={askResult} recommended={true} caregiverID={caregiverID} setCaregiverID={setCaregiverID} />
+                        : null
+                    }
+                    <ProductslistCard caregivers={caregivers} askResult={askResult} caregiverID={caregiverID} setCaregiverID={setCaregiverID} />
+                </section>
+            }
              {/* {loading ? (
         <p className="text-center text-gray-500">กำลังโหลดข้อมูล...</p>
       ) : (
@@ -137,4 +191,4 @@ export default function OurCareGiver (){
       )} */}
         </div>  
     );
-}       
+}   

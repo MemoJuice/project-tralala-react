@@ -12,12 +12,15 @@ import {
 } from "@/components/ui/popover"
 import { Link } from "react-router-dom"
 import { Input } from "../ui/input"
+import { useNavigate } from "react-router-dom";
 
 
 export default function BookingCalendarHospotal() {
   const [open, setOpen] = React.useState(false)
   const [date, setDate] = React.useState(undefined)
   const [time, setTime] = useState("10:30:00");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   async function handleBooking() {
   if (!date || !time) {
@@ -30,20 +33,24 @@ export default function BookingCalendarHospotal() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        date: date.toISOString().split("T")[0], // format YYYY-MM-DD
-        time, // HH:mm:ss
+        date: date.toISOString().split("T")[0],
+        time,
       }),
     });
 
     if (!res.ok) throw new Error("Booking failed");
     const data = await res.json();
     console.log("Booking success:", data);
-    // redirect or show success message
-  } catch (err) {
-    console.error(err);
-    alert("เกิดข้อผิดพลาดในการจอง");
-  }
+
+     navigate("/cart");
+          } catch (err) {
+          console.error(err);
+          alert("เกิดข้อผิดพลาดในการจอง");
+        } finally {
+          setLoading(false);
+        }
 }
+
 
   return (
     <div className="flex flex-wrap gap-4 ">
@@ -81,7 +88,6 @@ export default function BookingCalendarHospotal() {
           type="time"
           id="time-picker"
           step="1"
-          defaultValue="10:30:00"
           value={time}
           onChange={(e) => setTime(e.target.value)}
           className=" flex justify-center w-50 text-xl h-12 rounded-4xl bg-white appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
@@ -93,12 +99,16 @@ export default function BookingCalendarHospotal() {
                   เลือกผู้ดูแล
             </button></Link>
 
-            <Link to ="/cart">
-            <button type="booking"
+            <button
+              type="button"
               onClick={handleBooking}
-              className="h-12 bg-pink-400 text-white w-50 rounded-4xl text-xl hover:bg-pink-600 hover:cursor-pointer">
-                  จองบริการ
-            </button></Link>
+              disabled={loading}
+              className="h-12 bg-pink-400 text-white w-50 rounded-4xl text-xl hover:bg-pink-600 hover:cursor-pointer disabled:opacity-50"
+            >
+              {loading ? "กำลังจอง..." : "จองบริการ"}
+            </button>
+
+
           </div>
     </div>
   )

@@ -1,74 +1,144 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, Link } from "react-router-dom";
 import AuthLayout from "./AuthLayout";
-import { Link } from "react-router";
 import { Eye, EyeOff } from "lucide-react";
+import axios from "axios";
+import { useContext, useEffect } from "react";
+import { MessageContext } from "../../context/MessageContext";
 
-function LoginFrom() {
+export default function LoginForm() {
+  const { API, setMessage } = useContext(MessageContext);
   const [showPassword, setShowPassword] = useState(false);
-  const [formData, setFromData] = useState({
+  const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-  const [error, setError] = useState("");
-  const navigation = useNavigate();
 
-  const handleChang = (e) => {
-    setFromData({
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const [rememberMe, setRememberMe] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefult();
-  //   try {
-  //   } catch (error) {}
-  // };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const res = await axios.post(`${API}/auth/login`, formData);
+      const { token, user } = res.data;
+
+      // เลือกว่าจะเก็บที่ไหน เก็บไว้ถาวร ไม่ต้อง login ใหม่
+      // if (rememberMe) {
+      //   // เลือก "จดจำฉันไว้" → localStorage
+      //   localStorage.setItem("token", token);
+      //   localStorage.setItem("user", JSON.stringify(user));
+      // } else {
+        // ไม่เลือก → sessionStorage ปิดแท็บแล้วต้อง login ใหม่
+        sessionStorage.setItem("token", token);
+        sessionStorage.setItem("user", JSON.stringify(user));
+        sessionStorage.setItem("checkSession", true);
+      // }
+
+      setMessage?.({
+        type: "success",
+        text: "เข้าสู่ระบบสำเร็จ",
+      });
+
+      setFormData({ email: "", password: "" });
+      // setRememberMe(false);
+      console.log(user.role);
+
+      navigate(user.role === "CAREGIVER" ? "/dashboard" : "/userdashboard");
+    } catch (error) {
+      console.error(error);
+      setMessage?.({
+        type: "error",
+        text: "อีเมลหรือรหัสผ่านไม่ถูกต้อง",
+      });
+    }
+  };
+
+  
+  useEffect(() => {
+    const checkSession = sessionStorage.getItem("checkSession");
+
+    if (checkSession) {
+      console.log("AUTHORIZED, NAVIGATE TO DASHBOARD");
+      const user = JSON.parse(sessionStorage.getItem("user"));
+      navigate(user.role === "CAREGIVER" ? "/dashboard" : "/userdashboard");
+    }
+  }, []);
+  
 
   return (
     <AuthLayout title="ยินดีต้อนรับ">
-      <form className="space-y-6">
-        <div className="flex flex-col md:flex-row md:items-center">
-          <label htmlFor="email" className="w-full md:w-1/3 text-gray-700">
+      <form className="space-y-6 " onSubmit={handleSubmit}>
+        <div className="flex flex-col md:flex-row md:items-center gap-4">
+          <label
+            htmlFor="email"
+            className="w-full md:w-1/3 text-gray-700 font-medium"
+          >
             อีเมล
           </label>
-          <input
-            type="email"
-            name="email"
-            placeholder="email"
-            value={formData.email}
-            onChange={handleChang}
-            required
-            className="w-full px-4 py-3 pr-12 border-2 border-gray-300 rounded-2xl focus:outline-none focus:border-pink-500 transition"
-          />
+          <div className="relative w-full">
+            <input
+              type="email"
+              name="email"
+              placeholder="กรุณากรอกอีเมล"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              disabled={loading}
+              className="w-full px-4 py-3 pr-12 border-2 border-gray-300 rounded-2xl focus:outline-none focus:border-pink-500 transition disabled:bg-gray-100 disabled:cursor-not-allowed"
+            />
+          </div>
         </div>
 
-        <div className="flex flex-col md:flex-row md:items-center relative w-full">
-          <label htmlFor="password" className="w-full md:w-1/3 text-gray-700">
+        <div className="flex flex-col md:flex-row md:items-center gap-4">
+          <label
+            htmlFor="password"
+            className="w-full md:w-1/3 text-gray-700 font-medium"
+          >
             รหัสผ่าน
           </label>
-          <input
-            type={showPassword ? "text" : "password"}
-            name="password"
-            value={formData.password}
-            onChange={handleChang}
-            required
-            className="w-full px-4 py-3 pr-12 border-2 border-gray-300 rounded-2xl focus:outline-none focus:border-pink-500 transition"
-          />
-          <button
-            type="button"
-            onClick={() => setShowPassword(!showPassword)}
-            className="hover:cursor-pointer absolute right-3 top-3.5 text-gray-500 hover:text-gray-700"
-          >
-            {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-          </button>
+
+          <div className="relative w-full">
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              placeholder="กรุณากรอกรหัสผ่าน"
+              value={formData.password}
+              onChange={handleChange}
+              required
+              disabled={loading}
+              className="w-full px-4 py-3 pr-12 border-2 border-gray-300 rounded-2xl focus:outline-none focus:border-pink-500 transition disabled:bg-gray-100 disabled:cursor-not-allowed"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              disabled={loading}
+              className="hover:cursor-pointer absolute right-3 top-3.5 text-gray-500 hover:text-gray-700"
+            >
+              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+            </button>
+          </div>
         </div>
 
         <div className="flex justify-between items-center text-sm">
-          <label className="flex items-center gap-2">
-            <input type="checkbox" />
-            จดจำฉันไว้
+          <label className="flex items-center gap-2 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={rememberMe}
+              onChange={(e) => setRememberMe(e.target.checked)}
+              disabled={loading}
+              className="w-4 h-4 cursor-pointer"
+            />
+            <span>จดจำฉันไว้</span>
           </label>
 
           <Link to="#" className="text-red-600">
@@ -76,28 +146,20 @@ function LoginFrom() {
           </Link>
         </div>
 
-        <Link to="/userdashboard">
-          <button
-            type="submit"
-            className="w-full bg-pink-400 hover:bg-pink-600 text-gray-800 hover:cursor-pointer py-3 rounded-lg"
-          >
-            เข้าสู่ระบบ
-          </button>
-        </Link>
-
-        <Link to="/userdashboard">
-          <button
-            type="button"
-            className="w-full border border-gray-300 hover:cursor-pointer rounded-lg py-2 flex justify-center items-center gap-2 mt-4"
-          >
-            <img src="https://www.google.com/favicon.ico" className="w-5" />
-            เข้าสู่ระบบผ่าน Google
-          </button>
-        </Link>
+        <button
+          type="submit"
+          disabled={loading}
+          className="w-full bg-pink-400 hover:bg-pink-600 text-gray-800 hover:cursor-pointer py-3 rounded-lg"
+        >
+          {loading ? "กำลังเข้าสู่ระบบ..." : "เข้าสู่ระบบ"}
+        </button>
 
         <div className="text-center text-sm mt-2">
           ไม่มีบัญชีผู้ใช้?
-          <Link to="/register" className="text-blue-600">
+          <Link
+            to="/register"
+            className="text-blue-600 hover:text-blue-800 ml-1"
+          >
             ลงทะเบียน
           </Link>
         </div>
@@ -105,5 +167,3 @@ function LoginFrom() {
     </AuthLayout>
   );
 }
-
-export default LoginFrom;
