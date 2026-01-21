@@ -1,7 +1,7 @@
 import Sidebar from "./Sidebar";
-import Dashboard from "@/views/dashboard/Dashboard";
-import DashboardSchedule from "@/views/dashboard/DashboardSchedule";
-import DashboardLog from "@/views/dashboard/DashboardLog";
+import Dashboard from "@/components/dashboard/Dashboard";
+import DashboardSchedule from "@/components/dashboard/DashboardSchedule";
+import DashboardLog from "@/components/dashboard/DashboardLog";
 import React, { useState } from "react";
 
 export default function DashboardLayout() {

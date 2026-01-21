@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Layout from "./components/Layout";
+import Layout from "./components/navbar/Layout";
 import Home from "./views/Home";
 import About from "./views/About";
 import Contact from "./views/Contact";
@@ -19,7 +19,7 @@ import DashboardLayout from "./components/sidebardashborad/DashboardLayout";
 import UserProfile from "./views/UserProfile";
 import UserDashboard from "./views/UserDashboard";
 import RoleSelection from "./components/auth/RoleSelection";
-
+import CustomerProfileForm from "./components/profileform/CustomerProfileForm";
 
 const router = createBrowserRouter([
   {
@@ -49,7 +49,7 @@ const router = createBrowserRouter([
       { path: "serviceslist", element: <Serviceslist /> },
       { path: "roleselection", element: <RoleSelection /> },
       { path: "dashboard", element: <DashboardLayout /> },
-
+      { path: "customerprofileform", element: <CustomerProfileForm /> },
     ],
   },
 ]);
