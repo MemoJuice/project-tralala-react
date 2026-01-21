@@ -11,8 +11,9 @@ export default function OurCareGiver (){
   const [askResult, setAskResult] = useState(null);
   const [suggestedCaregivers, setSuggestedCaregivers] = useState([]);
 
-  const [caregivers, setCaregivers] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [caregivers, setCaregivers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const checkSession = sessionStorage.getItem("checkSession");
 
 //   useEffect(() => {
 //     fetch("http://localhost:3000/caregivers")
@@ -95,9 +96,7 @@ export default function OurCareGiver (){
             <section className="w-full flex justify-center mb-6">
                 <div className="w-full max-w-3xl bg-pink-50 rounded-2xl p-5">
                     <div className="font-bold text-lg">ค้นหาผู้ดูแลที่เหมาะสม</div>
-                    {/* {authLoading ? (
-                        <div className="text-sm mt-2">Checking login…</div>
-                    ) : user ? ( */}
+                    {/* {checkSession  ? ( */}
                         <form onSubmit={askAi} className="mt-3 flex gap-x-2">
                         <input
                             value={question}
@@ -115,7 +114,7 @@ export default function OurCareGiver (){
                         </form>
                     {/* ) : (
                         <div className="text-sm mt-2 font-bold">
-                        Please log in to use the AI feature
+                        เข้าสู่ระบบเพื่อใช้งานการค้นหา
                         </div>
                     )} */}
 
