@@ -10,6 +10,8 @@ export default function OurCareGiver (){
   const [askError, setAskError] = useState(null);
   const [askResult, setAskResult] = useState(null);
   const [suggestedCaregivers, setSuggestedCaregivers] = useState([]);
+  const { searchQuestion } = useContext(MessageContext);
+
 
   const [caregivers, setCaregivers] = useState([])
   const [loading, setLoading] = useState(true)
@@ -23,14 +25,26 @@ export default function OurCareGiver (){
 //       })
 //   }, [])
 
+  useEffect(() => {
+    if (searchQuestion) {
+      setQuestion(searchQuestion); // keep in sync
+    }
+  }, [searchQuestion]);
+
+
   const fetchCaregivers = async () => {
+    setLoading(true);
     try {
       const res = await axios.get(`${API}/caregivers`);
       setCaregivers(res.data);
-      setLoading(false);
     } catch {
       alert("Failed to fetch users");
     }
+    console.log(caregivers)
+    console.log(API)
+
+
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -84,6 +98,13 @@ export default function OurCareGiver (){
     }
   };
 
+  useEffect(() => { 
+    if(setQuestion){
+    setQuestion(searchQuestion)
+    askAi()
+  }
+  },[]
+)
 
     return (
         <div className="min-h-full mx-4 md:mx-24 mt-16 mb-12 bg-white rounded-2xl shadow p-6">
@@ -102,12 +123,12 @@ export default function OurCareGiver (){
                             value={question}
                             onChange={(e) => setQuestion(e.target.value)}
                             placeholder='ใส่คุณสมบัติของผู้ดูแลที่คุณต้องการ'
-                            className="flex-1 border rounded px-3 py-2 bg-white"
+                            className="flex-1 border rounded-4xl px-3 py-2 bg-white"
                         />
                         <button
                             type="submit"
                             disabled={askLoading}
-                            className="bg-sky-500 hover:bg-sky-600 disabled:bg-sky-300 text-white px-4 py-2 rounded"
+                            className="bg-pink-400 hover:bg-pink-600 rounded-4xl px-2  disabled:bg-sky-300 text-white px-4 py-2 rounded"
                         >
                             {askLoading ? "กำลังค้นหา..." : "ค้นหา"}
                         </button>
@@ -147,13 +168,16 @@ export default function OurCareGiver (){
                     ) : null}
                 </div>
             </section>
-            <section className="flex flex-col gap-6">
-                {askResult ?
-                    <ProductslistCard caregivers={suggestedCaregivers} askResult={askResult} recommended={true} caregiverID={caregiverID} setCaregiverID={setCaregiverID} />
-                    : null
-                }
-                <ProductslistCard caregivers={caregivers} askResult={askResult} caregiverID={caregiverID} setCaregiverID={setCaregiverID} />
-            </section>
+            {loading ? 
+                <div className="text-4xl font-bold animate-bounce text-black text-center">Loading...</div>
+                : <section className="flex flex-col gap-6">
+                    {askResult && askResult.caregiverID ?
+                        <ProductslistCard caregivers={suggestedCaregivers} askResult={askResult} recommended={true} caregiverID={caregiverID} setCaregiverID={setCaregiverID} />
+                        : null
+                    }
+                    <ProductslistCard caregivers={caregivers} askResult={askResult} caregiverID={caregiverID} setCaregiverID={setCaregiverID} />
+                </section>
+            }
              {/* {loading ? (
         <p className="text-center text-gray-500">กำลังโหลดข้อมูล...</p>
       ) : (
@@ -161,4 +185,4 @@ export default function OurCareGiver (){
       )} */}
         </div>  
     );
-}       
+}   
