@@ -9,9 +9,10 @@ export default function ServiesBox() {
         name="ServicesBox"
         value={view}
         onChange={(e) => setView(e.target.value)}
-        className="w-90 md:w-100 md:text-2xl py-2 bg-white shadow-lg rounded-4xl overflow-hidden hover:shadow-xl items-center "
+        className="w-90 justify-center md:w-100 md:text-2xl py-2 bg-white shadow-lg rounded-4xl overflow-hidden hover:shadow-xl items-center focus:outline-pink-400 "
       >
-        <option value="" disabled>
+        <option
+        value="" disabled>
           บริการของเรา
         </option>
         <option value="hospitalplan">พาไปหาหมอ</option>
