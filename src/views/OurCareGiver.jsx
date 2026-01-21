@@ -24,13 +24,14 @@ export default function OurCareGiver (){
 //   }, [])
 
   const fetchCaregivers = async () => {
+    setLoading(true);
     try {
       const res = await axios.get(`${API}/caregivers`);
       setCaregivers(res.data);
-      setLoading(false);
     } catch {
       alert("Failed to fetch users");
     }
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -147,13 +148,16 @@ export default function OurCareGiver (){
                     ) : null}
                 </div>
             </section>
-            <section className="flex flex-col gap-6">
-                {askResult ?
-                    <ProductslistCard caregivers={suggestedCaregivers} askResult={askResult} recommended={true} caregiverID={caregiverID} setCaregiverID={setCaregiverID} />
-                    : null
-                }
-                <ProductslistCard caregivers={caregivers} askResult={askResult} caregiverID={caregiverID} setCaregiverID={setCaregiverID} />
-            </section>
+            {loading ? 
+                <div className="text-4xl font-bold animate-bounce text-black text-center">Loading...</div>
+                : <section className="flex flex-col gap-6">
+                    {askResult && askResult.caregiverID ?
+                        <ProductslistCard caregivers={suggestedCaregivers} askResult={askResult} recommended={true} caregiverID={caregiverID} setCaregiverID={setCaregiverID} />
+                        : null
+                    }
+                    <ProductslistCard caregivers={caregivers} askResult={askResult} caregiverID={caregiverID} setCaregiverID={setCaregiverID} />
+                </section>
+            }
              {/* {loading ? (
         <p className="text-center text-gray-500">กำลังโหลดข้อมูล...</p>
       ) : (
