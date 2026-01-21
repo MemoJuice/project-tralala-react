@@ -27,7 +27,7 @@ export default function DashboardSchedule() {
   ];
 
   return (
-    <div className="min-h-screen bg-pink-300 p-8">
+    <div className="min-h-screen p-8 mt-6">
       <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
         ตารางงาน
       </h1>

@@ -19,7 +19,7 @@ import DashboardLayout from "./components/sidebardashborad/DashboardLayout";
 import UserProfile from "./views/UserProfile";
 import UserDashboard from "./views/UserDashboard";
 import RoleSelection from "./components/auth/RoleSelection";
-import DashboardSchedule from "./views/dashboard/DashboardSchedule";
+
 
 const router = createBrowserRouter([
   {
@@ -48,7 +48,6 @@ const router = createBrowserRouter([
       { path: "ourcaregiver", element: <OurCareGiver /> },
       { path: "serviceslist", element: <Serviceslist /> },
       { path: "roleselection", element: <RoleSelection /> },
-      { path: "dashboardschedule", element: <DashboardSchedule /> },
       { path: "dashboard", element: <DashboardLayout /> },
 
     ],
