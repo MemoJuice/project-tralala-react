@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { MessageContext } from "../context/MessageContext";
 import CheckoutForm from "../components/checkout/CheckoutForm";
 import PaymentSummary from "../components/checkout/PaymentSummary";
@@ -8,6 +8,7 @@ import PaymentForm from "../components/checkout/PaymentForm";
 
 export default function Checkout() {
   const navigate = useNavigate();
+  const token = sessionStorage.getItem("token");
   const formType = "checkout";
   const {API, cart, bookingID, billingID, setPurchaseSummary} = useContext(MessageContext);
   const [submitting, setSubmitting] = useState(false);
@@ -110,8 +111,18 @@ export default function Checkout() {
     }
   };
 
+	useEffect(() => {
+		if (!token) {
+			console.log("UNAUTHORIZATION, PLEASE LOG IN");
+			navigate("/login");
+		}
+	}, []);
+
   return (
     <div>
+			{ !token ?
+			<h1 className="text-black text-3xl">UNAUTHORIZATION, PLEASE LOG IN</h1>
+			:
       <section className="flex">
         <form onSubmit={handleFormSubmit} className="bg-white my-4 mx-auto w-[90%] rounded-[3rem] font-noto">
           <h1 className="block text-center text-gray-700 py-6 px-10 font-bold text-4xl">ข้อมูลคำสั่งซื้อ</h1>
@@ -130,6 +141,7 @@ export default function Checkout() {
           </div>
         </form>
       </section>
+      }
     </div>
   );
 }
