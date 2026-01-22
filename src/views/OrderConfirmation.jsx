@@ -8,12 +8,12 @@ import { useNavigate } from "react-router-dom";
 
 export default function OrderConfirmation() {
   const navigate = useNavigate();
-  const checkSession = sessionStorage.getItem("checkSession");
+  const token = sessionStorage.getItem("token");
   const [formType, setFormType] = useState("confirmation");
   const {purchaseSummary, cart} = useContext(MessageContext);
 
   useEffect(() => {
-    if (!checkSession) {
+    if (!token) {
         console.log("UNAUTHORIZATION, PLEASE LOG IN");
         navigate("/login");
     }
@@ -21,7 +21,7 @@ export default function OrderConfirmation() {
 
   return (
     <div>
-        { !checkSession ?
+        { !token ?
         <h1 className="text-black text-3xl">UNAUTHORIZATION, PLEASE LOG IN</h1>
         :
         <section className="flex">

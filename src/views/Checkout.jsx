@@ -8,7 +8,7 @@ import PaymentForm from "../components/checkout/PaymentForm";
 
 export default function Checkout() {
   const navigate = useNavigate();
-  const checkSession = sessionStorage.getItem("checkSession");
+  const token = sessionStorage.getItem("token");
   const formType = "checkout";
   const {API, cart, bookingID, billingID, setPurchaseSummary} = useContext(MessageContext);
   const [submitting, setSubmitting] = useState(false);
@@ -112,7 +112,7 @@ export default function Checkout() {
   };
 
 	useEffect(() => {
-		if (!checkSession) {
+		if (!token) {
 			console.log("UNAUTHORIZATION, PLEASE LOG IN");
 			navigate("/login");
 		}
@@ -120,7 +120,7 @@ export default function Checkout() {
 
   return (
     <div>
-			{ !checkSession ?
+			{ !token ?
 			<h1 className="text-black text-3xl">UNAUTHORIZATION, PLEASE LOG IN</h1>
 			:
       <section className="flex">
