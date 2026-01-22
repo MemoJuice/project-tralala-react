@@ -24,18 +24,19 @@ export default function DashboardLayout() {
 
   return (
     <div>
-      { !token ?
-      <h1 className="text-black text-3xl">UNAUTHORIZATION, PLEASE LOG IN</h1>
-      : <div className="flex h-screen bg-gray-100  ">
-        <Sidebar setCurrentPage={setCurrentPage} />
+      {!token ? (
+        <h1 className="text-black text-3xl">UNAUTHORIZATION, PLEASE LOG IN</h1>
+      ) : (
+        <div className="flex h-screen bg-gray-100  ">
+          <Sidebar setCurrentPage={setCurrentPage} />
 
-        <main className="flex-1 p-6 overflow-auto">
-          {currentPage === "dashboard" && <Dashboard />}
-          {currentPage === "dashboardschedule" && <DashboardSchedule />}
-          {currentPage === "dashboardLog" && <DashboardLog />}
-        </main>
-      </div>
-      }
+          <main className="flex-1 p-6 overflow-auto">
+            {currentPage === "dashboard" && <Dashboard />}
+            {/* {currentPage === "dashboardschedule" && <DashboardSchedule />} */}
+            {currentPage === "dashboardLog" && <DashboardLog />}
+          </main>
+        </div>
+      )}
     </div>
   );
 }
