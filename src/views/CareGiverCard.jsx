@@ -10,6 +10,7 @@ import Skills from "@/components/userprofile/04_Skills";
 
 export default function CareGiverCard() {
   const { id } = useParams(); // caregiver ID from URL
+  const {API, caregiverID} = useContext(MessageContext);
   const navigate = useNavigate();
   const location = useLocation();
   const [caregiver, setCaregiver] = useState(null);
@@ -31,6 +32,11 @@ export default function CareGiverCard() {
     fetchCaregiver();
   }, [id]);
 
+  useEffect(() => {
+    console.log(caregiver);
+  },[caregiver]);
+
+
   function handleBookingSubmit({ startDate, endDate, shift, caregiverId }) {
     // Save booking details into context cart
     setCart({
@@ -45,6 +51,11 @@ export default function CareGiverCard() {
     //  Navigate to cart page
     navigate("/cart");
   }
+
+  useEffect(() => {
+    console.log(cart);
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   return (
     <div className="min-h-full mx-6 p-2 md:mx-12 mt-16 mb-8 bg-white rounded-2xl overflow-auto flex flex-col justify-center ">
