@@ -3,15 +3,10 @@ import ProfileHeader from "@/components/userprofile/01_ProfileHeader";
 import Certificates from "@/components/userprofile/03_Certificates";
 import Reviews from "@/components/userprofile/05_Reviews";
 import { useEffect, useState, useContext } from "react";
-<<<<<<< HEAD
-import axios from "axios";
 import { MessageContext } from "../context/MessageContext"; 
 import ServiesBar from "@/components/caregivercard/ServiesBar";
-=======
 import apiauth from "@/api/axios";
-import { MessageContext } from "../context/MessageContext";
 import Skills from "@/components/userprofile/04_Skills";
->>>>>>> dev
 
 export default function CareGiverCard() {
   const { id } = useParams(); // caregiver ID from URL
