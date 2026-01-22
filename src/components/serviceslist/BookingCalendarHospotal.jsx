@@ -99,14 +99,14 @@ export default function BookingCalendarHospotal() {
                   เลือกผู้ดูแล
             </button></Link>
 
-             <button
-  type="button"
-  onClick={handleBooking}
-  disabled={loading}
-  className="h-12 bg-pink-400 text-white w-50 rounded-4xl text-xl hover:bg-pink-600 hover:cursor-pointer disabled:opacity-50"
->
-  {loading ? "กำลังจอง..." : "จองบริการ"}
-</button>
+            <button
+              type="button"
+              onClick={handleBooking}
+              disabled={loading}
+              className="h-12 bg-pink-400 text-white w-50 rounded-4xl text-xl hover:bg-pink-600 hover:cursor-pointer disabled:opacity-50"
+            >
+              {loading ? "กำลังจอง..." : "จองบริการ"}
+            </button>
 
 
           </div>

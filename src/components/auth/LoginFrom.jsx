@@ -50,7 +50,8 @@ export default function LoginForm() {
       });
 
       setFormData({ email: "", password: "" });
-      setRememberMe(false);
+      // setRememberMe(false);
+      console.log(user.role);
 
       navigate(user.role === "CAREGIVER" ? "/dashboard" : "/userdashboard");
     } catch (error) {
@@ -63,6 +64,18 @@ export default function LoginForm() {
       setLoading(false);
     }
   };
+
+  
+  useEffect(() => {
+    const checkSession = sessionStorage.getItem("checkSession");
+
+    if (checkSession) {
+      console.log("AUTHORIZED, NAVIGATE TO DASHBOARD");
+      const user = JSON.parse(sessionStorage.getItem("user"));
+      navigate(user.role === "CAREGIVER" ? "/dashboard" : "/userdashboard");
+    }
+  }, []);
+  
 
   return (
     <AuthLayout title="ยินดีต้อนรับ">
