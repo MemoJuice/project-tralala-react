@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import AuthLayout from "./AuthLayout";
 import { Eye, EyeOff } from "lucide-react";
-import { useContext } from "react";
-import { MessageContext } from "../../context/MessageContext";
+import apiauth from "@/api/axios";
 
 export default function RegisterForm() {
-  const { API } = useContext(MessageContext);
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
@@ -18,7 +15,7 @@ export default function RegisterForm() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleChang = (e) => {
+  const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -34,7 +31,7 @@ export default function RegisterForm() {
     }
 
     try {
-      await axios.post(`${API}/auth/register`, formData);
+      await apiauth.post(`/auth/register`, formData);
       alert("User registered successfully");
       navigate("/login");
     } catch (error) {
@@ -56,7 +53,7 @@ export default function RegisterForm() {
             name="username"
             placeholder="Username"
             value={formData.username}
-            onChange={handleChang}
+            onChange={handleChange}
             required
             className="w-full px-4 py-3 pr-12 border-2 border-gray-300 rounded-2xl focus:outline-none focus:border-pink-500 transition"
           />
@@ -70,7 +67,7 @@ export default function RegisterForm() {
             name="email"
             placeholder="email"
             value={formData.email}
-            onChange={handleChang}
+            onChange={handleChange}
             required
             className="w-full px-4 py-3 pr-12 border-2 border-gray-300 rounded-2xl focus:outline-none focus:border-pink-500 transition"
           />
@@ -83,7 +80,7 @@ export default function RegisterForm() {
             type={showPassword ? "text" : "password"}
             name="password"
             value={formData.password}
-            onChange={handleChang}
+            onChange={handleChange}
             required
             className="w-full px-4 py-3 pr-12 border-2 border-gray-300 rounded-2xl focus:outline-none focus:border-pink-500 transition "
           />
