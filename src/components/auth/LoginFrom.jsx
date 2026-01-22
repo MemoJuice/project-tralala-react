@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import AuthLayout from "./AuthLayout";
 import { Eye, EyeOff } from "lucide-react";
-import api from "@/api/axios";
+import apiauth from "@/api/axios";
 
 export default function LoginForm() {
   const [message, setMessage] = useState(null);
@@ -27,7 +27,7 @@ export default function LoginForm() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await api.post(`/auth/login`, formData);
+      const res = await apiauth.post(`/auth/login`, formData);
       alert("login successfully");
       const { token, user } = res.data;
       // console.log(res.data);

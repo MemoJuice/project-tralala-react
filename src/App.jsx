@@ -44,7 +44,7 @@ const router = createBrowserRouter([
       { path: "userdashboard", element: <UserDashboard /> },
       { path: "userprofile", element: <UserProfile /> },
       { path: "cart", element: <Cart /> },
-      { path: "caregivercard", element: <CareGiverCard /> },
+      { path: "caregivers/:id", element: <CareGiverCard /> },
       { path: "ourcaregiver", element: <OurCareGiver /> },
       { path: "serviceslist", element: <Serviceslist /> },
       { path: "roleselection", element: <RoleSelection /> },
