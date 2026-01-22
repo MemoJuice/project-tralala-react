@@ -17,6 +17,9 @@ export default function MessageProvider({children}) {
             startDate: "",
             endDate: "",
             caregiverID: "",
+            serviceType: "",
+            time:"",
+            shift:"",
         };
       }
     );
@@ -29,7 +32,10 @@ export default function MessageProvider({children}) {
             description: e.description,
             startDate: e.startDate,
             endDate: e.endDate,
-            caregiverID: e.caregiverID
+            caregiverID: e.caregiverID,
+            serviceType: e.serviceType,
+            time:e.time,
+            shift:e.shift,
         });
     };
 
@@ -60,7 +66,7 @@ export default function MessageProvider({children}) {
             seniorLlastName: "",
             seniorAge: "",
             location: "",
-            clientNote: ""
+            clientNote: "",
         };
       }
     );

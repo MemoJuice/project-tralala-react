@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
 	const navigate = useNavigate();
-	const checkSession = sessionStorage.getItem("checkSession");
+	const token = sessionStorage.getItem("token");
 	const mockService = {
 		serviceID: "659e1001f1a2b3c4d5e6f002",
 		name: "บริการดูแลผู้สูงอายุที่บ้าน(รายวัน)",
@@ -22,7 +22,7 @@ export default function Cart() {
 		setCart(mockService);
 		localStorage.setItem("cart", JSON.stringify(mockService));
 		console.log(cart);
-		if (!checkSession) {
+		if (!token) {
 			console.log("UNAUTHORIZATION, PLEASE LOG IN");
 			navigate("/login");
 		}
@@ -30,7 +30,7 @@ export default function Cart() {
 
 	return (
 		<div>
-			{ !checkSession ?
+			{ !token ?
 			<h1 className="text-black text-3xl">UNAUTHORIZATION, PLEASE LOG IN</h1>
 			:
 			<div className="w-full px-[5%] pt-4 pb-6">

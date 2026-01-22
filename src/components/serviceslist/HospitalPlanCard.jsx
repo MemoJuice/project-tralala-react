@@ -8,7 +8,7 @@ import {
 
 export default function HospitalPlanCard (){
     return (
-        <div className="flex items-center w-[100%] mt-8 bg-white rounded-2xl shadow-2xs p-4 grid grid-cols-1 md:grid-cols-2 overflow-hidden">
+        <div className="items-center w-full mt-8 bg-white rounded-2xl shadow-2xs p-4 grid grid-cols-1 md:grid-cols-2 overflow-hidden">
             <div className="bg-gray-50 flex items-center justify-center overflow-hidden">
               <img 
                 src="images/caregiving-hos.jpg"

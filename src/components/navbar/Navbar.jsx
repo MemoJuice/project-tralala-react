@@ -1,11 +1,45 @@
-import { Link } from "react-router-dom";
-import { useAuth } from "@/hooks/useAuth";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+
+const getToken = () =>
+  localStorage.getItem("token") || sessionStorage.getItem("token");
 
 export default function Navbar() {
-  const { user, logout, loadingAuth } = useAuth();
+  const navigate = useNavigate();
 
-  if (loadingAuth) return null;
+  // 1) อ่าน token/user จาก localStorage
+  const [token, setToken] = useState(getToken);
 
+  // 2) กันกรณี token เปลี่ยนจากแท็บอื่น
+  useEffect(() => {
+    const syncAuth = () => setToken(getToken());
+
+    window.addEventListener("storage", syncAuth);
+    window.addEventListener("auth-change", syncAuth);
+
+    return () => {
+      window.removeEventListener("storage", syncAuth);
+      window.removeEventListener("auth-change", syncAuth);
+    };
+  }, []);
+
+  const handleLogout = () => {
+    // ลบ token
+    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
+
+    // ลบ user )
+    localStorage.removeItem("user");
+    sessionStorage.removeItem("user");
+
+    // update state
+    setToken(null);
+
+    // แจ้งระบบว่า auth เปลี่ยน
+    window.dispatchEvent(new Event("auth-change"));
+
+    navigate("/");
+  };
   return (
     <nav className="flex sticky items-center bg-[#FEFBF2] top-0 w-full h-20 overflow-hidden md:justify-start z-99">
       <div className="sm:ml-2 h-full min-w-16 hover:cursor-pointer mt-1">
@@ -59,42 +93,21 @@ export default function Navbar() {
         {/* <li className="flex self-center outline-1 p-2 w-10 bg-white rounded-full hover:cursor-pointer hover:font-bold">
           <img src="images/user.svg" className="w-full" />
         </li> */}
-        <li className="hidden sm:flex self-center xl:mr-4 relative group">
-          {!user ? (
+        <li className="hidden sm:flex self-center xl:mr-4 relative">
+          {!token ? (
             <Link
               to="/login"
               className="py-2 px-4 bg-white rounded-full font-semibold text-sm md:text-base hover:bg-pink-400 transition"
             >
-              เข้าสู่ระบบ
+              Login
             </Link>
           ) : (
-            <>
-              {/* Profile Pill */}
-              <div className="flex items-center gap-2 bg-white px-3 py-2 rounded-full cursor-pointer hover:bg-gray-100 transition">
-                <span className="text-sm font-medium text-gray-800">
-                  {user.username}
-                </span>
-                <svg
-                  className="w-4 h-4 text-gray-500"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M19 9l-7 7-7-7" />
-                </svg>
-              </div>
-
-              {/* Dropdown */}
-              <div className="absolute right-0 mt-2 w-36 bg-white rounded-xl shadow-lg opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition">
-                <button
-                  onClick={logout}
-                  className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-pink-100 rounded-xl"
-                >
-                  ออกจากระบบ
-                </button>
-              </div>
-            </>
+            <button
+              onClick={handleLogout}
+              className="py-2 px-4 bg-white rounded-full font-semibold text-sm md:text-base hover:bg-pink-400 transition"
+            >
+              Logout
+            </button>
           )}
         </li>
       </ul>
