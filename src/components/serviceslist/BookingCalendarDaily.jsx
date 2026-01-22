@@ -5,14 +5,12 @@ import { useNavigate } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
 import { DailyCalendar } from "@/components/serviceslist/DailyCalendar"
-import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
-import { Link } from "react-router-dom"
 import { MessageContext } from "../../context/MessageContext";
 
 export default function BookingCalendarDaily() {
