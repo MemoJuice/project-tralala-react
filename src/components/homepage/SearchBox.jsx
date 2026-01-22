@@ -22,11 +22,11 @@ export default function SearchBox() {
         value={searchValue} 
         onChange={(e) => setSearchValue(e.target.value)}
         placeholder="ค้นหาผู้ดูแลตามความต้องการของคุณ..."
-        className="w-90 pl-4 justify-center md:w-100 md:text-2xl py-2 bg-white shadow-lg rounded-4xl overflow-hidden hover:shadow-xl items-center focus:outline-pink-400 "
+        className="w-85 pl-4 justify-center md:w-100 md:text-2xl py-2 bg-white shadow-lg rounded-4xl overflow-hidden hover:shadow-xl items-center focus:outline-pink-400 "
       />
       <button
         onClick={handleSearch}
-        className="w-90 md:w-100 md:text-2xl py-3 rounded-4xl bg-pink-400 text-white hover:bg-pink-600"
+        className="w-85 md:w-100 md:text-2xl py-3 rounded-4xl bg-pink-400 text-white hover:bg-pink-600"
       >
         ค้นหา
       </button>
