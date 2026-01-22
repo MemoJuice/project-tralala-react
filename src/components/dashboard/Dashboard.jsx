@@ -3,6 +3,7 @@ import SeniorsCard from "./SeniorsCard";
 import DashboardSchedule from "./DashboardSchedule";
 import { useEffect, useState } from "react";
 import apiauth from "@/api/axios";
+import TaskAi from "./TaskAi";
 
 export default function Dashboard() {
   const [data, setData] = useState(null);
@@ -35,12 +36,20 @@ export default function Dashboard() {
           : "Caregiver"}{" "}
       </h1>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
-        <TodayTaskCard task={data.todayTask} />
-        <SeniorsCard senior={data.senior} />
+      <div className="grid grid-cols-1 lg:grid-cols-1 gap-4 md:gap-6 ">
+        <div>
+          <TodayTaskCard task={data.todayTask} />
+        </div>
+        <div>
+          <SeniorsCard senior={data.senior} />
+        </div>
+        <div>
+          <TaskAi />
+        </div>
+        <div>
+          <DashboardSchedule schedule={data.schedule} />
+        </div>
       </div>
-
-      <DashboardSchedule schedule={data.schedule} />
     </div>
   );
 }

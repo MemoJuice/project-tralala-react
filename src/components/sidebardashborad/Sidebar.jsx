@@ -10,11 +10,11 @@ const menuItems = [
     label: "Dashboard",
     page: "dashboard",
   },
-  {
-    icons: <GrSchedules size={20} />,
-    label: "Schedules",
-    page: "dashboardschedule",
-  },
+  // {
+  //   icons: <GrSchedules size={20} />,
+  //   label: "Schedules",
+  //   page: "dashboardschedule",
+  // },
   {
     icons: <FaNotesMedical size={20} />,
     label: "Care Log",
