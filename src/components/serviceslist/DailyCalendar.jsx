@@ -22,11 +22,14 @@ function DailyCalendar({
   ...props
 }) {
   const defaultClassNames = getDefaultClassNames()
+  const today = new Date();
 
   return (
     <DayPicker
       captionLayout="dropdown" mode="single" required timeZone="Asia/Bangkok" locale={enUS} numerals="latn" min={1} max={7}
       startMonth={new Date(2026, 0)} endMonth={new Date(2026, 12)}
+      disabled={{ before: today }}
+
 
       showOutsideDays={showOutsideDays}
       className={cn(

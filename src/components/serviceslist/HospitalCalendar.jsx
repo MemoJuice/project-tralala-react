@@ -22,12 +22,14 @@ function HospitalCalendar({
   ...props
 }) {
   const defaultClassNames = getDefaultClassNames()
+  const today = new Date();
 
   return (
     <DayPicker
       captionLayout="dropdown" mode="single" required timeZone="Asia/Bangkok" locale={enUS} numerals="latn" 
       startMonth={new Date(2026, 0)} endMonth={new Date(2026, 12)}
-
+      disabled={{ before: today }}
+      
       showOutsideDays={showOutsideDays}
       className={cn(
         "bg-background group/calendar p-3 [--cell-size:--spacing(8)] [[data-slot=card-content]_&]:bg-transparent [[data-slot=popover-content]_&]:bg-transparent",

@@ -14,7 +14,7 @@ import MenuBar from "@/components/serviceslist/MenuBar";
 
 export default function ServicesList (){
  
-  const [view, setView] = useState("hospitalplan"); 
+  const [view, setView] = useState("dailyplan"); 
     // const {view, setView} = useContext(MessageContext);
   const [searchParams] = useSearchParams();
 

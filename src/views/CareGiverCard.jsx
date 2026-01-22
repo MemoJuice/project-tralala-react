@@ -4,7 +4,8 @@ import Certificates from "@/components/userprofile/03_Certificates";
 import Reviews from "@/components/userprofile/05_Reviews";
 import { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import { MessageContext } from "../context/MessageContext"; // ✅ import context
+import { MessageContext } from "../context/MessageContext"; 
+import ServiesBar from "@/components/caregivercard/ServiesBar";
 
 export default function CareGiverCard() {
   const { id } = useParams(); // caregiver ID from URL
@@ -85,50 +86,7 @@ export default function CareGiverCard() {
 
       {/* Inline booking section if no details */}
       {!hasBookingDetails && (
-        <div className="w-full bg-pink-50 rounded-2xl p-6 mt-8">
-          <h3 className="text-xl font-bold mb-4">กรุณาเลือกบริการและวันเวลา</h3>
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              const formStart = e.target.startDate.value;
-              const formEnd = e.target.endDate.value;
-              const formShift = e.target.shift.value;
-
-              if (!formStart || !formEnd || !formShift) {
-                alert("กรุณากรอกข้อมูลให้ครบ");
-                return;
-              }
-
-              handleBookingSubmit({
-                startDate: formStart,
-                endDate: formEnd,
-                shift: formShift,
-                caregiverId: id,
-              });
-            }}
-            className="flex flex-col gap-4"
-          >
-            <label className="text-lg">วันเริ่ม</label>
-            <input type="date" name="startDate" className="border rounded px-3 py-2" />
-
-            <label className="text-lg">วันสิ้นสุด</label>
-            <input type="date" name="endDate" className="border rounded px-3 py-2" />
-
-            <label className="text-lg">เลือกเวร</label>
-            <select name="shift" className="border rounded px-3 py-2">
-              <option value="">เลือกเวร</option>
-              <option value="dayshift">เวรเช้า (8.00-19.00)</option>
-              <option value="nightshift">เวรดึก (19.00-8.00)</option>
-            </select>
-
-            <button
-              type="submit"
-              className="bg-pink-400 text-white px-4 py-2 rounded hover:bg-pink-600 mt-4"
-            >
-              จองบริการ
-            </button>
-          </form>
-        </div>
+          <ServiesBar />
       )}
     </div>
   );
