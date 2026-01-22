@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { RxDashboard } from "react-icons/rx";
-import { GrSchedules } from "react-icons/gr";
+// import { GrSchedules } from "react-icons/gr";
 import { RiMoneyDollarBoxLine } from "react-icons/ri";
 
 export default function NavbarDashboard() {
@@ -22,7 +22,7 @@ export default function NavbarDashboard() {
               <span>Dashboard</span>
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link
               to="/dashboardschedule"
               className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 transition"
@@ -30,7 +30,7 @@ export default function NavbarDashboard() {
               <GrSchedules />
               <span>Schedule</span>
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link
               to="/dashboardincome"

@@ -6,8 +6,10 @@ import { useEffect } from "react";
     let token = "";
     if (sessionStorage.getItem("token")) {
       token = sessionStorage.getItem("token");
+      sessionStorage.setItem("caregiverID", "");
     } else if (localStorage.getItem("token")) {
-      token = localStorage.getItem("token")
+      token = localStorage.getItem("token");
+      localStorage.setItem("caregiverID", "");
     };
 
 
@@ -15,9 +17,18 @@ import { useEffect } from "react";
       navigate(`/caregivers/${e.target.value}`);
     };
 
-    const handleCaregiverID = () => {
+    const handleCaregiverID = (e) => {
+      setCaregiverID(e.target.value);
       navigate("/serviceslist");
     };
+
+    useEffect(() => {
+      if (sessionStorage.getItem("token")) {
+          sessionStorage.setItem("caregiverID", caregiverID);
+      } else if (localStorage.getItem("token")) {
+          localStorage.setItem("caregiverID", caregiverID);
+      };
+    }, [caregiverID]);
 
     return (
       <div className="flex flex-col gap-6">

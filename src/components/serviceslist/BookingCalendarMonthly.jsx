@@ -1,4 +1,3 @@
-import * as React from "react";
 import { ChevronDownIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MonthlyCalendar } from "@/components/serviceslist/MonthlyCalendar";
@@ -6,33 +5,57 @@ import { Label } from "@/components/ui/label";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useNavigate } from "react-router-dom";
 import { MessageContext } from "../../context/MessageContext"; // ✅ import context
-import { useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 
-export default function BookingCalendarMonthly() {
-  const [open, setOpen] = React.useState(false);
-  const [date, setDate] = React.useState(undefined);
-  const [endDate, setEndDate] = React.useState(undefined);
+export default function BookingCalendarMonthly({selectedCaregiver, service}) {
+  const [open, setOpen] = useState(false);
+  const [date, setDate] = useState(undefined);
+  const [endDate, setEndDate] = useState(undefined);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
-  const { handleServiceCart } = useContext(MessageContext); // ✅ use context
+  const { cart, setCart } = useContext(MessageContext); // ✅ use context
 
   function handleBooking() {
     if (!date || !endDate) {
       alert("กรุณาเลือกวันเริ่มและวันสิ้นสุด");
       return;
-    }
+    };
 
+    setLoading(true);
+
+    let caregiverID = "";
+    if(selectedCaregiver) {
+      caregiverID = selectedCaregiver._id;
+    };
+    
     // ✅ Save booking details into context cart
-    handleServiceCart({
-      description: "บริการดูแลรายเดือน",
-      serviceType: "monthly",
+    setCart({
+      // serviceType: "monthly",
       startDate: date.toISOString().split("T")[0],
       endDate: endDate.toISOString().split("T")[0],
-      });
+      caregiverID: caregiverID,
+      serviceID: service._id,
+      name: service.name,
+      price: service.price,
+      description: service.description,
+    });
 
+    console.log(cart)
     // ✅ Navigate to cart page
     navigate("/cart");
+    setLoading(false);
   }
+
+  useEffect(() => {
+    console.log(cart);
+    if (sessionStorage.getItem("token")) {
+        sessionStorage.setItem("cart", JSON.stringify(cart));
+    } else if (localStorage.getItem("token")) {
+        localStorage.setItem("cart", JSON.stringify(cart));
+    };
+  }, [cart]);
+
 
   function handleStartDate(selectedDate) {
     setDate(selectedDate);
@@ -85,6 +108,15 @@ export default function BookingCalendarMonthly() {
       </div>
 
       <div className="flex justify-center flex-wrap gap-4 mt-2 md:gap-4 md:mt-10">
+
+        {selectedCaregiver &&
+          <button
+            className="h-12 text-shadow-2xs bg-pink-50 text-black w-50 rounded-4xl text-xl border font-semibold"
+          >
+            ผู้ดูแล: {selectedCaregiver.firstName} {selectedCaregiver.lastName}
+          </button>
+        }
+
         <button
           onClick={handleBooking}
           type="booking"
@@ -92,6 +124,7 @@ export default function BookingCalendarMonthly() {
         >
           จองบริการ
         </button>
+
       </div>
     </div>
   );

@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+import apiauth from "@/api/axios.js";
 import BookingCalendarMonthly from "@/components/serviceslist/BookingCalendarMonthly";
 import {
   HoverCard,
@@ -5,13 +7,33 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card"
 
-export default function MonthlyplanCard (){
+export default function MonthlyplanCard ({service}){
     let token = "";
+    let caregiverID = "";
     if (sessionStorage.getItem("token")) {
       token = sessionStorage.getItem("token");
+      caregiverID = sessionStorage.getItem("caregiverID");
     } else if (localStorage.getItem("token")) {
-      token = localStorage.getItem("token")
+      token = localStorage.getItem("token");
+      caregiverID = localStorage.getItem("caregiverID");
     };
+    
+    const [selectedCaregiver, setSelectedCaregiver] = useState(null);
+
+    useEffect(() => {
+      if (!caregiverID) return;
+
+      const fetchCaregiver = async () => {
+        try {
+          const res = await apiauth.get(`/caregivers/${caregiverID}`);
+          setSelectedCaregiver(res.data); // ✅ saved in state
+        } catch (err) {
+          console.error("Failed to fetch caregiver", err);
+        }
+      };
+
+      fetchCaregiver();
+    }, [caregiverID]);
 
     return (
    <div className="items-center w-full mt-8 bg-white rounded-2xl shadow-2xs p-4 grid grid-cols-1 md:grid-cols-2 overflow-hidden">
@@ -51,7 +73,7 @@ export default function MonthlyplanCard (){
               {token &&
               <div className="mt-6">
                 <div className="flex w-full justify-evenly">
-                 <BookingCalendarMonthly />
+                 <BookingCalendarMonthly selectedCaregiver={selectedCaregiver} service={service} />
                 </div>
               </div>
               }

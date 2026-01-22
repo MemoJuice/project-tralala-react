@@ -8,10 +8,13 @@ import { useNavigate } from "react-router-dom";
 export default function Cart() {
 	const navigate = useNavigate();
 	let token = "";
+	let cart = "";
 	if (sessionStorage.getItem("token")) {
 		token = sessionStorage.getItem("token");
+		cart = JSON.parse(sessionStorage.getItem("cart"));
 	} else if (localStorage.getItem("token")) {
 		token = localStorage.getItem("token")
+		cart = JSON.parse(localStorage.getItem("cart"));
 	};
 
 	const mockService = {
@@ -23,10 +26,10 @@ export default function Cart() {
 		endDate: "2026-03-14"
 	};
 
-    const {cart, setCart} = useContext(MessageContext);
+    // const {cart, setCart} = useContext(MessageContext);
 	useEffect(() => {
-		setCart(mockService);
-		localStorage.setItem("cart", JSON.stringify(mockService));
+		// setCart(mockService);
+		// localStorage.setItem("cart", JSON.stringify(mockService));
 		console.log(cart);
 		if (!token) {
 			console.log("UNAUTHORIZATION, PLEASE LOG IN");
