@@ -8,10 +8,10 @@ import { useNavigate } from "react-router-dom";
 export default function DashboardLayout() {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState("dashboard");
-  const checkSession = sessionStorage.getItem("checkSession");
+  const token = sessionStorage.getItem("token");
 
   useEffect(() => {
-    if (!checkSession) {
+    if (!token) {
       console.log("UNAUTHORIZATION, PLEASE LOG IN");
       navigate("/login");
     }
@@ -19,7 +19,7 @@ export default function DashboardLayout() {
 
   return (
     <div>
-      { !checkSession ?
+      { !token ?
       <h1 className="text-black text-3xl">UNAUTHORIZATION, PLEASE LOG IN</h1>
       : <div className="flex h-screen bg-gray-100  ">
         <Sidebar setCurrentPage={setCurrentPage} />

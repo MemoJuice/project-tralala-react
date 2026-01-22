@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import AuthLayout from "./AuthLayout";
 import { Eye, EyeOff } from "lucide-react";
@@ -67,9 +67,9 @@ export default function LoginForm() {
 
   
   useEffect(() => {
-    const checkSession = sessionStorage.getItem("checkSession");
+    const token = sessionStorage.getItem("token");
 
-    if (checkSession) {
+    if (token) {
       console.log("AUTHORIZED, NAVIGATE TO DASHBOARD");
       const user = JSON.parse(sessionStorage.getItem("user"));
       navigate(user.role === "CAREGIVER" ? "/dashboard" : "/userdashboard");
