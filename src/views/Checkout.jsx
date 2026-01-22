@@ -9,15 +9,23 @@ import apiauth from "@/api/axios";
 
 export default function Checkout() {
   const navigate = useNavigate();
+  // const [loading, setLoading] = useState(false);
   let token = "";
+  let user = "";
   if (sessionStorage.getItem("token")) {
     token = sessionStorage.getItem("token");
+    user = JSON.parse(sessionStorage.getItem("user"));
   } else if (localStorage.getItem("token")) {
-    token = localStorage.getItem("token")
+    token = localStorage.getItem("token");
+    user = JSON.parse(localStorage.getItem("user"));
   };
 
+  const customer = JSON.parse(localStorage.getItem("customer"));
+
   const formType = "checkout";
-  const {API, cart, bookingID, billingID, setPurchaseSummary} = useContext(MessageContext);
+  const {API, cart, billingID, setPurchaseSummary} = useContext(MessageContext);
+  const bookingID = localStorage.getItem("bookingID");
+  // const [customer, setCustomer] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     billingFirstName: "",
@@ -28,13 +36,44 @@ export default function Checkout() {
     customerNote: "",
     location: "",
     paymentMethod: ""
-});
+  });
+
   const [seniorData, setSeniorData] = useState({
     id: "65a03001f1a2b3c4d5e6f501",
     firstName: "นางรื่นรมย์",
     lastName: "คมบาดใจ",
     age: "65"
   });
+
+  function calculateAge(dob) {
+    const birthDate = new Date(dob);
+    const today = new Date();
+
+    let age = today.getFullYear() - birthDate.getFullYear();
+
+    const hasHadBirthdayThisYear =
+      today.getMonth() > birthDate.getMonth() ||
+      (today.getMonth() === birthDate.getMonth() &&
+        today.getDate() >= birthDate.getDate());
+
+    if (!hasHadBirthdayThisYear) {
+      age--;
+    }
+
+    return age;
+  };
+
+  // const fetchCustomer = async () => {
+  //   setLoading(true);
+  //   try {
+  //     const res = await axios.get(`${API}/customers/user/${user._id}`);
+  //     setCustomer(res.data.data);
+  //   } catch {
+  //     alert("Failed to fetch customer");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   const handleFormChange = (e) => {
     const { name, value } = e.target;
@@ -57,7 +96,7 @@ export default function Checkout() {
 
     try {
       const bookingSeniorInfo = {
-        seniorID: seniorData.id,
+        seniorID: customer.seniors[0],
         customerNote: formData.customerNote,
         location: formData.location,
         billingID: billingID,
@@ -118,12 +157,13 @@ export default function Checkout() {
     }
   };
 
-	useEffect(() => {
-		if (!token) {
-			console.log("UNAUTHORIZATION, PLEASE LOG IN");
-			navigate("/login");
-		}
-	}, []);
+	// useEffect(() => {
+  //   fetchCustomer();
+	// 	if (!token) {
+	// 		console.log("UNAUTHORIZATION, PLEASE LOG IN");
+	// 		navigate("/login");
+	// 	}
+	// }, []);
 
   return (
     <div>
@@ -134,7 +174,7 @@ export default function Checkout() {
         <form onSubmit={handleFormSubmit} className="bg-white my-4 mx-auto w-[90%] rounded-[3rem] font-noto">
           <h1 className="block text-center text-gray-700 py-6 px-10 font-bold text-4xl">ข้อมูลคำสั่งซื้อ</h1>
           <div className="grid grid-cols-1 md:grid-cols-2 pb-4">
-            <CheckoutForm formType={formType} submitting={submitting} formData={formData} handleFormChange={handleFormChange} seniorData={seniorData} />
+            <CheckoutForm formType={formType} submitting={submitting} formData={formData} handleFormChange={handleFormChange} seniorData={seniorData} customer={customer} calculateAge={calculateAge} />
             <div className="px-6 sm:px-12">
                 <PaymentSummary order={cart} />
                 <PaymentForm formData={formData} handleFormChange={handleFormChange} />

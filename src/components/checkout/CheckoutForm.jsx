@@ -1,4 +1,4 @@
-export default function CheckoutForm({formType, formData, handleFormChange, seniorData, purchaseSummary}) {
+export default function CheckoutForm({formType, formData, handleFormChange, seniorData, purchaseSummary, customer, calculateAge}) {
     
   return (
     <div className="bg-sky-50 rounded-2xl shadow-2xs pt-8 px-6 sm:px-12 m-10">
@@ -38,17 +38,17 @@ export default function CheckoutForm({formType, formData, handleFormChange, seni
                     <label className="col-span-2 lock text-xl font-semibold text-gray-700">ชื่อ-นามสกุล</label>
                     <div className="row-start-2 grid grid-cols-1 mt-2">
                         <select className="col-start-1 row-start-1 w-[50%] rounded-4xl bg-sky-50 py-1.5 pl-3 text-gray-900 outline-1 outline-sky-400 focus:outline-2 focus:outline-pink-600  hover:cursor-pointer" name="seniorId" value={formData.seniorId} onChange={handleFormChange} required>
-                            <option value="" disabled>เลือกผู้รับบริการ</option>
-                            <option value={seniorData.id}>{seniorData.firstName} {seniorData.lastName}</option>
+                            {/* <option value="" disabled>เลือกผู้รับบริการ</option> */}
+                            <option value={customer.seniors[0]._id}>{customer.seniors[0].firstName} {customer.seniors[0].lastName}</option>
                         </select>
                     </div>
                 </div>
 
                 <div className="">
                     <label className="lock text-xl font-semibold text-gray-700">อายุ</label>
-                    { formData.seniorId ?
+                    { customer.seniors ?
                         <p className="block w-15 mt-2 mr-auto rounded-4xl bg-sky-50 px-3 py-2 text-base text-gray outline-1 outline-sky-400 focus:outline-2 focus:outline-pink-600">
-                            {seniorData.age} ปี
+                            {calculateAge(customer.seniors[0].dob)} ปี
                         </p>
                         : <p className="block w-15 mt-2 mr-auto rounded-4xl bg-sky-50 px-3 py-2 text-base text-gray outline-1 outline-sky-400 focus:outline-2 focus:outline-pink-600">
                             - ปี
