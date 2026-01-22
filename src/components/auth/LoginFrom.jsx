@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import AuthLayout from "./AuthLayout";
 import { Eye, EyeOff } from "lucide-react";
-import api from "@/api/axios";
+import { MessageContext } from "../../context/MessageContext";
+import apiauth from "@/api/axios";
 
 export default function LoginForm() {
+  const {API} = useContext(MessageContext);
   const [message, setMessage] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -27,7 +29,7 @@ export default function LoginForm() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await api.post(`/auth/login`, formData);
+      const res = await apiauth.post(`/auth/login`, formData);
       alert("login successfully");
       const { token, user } = res.data;
       // console.log(res.data);
@@ -65,9 +67,13 @@ export default function LoginForm() {
     }
   };
 
-  
   useEffect(() => {
-    const token = sessionStorage.getItem("token");
+    let token = "";
+    if (sessionStorage.getItem("token")) {
+      token = sessionStorage.getItem("token");
+    } else if (localStorage.getItem("token")) {
+      token = localStorage.getItem("token")
+    };
 
     if (token) {
       console.log("AUTHORIZED, NAVIGATE TO DASHBOARD");
@@ -75,7 +81,6 @@ export default function LoginForm() {
       navigate(user.role === "CAREGIVER" ? "/dashboard" : "/userdashboard");
     }
   }, []);
-  
 
   return (
     <AuthLayout title="ยินดีต้อนรับ">

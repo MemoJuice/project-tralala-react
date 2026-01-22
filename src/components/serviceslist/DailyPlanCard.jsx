@@ -6,6 +6,13 @@ import {
 } from "@/components/ui/hover-card"
 
 export default function DailyPlanCard (){
+    let token = "";
+    if (sessionStorage.getItem("token")) {
+      token = sessionStorage.getItem("token");
+    } else if (localStorage.getItem("token")) {
+      token = localStorage.getItem("token")
+    };
+    
     return (
     <div className="items-center w-full mt-8 bg-white rounded-2xl shadow-2xs p-4 grid grid-cols-1 md:grid-cols-2">
        <div className="bg-gray-50 flex items-center justify-center overflow-hidden">
@@ -37,11 +44,13 @@ export default function DailyPlanCard (){
                     </HoverCard>
               </div>
 
+              {token &&
               <div className="mt-6">
                 <div className="flex w-full justify-evenly">
                  <BookingCalendarDaily />
                 </div>
               </div>
+              }
             </div>
        </div>
     </div>

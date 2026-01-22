@@ -1,195 +1,220 @@
 import { Link } from "react-router";
+import { useEffect, useState } from "react";
 
 export default function ProfileInfoForm() {
+  /* ===================== STATE ===================== */
+  const [seniorForm, setSeniorForm] = useState({
+    firstName: "",
+    lastName: "",
+    dob: "",
+    gender: "",
+    medicalProfile: {
+      mobilityLevel: "",
+      cognitiveStatus: "",
+      allergies: "",
+      chronicConditions: "",
+    },
+  });
+
+  const [relativeForm, setRelativeForm] = useState({
+    firstName: "",
+    lastName: "",
+    gender: "",
+    dob: "",
+    phone: "",
+    email: "",
+    relationship: "",
+  });
+
+  const [payload, setPayload] = useState(null);
+
+  /* ===================== NORMALIZE BEFORE POST ===================== */
+  useEffect(() => {
+    const normalizedPayload = {
+      senior: {
+        ...seniorForm,
+        dob: seniorForm.dob ? new Date(seniorForm.dob) : null,
+        medicalProfile: {
+          ...seniorForm.medicalProfile,
+          allergies: seniorForm.medicalProfile.allergies
+            ? seniorForm.medicalProfile.allergies.split(",").map(v => v.trim())
+            : [],
+          chronicConditions: seniorForm.medicalProfile.chronicConditions
+            ? seniorForm.medicalProfile.chronicConditions.split(",").map(v => v.trim())
+            : [],
+        },
+      },
+      relative: {
+        ...relativeForm,
+        dob: relativeForm.dob ? new Date(relativeForm.dob) : null,
+      },
+    };
+
+    setPayload(normalizedPayload);
+  }, [seniorForm, relativeForm]);
+
+  /* ===================== SUBMIT ===================== */
+  const handleSubmit = async () => {
+    console.log("Payload to backend:", payload);
+
+    // await fetch("/api/profile", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify(payload),
+    // });
+  };
+
+  /* ===================== UI ===================== */
   return (
-    <div>
-      <section className="flex">
-        <div className="flex flex-col items-center bg-white my-4 mx-auto w-[90%] rounded-[3rem] font-noto">
-          <h1 className="block text-center py-6 px-10 font-bold text-3xl">
-            กรอกประวัติส่วนตัว
-          </h1>
-          <div className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr] pb-4 md:max-w-300">
-            <div className="px-6 md:pl-12 md:pr-4">
-              <h2 className="text-2xl font-semibold text-indigo-900">
-                ประวัติส่วนตัว (ผู้ป่วย)
-              </h2>
-              <form className="flex flex-col md:flex-row">
-                <div className="flex flex-col md:flex-row my-2 gap-8">
-                  <div className="flex flex-col my-2 gap-2">
-                    <div>
-                      <label className="block text-xl font-medium text-black">
-                        ชื่อ
-                      </label>
-                      <input
-                        type="text"
-                        className="block w-full mt-1 rounded-md bg-sky-50 px-3 py-1 text-base text-black outline-1 outline-indigo-400 focus:outline-2 focus:outline-indigo-600 hover:outline-indigo-600"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-lg font-medium text-black">
-                        นามสกุล
-                      </label>
-                      <input
-                        type="text"
-                        className="block w-full mt-1 rounded-md bg-sky-50 px-3 py-1 text-base text-black outline-1 outline-indigo-400 focus:outline-2 focus:outline-indigo-600 hover:outline-indigo-600"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-lg font-medium text-black">
-                        วันเกิด
-                      </label>
-                      <input
-                        type="text"
-                        className="block w-full mt-1 rounded-md bg-sky-50 px-3 py-1 text-base text-black outline-1 outline-indigo-400 focus:outline-2 focus:outline-indigo-600 hover:outline-indigo-600"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-lg font-medium text-black">
-                        ที่อยู่
-                      </label>
-                      <input
-                        type="text"
-                        className="block w-full mt-1 rounded-md bg-sky-50 px-3 py-1 text-base text-black outline-1 outline-indigo-400 focus:outline-2 focus:outline-indigo-600 hover:outline-indigo-600"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-lg font-medium text-black">
-                        อาการป่วย
-                      </label>
-                      <input
-                        type="text"
-                        className="block w-full mt-1 rounded-md bg-sky-50 px-3 py-1 text-base text-black outline-1 outline-indigo-400 focus:outline-2 focus:outline-indigo-600 hover:outline-indigo-600"
-                      />
-                    </div>
-                  </div>
-                  <div className="flex flex-col my-2 gap-2">
-                    <div>
-                      <label className="block text-lg font-medium text-black">
-                        เบอร์โทรศัพท์
-                      </label>
-                      <input
-                        type="text"
-                        className="block w-full mt-1 rounded-md bg-sky-50 px-3 py-1 text-base text-black outline-1 outline-indigo-400 focus:outline-2 focus:outline-indigo-600 hover:outline-indigo-600"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-lg font-medium text-black">
-                        สิ่งที่ต้องการให้ดูแลพิเศษ
-                      </label>
-                      <input
-                        type="text"
-                        className="block w-full mt-1 rounded-md bg-sky-50 px-3 py-1 text-base text-black outline-1 outline-indigo-400 focus:outline-2 focus:outline-indigo-600 hover:outline-indigo-600"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-lg font-medium text-black">
-                        ยาที่รับประทานประจำ
-                      </label>
-                      <input
-                        type="text"
-                        className="block w-full mt-1 rounded-md bg-sky-50 px-3 py-1 text-base text-black outline-1 outline-indigo-400 focus:outline-2 focus:outline-indigo-600 hover:outline-indigo-600"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-lg font-medium text-black">
-                        เพิ่มเติม
-                      </label>
-                      <textarea className="block w-full h-21 md:h-16 mt-2 mr-auto rounded-md bg-sky-50 px-3 py-2 text-base text-black outline-1 outline-indigo-400 focus:outline-2 focus:outline-indigo-600 hover:outline-indigo-600">
-                        ตั้งแต่เป็นสาวเต็มกาย หาผู้ชายถูกใจไม่มี
-                      </textarea>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex mx-auto md:ml-8 my-4 item">
-                  <p className="w-20 h-20 pt-5 text-sm text-center rounded-[10%] bg-slate-300">
-                    {" "}
-                    อัปโหลดรูปภาพ
-                  </p>
-                </div>
-              </form>
+    <section className="min-h-screen flex items-center justify-center font-noto">
+      <div className="w-full max-w-6xl bg-white rounded-3xl shadow-xl p-6 md:p-10 m-6">
+        <h1 className="text-center text-3xl md:text-4xl font-bold mb-8">
+          ข้อมูลผู้ใช้บริการ
+        </h1>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          {/* ===================== SENIOR ===================== */}
+          <div className="space-y-4">
+            <h2 className="text-2xl font-semibold border-b border-pink-200 pb-2">
+              ประวัติส่วนตัว (ผู้สูงอายุ)
+            </h2>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <Input label="ชื่อ" value={seniorForm.firstName}
+                onChange={e => setSeniorForm({ ...seniorForm, firstName: e.target.value })} />
+              <Input label="นามสกุล" value={seniorForm.lastName}
+                onChange={e => setSeniorForm({ ...seniorForm, lastName: e.target.value })} />
+              <Input label="วันเกิด" type="date" value={seniorForm.dob}
+                onChange={e => setSeniorForm({ ...seniorForm, dob: e.target.value })} />
+
+              <Select label="เพศ" value={seniorForm.gender}
+                onChange={e => setSeniorForm({ ...seniorForm, gender: e.target.value })}
+                options={["ชาย", "หญืง", "ไม่ระบุ"]} />
             </div>
 
-            <div className="px-6 md:pl-12 md:pr-4 mt-4 md:mt-0">
-              <h2 className="text-2xl font-semibold text-indigo-900">
-                ประวัติส่วนตัว (ญาติผู้ป่วย)
-              </h2>
-              <div className="flex flex-col md:flex-row">
-                <form className="flex flex-col my-2 gap-2">
-                  <div>
-                    <label className="block text-xl font-medium text-black">
-                      ชื่อ
-                    </label>
-                    <input
-                      type="text"
-                      className="block w-full mt-1 rounded-md bg-sky-50 px-3 py-1 text-base text-black outline-1 outline-indigo-400 focus:outline-2 focus:outline-indigo-600 hover:outline-indigo-600"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-lg font-medium text-black">
-                      นามสกุล
-                    </label>
-                    <input
-                      type="text"
-                      className="block w-full mt-1 rounded-md bg-sky-50 px-3 py-1 text-base text-black outline-1 outline-indigo-400 focus:outline-2 focus:outline-indigo-600 hover:outline-indigo-600"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-lg font-medium text-black">
-                      เบอร์โทรศัพท์
-                    </label>
-                    <input
-                      type="text"
-                      className="block w-full mt-1 rounded-md bg-sky-50 px-3 py-1 text-base text-black outline-1 outline-indigo-400 focus:outline-2 focus:outline-indigo-600 hover:outline-indigo-600"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-lg font-medium text-black">
-                      ความสัมพันธ์กับผู้ป่วย
-                    </label>
-                    <div className="grid grid-cols-1">
-                      <select className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-sky-50 py-1.5 pr-8 pl-3 mt-1 text-gray-900 outline-1 outline-indigo-400 focus:outline-2 focus:outline-indigo-600 hover:outline-indigo-600 hover:cursor-pointer">
-                        <option disabled selected>
-                          -
-                        </option>
-                        <option>ลูก</option>
-                        <option>พี่น้อง</option>
-                        <option>หลาน</option>
-                        <option>เพื่อน</option>
-                      </select>
-                      <svg
-                        viewBox="0 0 16 16"
-                        fill="currentColor"
-                        data-slot="icon"
-                        aria-hidden="true"
-                        className="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4"
-                      >
-                        <path
-                          d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z"
-                          clipRule="evenodd"
-                          fillRule="evenodd"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                </form>
-                <div className="flex mx-auto md:ml-8 my-4 item">
-                  <p className="w-20 h-20 pt-5 text-sm text-center rounded-[10%] bg-slate-300">
-                    {" "}
-                    อัปโหลดรูปภาพ
-                  </p>
-                </div>
-              </div>
-            </div>
+                <Select label="ระดับสุขภาพ" 
+                    value={seniorForm.medicalProfile.healthLevel || ""} 
+                    onChange={e => setSeniorForm({
+                      ...seniorForm,
+                      medicalProfile: { 
+                        ...seniorForm.medicalProfile, 
+                        healthLevel: e.target.value 
+                      }
+                    })}
+                    options={["พักรักษาที่รพ.", "ช่วยเหลือตัวเองได้", "ต้องพยุง", "ติดเตียง"]}
+                  />
+
+              <Input label="อาการแพ้ยา / อาหาร" value={seniorForm.medicalProfile.allergies}
+              onChange={e => setSeniorForm({
+                ...seniorForm,
+                medicalProfile: { ...seniorForm.medicalProfile, allergies: e.target.value }
+              })} />
+
+             <Select 
+                    label="โรคประจำตัว" 
+                    value={seniorForm.medicalProfile.chronicConditions || ""} 
+                    onChange={e => setSeniorForm({...seniorForm,
+                      medicalProfile: {...seniorForm.medicalProfile,chronicConditions: e.target.value  }
+                    })}
+                    options={["ความดันโลหิตสูง","เบาหวาน","ไขมันในเลือดสูง","โรคหัวใจขาดเลือด",
+                      "โรคหลอดเลือดสมอง","โรคไตเรื้อรัง","โรคปอดอุดกั้นเรื้อรัง","หอบหืด",
+                      "ข้อเข่าเสื่อม","กระดูกพรุน","โรคเก๊าท์","โรคข้ออักเสบรูมาตอยด์",
+                      "โรคอัลไซเมอร์","ภาวะสมองเสื่อม","พาร์กินสัน","โรคซึมเศร้า",
+                      "โรควิตกกังวล","โรคตับเรื้อรัง","โรคกระเพาะอาหาร","มะเร็ง"
+                    ]}
+/>
+
+            <UploadBox />
           </div>
-          <div>
-            <Link to="/userdashboard">
-              <button className="block mx-auto md:ml-[25%] mb-4 rounded-3xl bg-violet-200 px-6 py-2 text-xl font-semibold text-gray-800 outline-1 outline-violet-400 hover:cursor-pointer hover:bg-violet-500 hover:text-gray-100">
-                บันทึก
-              </button>
-            </Link>
+
+          {/* ===================== RELATIVE ===================== */}
+          <div className="space-y-4">
+            <h2 className="text-2xl font-semibold border-b border-pink-200 pb-2">
+              ประวัติส่วนตัว (ผู้เกี่ยวข้องกับผู้สูงอายุ)
+            </h2>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <Input label="ชื่อ" value={relativeForm.firstName}
+                onChange={e => setRelativeForm({ ...relativeForm, firstName: e.target.value })} />
+              <Input label="นามสกุล" value={relativeForm.lastName}
+                onChange={e => setRelativeForm({ ...relativeForm, lastName: e.target.value })} />
+
+              <Select label="เพศ" value={relativeForm.gender}
+                onChange={e => setRelativeForm({ ...relativeForm, gender: e.target.value })}
+                options={["หญิง", "ชาย", "ไม่ระบุ"]} />
+
+              <Input label="วันเกิด" type="date" value={relativeForm.dob}
+                onChange={e => setRelativeForm({ ...relativeForm, dob: e.target.value })} />
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <Input label="เบอร์โทรศัพท์" value={relativeForm.phone}
+                onChange={e => setRelativeForm({ ...relativeForm, phone: e.target.value })} />
+              <Input label="อีเมล" type="email" value={relativeForm.email}
+                onChange={e => setRelativeForm({ ...relativeForm, email: e.target.value })} />
+            </div>
+
+            <Select label="ความสัมพันธ์กับผู้สูงอายุ" value={relativeForm.relationship}
+              onChange={e => setRelativeForm({ ...relativeForm, relationship: e.target.value })}
+              options={["บุตร", "คู่สมรส", "พี่น้อง", "หลาน", "เพื่อน", "ผู้ดูแล"]} />
+
+            <UploadBox />
           </div>
         </div>
-      </section>
+
+        <div className="mt-10 flex justify-center">
+          <Link to="/userdashboard">
+            <button onClick={handleSubmit}
+              className="px-10 py-3 rounded-full bg-pink-400 text-white text-lg font-semibold shadow-md hover:bg-pink-500 transition">
+              บันทึกข้อมูล
+            </button>
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ===================== REUSABLE COMPONENTS ===================== */
+
+function Input({ label, type = "text", value, onChange }) {
+  return (
+    <div className="flex flex-col">
+      <label className="label">{label}</label>
+      <input
+        type={type}
+        value={value}
+        onChange={onChange}
+        className="px-4 py-3 border-2 border-gray-300 rounded-2xl focus:outline-none focus:border-pink-500 transition"
+      />
+    </div>
+  );
+}
+
+function Select({ label, value, onChange, options }) {
+  return (
+    <div className="flex flex-col">
+      <label className="label">{label}</label>
+      <select
+        value={value}
+        onChange={onChange}
+        className="px-4 py-3 border-2 border-gray-300 rounded-2xl focus:outline-none focus:border-pink-500 transition"
+      >
+        <option value="">-</option>
+        {options.map(opt => (
+          <option key={opt} value={opt}>{opt}</option>
+        ))}
+      </select>
+    </div>
+  );
+}
+
+function UploadBox() {
+  return (
+    <div className="mt-4">
+      <div className="w-full h-32 border-2 border-dashed border-pink-300 rounded-xl flex items-center justify-center text-pink-500 hover:bg-pink-100 cursor-pointer transition">
+        อัปโหลดรูปภาพ
+      </div>
     </div>
   );
 }

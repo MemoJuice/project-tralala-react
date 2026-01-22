@@ -1,30 +1,20 @@
-export default function DashboardSchedule() {
-  const schedules = [
-    {
-      id: 1,
-      date: "11/01/2569",
-      detail: "ดูแลรายวันเวลา 10.00-18.00 น.",
-      income: "1,500.-",
-      status: "สำเร็จ",
-      statusColor: "text-green-600 bg-green-50",
-    },
-    {
-      id: 2,
-      date: "20/01/2569",
-      detail: "พาผู้ป่วยไปหาหมอและพากลับบ้าน",
-      income: "1,200.-",
-      status: "กำลังดำเนินการ",
-      statusColor: "text-blue-600 bg-blue-50",
-    },
-    {
-      id: 3,
-      date: "30/01/2569",
-      detail: "ดูแลรายวันเวลา 8.00-16.00 น.",
-      income: "1,500.-",
-      status: "กำลังดำเนินการ",
-      statusColor: "text-blue-600 bg-blue-50",
-    },
-  ];
+export default function DashboardSchedule({ schedule }) {
+  // 👉 ไม่มีตารางงาน
+  if (!schedule || schedule.length === 0) {
+    return (
+      <div className="mt-6 bg-white rounded-2xl shadow-lg p-8 text-center text-gray-400">
+        ยังไม่มีตารางงานที่กำลังจะมาถึง
+      </div>
+    );
+  }
+
+  // map status → สี
+  const statusMap = {
+    COMPLETED: "text-green-600 bg-green-50",
+    ACTIVE: "text-blue-600 bg-blue-50",
+    SCHEDULED: "text-yellow-600 bg-yellow-50",
+    CANCELLED: "text-red-600 bg-red-50",
+  };
 
   return (
     <div className="min-h-screen p-8 mt-6">
@@ -47,45 +37,44 @@ export default function DashboardSchedule() {
                   รายละเอียดงาน
                 </th>
                 <th className="text-left px-6 py-4 font-semibold text-gray-700 border-b">
-                  รายได้
-                </th>
-                <th className="text-left px-6 py-4 font-semibold text-gray-700 border-b">
                   สถานะ
                 </th>
               </tr>
             </thead>
+
             <tbody>
-              {schedules.map((schedule, index) => (
+              {schedule.map((item, index) => (
                 <tr
-                  key={schedule.id}
+                  key={index}
                   className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
                 >
                   <td className="px-6 py-4 border-b text-gray-700">
-                    {String(schedule.id).padStart(2, "0")}
+                    {String(index + 1).padStart(2, "0")}
                   </td>
+
                   <td className="px-6 py-4 border-b text-gray-700">
-                    {schedule.date}
+                    {new Date(item.date).toLocaleDateString("th-TH")}
                   </td>
+
                   <td className="px-6 py-4 border-b text-gray-700">
-                    {schedule.detail}
+                    {item.service} ({item.time})
                   </td>
-                  <td className="px-6 py-4 border-b text-gray-700">
-                    {schedule.income}
-                  </td>
+
                   <td className="px-6 py-4 border-b">
                     <span
-                      className={`px-3 py-1 rounded-full text-sm font-medium ${schedule.statusColor}`}
+                      className={`px-3 py-1 rounded-full text-sm font-medium ${
+                        statusMap[item.status] || "text-gray-600 bg-gray-100"
+                      }`}
                     >
-                      {schedule.status}
+                      {item.status}
                     </span>
                   </td>
                 </tr>
               ))}
 
-              {/* Empty rows */}
-              {[...Array(3)].map((_, index) => (
-                <tr key={`empty-${index}`} className="bg-white">
-                  <td className="px-6 py-4 border-b">&nbsp;</td>
+              {/* เติมแถวเปล่าให้ table ดูนิ่ง */}
+              {[...Array(Math.max(0, 5 - schedule.length))].map((_, i) => (
+                <tr key={`empty-${i}`} className="bg-white">
                   <td className="px-6 py-4 border-b">&nbsp;</td>
                   <td className="px-6 py-4 border-b">&nbsp;</td>
                   <td className="px-6 py-4 border-b">&nbsp;</td>

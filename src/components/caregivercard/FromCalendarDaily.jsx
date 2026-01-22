@@ -13,7 +13,7 @@
   } from "@/components/ui/popover"
   import { MessageContext } from "../../context/MessageContext";
 
-  export default function BookingCalendarDaily() {
+  export default function FromCalendarDaily() {
     const [openStart, setOpenStart] = React.useState(false);
     const [openEnd, setOpenEnd] = React.useState(false);
     const [date, setDate] = React.useState(undefined);
@@ -74,10 +74,9 @@
     }
 
     return (
-      <div className="flex flex-wrap gap-4 ">
-        <div className="flex flex-wrap gap-4">
-          <div className="flex-col flex gap-2">
-            <Label htmlFor="start-date-picker" className="text-xl">
+      <div className="flex flex-col md:flex-row md:justify-center md:items-center gap-4 mb-12">
+        <div className="flex flex-wrap md:flex-row gap-4">
+           <Label htmlFor="start-date-picker" className="text-xl">
               วันเริ่มที่ใช้บริการ
             </Label>
             <Popover open={openStart} onOpenChange={setOpenStart}>
@@ -95,7 +94,7 @@
                 <DailyCalendar selected={date} onSelect={handleStartDate} />
               </PopoverContent>
             </Popover>
-          </div>
+
 
           <div className="flex-col flex gap-2">
             <Label htmlFor="end-date-picker" className="text-xl">

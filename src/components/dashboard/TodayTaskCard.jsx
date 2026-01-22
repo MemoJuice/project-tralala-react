@@ -1,15 +1,14 @@
 import { Clock, MapPin, Users } from "lucide-react";
 
-export default function TodayTaskCard() {
-  // MOCK DATA
-  const task = {
-    name: "บริการพาผู้สูงอายุไปหาหมอ",
-    description:
-      "ดูแลและอำนวยความสะดวกแก่ผู้สูงอายุหรือผู้ป่วย ในการเดินทางไปพบแพทย์ที่โรงพยาบาลอย่างปลอดภัย พร้อมผู้ดูแลมืออาชีพอยู่เคียงข้างตลอดการเดินทาง",
-    price: 1500,
-    maxTime: "8 ชั่วโมงต่อวัน",
-    durationDay: 1,
-  };
+export default function TodayTaskCard({ task }) {
+  // 👉 กรณีไม่มีงานวันนี้
+  if (!task) {
+    return (
+      <div className="lg:col-span-2 bg-white rounded-3xl shadow-xl p-8 text-gray-400 flex items-center justify-center">
+        วันนี้ยังไม่มีงาน
+      </div>
+    );
+  }
 
   return (
     <div className="lg:col-span-2 bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow flex flex-col">
@@ -25,7 +24,7 @@ export default function TodayTaskCard() {
               งานวันนี้
             </p>
             <h2 className="text-lg md:text-2xl font-bold text-gray-900 mb-1 md:mb-2 line-clamp-2">
-              {task.name}
+              {task.title}
             </h2>
           </div>
         </div>
@@ -37,6 +36,7 @@ export default function TodayTaskCard() {
 
         {/* Info */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 mb-4 md:mb-6">
+          {/* เวลาทำงาน */}
           <div className="bg-linear-to-br from-blue-50 to-blue-100 rounded-2xl p-3 md:p-4">
             <div className="flex items-center gap-2 mb-1 md:mb-2">
               <Clock className="w-4 h-4 md:w-5 md:h-5 text-blue-600" />
@@ -45,26 +45,34 @@ export default function TodayTaskCard() {
               </span>
             </div>
             <p className="text-base md:text-xl font-bold text-gray-900">
-              {task.maxTime}
+              {task.workHours}
             </p>
           </div>
 
+          {/* ระยะเวลา */}
           <div className="bg-linear-to-br from-purple-50 to-purple-100 rounded-2xl p-3 md:p-4">
             <div className="flex items-center gap-2 mb-1 md:mb-2">
               <MapPin className="w-4 h-4 md:w-5 md:h-5 text-purple-600" />
               <span className="text-xs md:text-sm text-gray-600">ระยะเวลา</span>
             </div>
             <p className="text-base md:text-xl font-bold text-gray-900">
-              {task.durationDay} วัน
+              {task.duration}
             </p>
           </div>
 
+          {/* ราคา */}
           <div className="bg-linear-to-br from-green-50 to-green-100 rounded-2xl p-3 md:p-4 col-span-2 md:col-span-1">
             <span className="text-xs md:text-sm text-gray-600">ราคาต่อวัน</span>
             <p className="text-base md:text-xl font-bold text-purple-600">
-              {task.price.toLocaleString("th-TH")} บาท
+              {task.price?.toLocaleString("th-TH")} บาท
             </p>
           </div>
+        </div>
+
+        {/* Status */}
+        <div className="text-sm text-gray-500">
+          สถานะงาน:{" "}
+          <span className="font-semibold text-gray-700">{task.status}</span>
         </div>
       </div>
     </div>

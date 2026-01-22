@@ -3,16 +3,25 @@ import ProfileHeader from "@/components/userprofile/01_ProfileHeader";
 import Certificates from "@/components/userprofile/03_Certificates";
 import Reviews from "@/components/userprofile/05_Reviews";
 import { useEffect, useState, useContext } from "react";
-import axios from "axios";
-import { MessageContext } from "../context/MessageContext"; // ✅ import context
+import { MessageContext } from "../context/MessageContext"; 
+import ServiesBar from "@/components/caregivercard/ServiesBar";
+import apiauth from "@/api/axios";
+import Skills from "@/components/userprofile/04_Skills";
 
 export default function CareGiverCard() {
   const { id } = useParams(); // caregiver ID from URL
+  const {API, caregiverID} = useContext(MessageContext);
   const navigate = useNavigate();
   const location = useLocation();
   const [caregiver, setCaregiver] = useState(null);
+  let token = "";
+  if (sessionStorage.getItem("token")) {
+    token = sessionStorage.getItem("token");
+  } else if (localStorage.getItem("token")) {
+    token = localStorage.getItem("token")
+  };
 
-  const { cart, setCart } = useContext(MessageContext); // ✅ use context
+  const { cart, setCart } = useContext(MessageContext);
 
   // read booking details from query params
   const searchParams = new URLSearchParams(location.search);
@@ -23,19 +32,19 @@ export default function CareGiverCard() {
 
   useEffect(() => {
     async function fetchCaregiver() {
-      if (!id) return;
-      try {
-        const res = await axios.get(`/api/caregivers/${id}`);
-        setCaregiver(res.data);
-      } catch (err) {
-        console.error("Failed to fetch caregiver", err);
-      }
+      const res = await apiauth.get(`/caregivers/${id}`);
+      setCaregiver(res.data);
     }
     fetchCaregiver();
   }, [id]);
 
+  useEffect(() => {
+    console.log(caregiver);
+  },[caregiver]);
+
+
   function handleBookingSubmit({ startDate, endDate, shift, caregiverId }) {
-    // ✅ Save booking details into context cart
+    // Save booking details into context cart
     setCart({
       ...cart,
       serviceType: "custom", // or daily/hospital/monthly depending on flow
@@ -45,91 +54,59 @@ export default function CareGiverCard() {
       caregiverID: caregiverId,
     });
 
-    // ✅ Navigate to cart page
+    //  Navigate to cart page
     navigate("/cart");
   }
 
+  useEffect(() => {
+    console.log(cart);
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
   return (
-    <div className="min-h-full mx-6 p-2 md:mx-40 mt-16 mb-8 bg-white rounded-2xl overflow-auto flex flex-col justify-center items-center">
-      <ProfileHeader />
-      <Certificates />
-      <Reviews />
+    <div className="min-h-full mx-6 p-2 md:mx-12 mt-16 mb-8 bg-white rounded-2xl overflow-auto flex flex-col justify-center ">
+      <ProfileHeader caregiver={caregiver} />
+      <Skills skills={caregiver?.skills} />
+      <Link to="/cart"></Link>
+      <Certificates certifications={caregiver?.certifications || []} />
+      <Reviews ratingSummary={caregiver?.ratingSummary} />
 
-      {/* Action buttons */}
-      <div className="flex flex-wrap justify-center items-center md:gap-4 mt-6">
-        {hasBookingDetails ? (
-          <button
-            onClick={() =>
-              handleBookingSubmit({
-                startDate,
-                endDate,
-                shift,
-                caregiverId: id,
-              })
-            }
-            type="button"
-            className="bg-pink-400 text-2xl w-80 md:w-100 hover:bg-pink-600 text-white px-4 py-2 rounded-4xl"
-          >
-            จองบริการ
-          </button>
-        ) : (
-          <button
-            onClick={() => navigate("/cart")}
-            type="button"
-            className="bg-pink-400 text-2xl w-80 md:w-100 hover:bg-pink-600 text-white px-4 py-2 rounded-4xl"
-          >
-            เลือกบริการและวันเวลา
-          </button>
+      { token &&
+      <div className="flex flex-wrap justify-center items-center overflow-hidden md:flex md:gap-4">
+        {/* Inline booking section if no details */}
+        {!hasBookingDetails && (
+            <ServiesBar />
         )}
-      </div>
-
-      {/* Inline booking section if no details */}
-      {!hasBookingDetails && (
-        <div className="w-full bg-pink-50 rounded-2xl p-6 mt-8">
-          <h3 className="text-xl font-bold mb-4">กรุณาเลือกบริการและวันเวลา</h3>
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              const formStart = e.target.startDate.value;
-              const formEnd = e.target.endDate.value;
-              const formShift = e.target.shift.value;
-
-              if (!formStart || !formEnd || !formShift) {
-                alert("กรุณากรอกข้อมูลให้ครบ");
-                return;
-              }
-
-              handleBookingSubmit({
-                startDate: formStart,
-                endDate: formEnd,
-                shift: formShift,
-                caregiverId: id,
-              });
-            }}
-            className="flex flex-col gap-4"
-          >
-            <label className="text-lg">วันเริ่ม</label>
-            <input type="date" name="startDate" className="border rounded px-3 py-2" />
-
-            <label className="text-lg">วันสิ้นสุด</label>
-            <input type="date" name="endDate" className="border rounded px-3 py-2" />
-
-            <label className="text-lg">เลือกเวร</label>
-            <select name="shift" className="border rounded px-3 py-2">
-              <option value="">เลือกเวร</option>
-              <option value="dayshift">เวรเช้า (8.00-19.00)</option>
-              <option value="nightshift">เวรดึก (19.00-8.00)</option>
-            </select>
-
+        {/* Action buttons */}
+        <div className="flex flex-wrap justify-center items-center md:gap-4 mt-6">
+          {hasBookingDetails ? (
             <button
-              type="submit"
-              className="bg-pink-400 text-white px-4 py-2 rounded hover:bg-pink-600 mt-4"
+              onClick={() =>
+                handleBookingSubmit({
+                  startDate,
+                  endDate,
+                  shift,
+                  caregiverId: id,
+                })
+              }
+              type="button"
+              className="bg-pink-400 text-2xl w-80 md:w-100 hover:bg-pink-600 text-white px-4 py-2 rounded-4xl"
             >
               จองบริการ
             </button>
-          </form>
+          ) : (
+            <button
+              onClick={() => navigate("/cart")}
+              type="button"
+              className="bg-pink-400 text-2xl w-80 md:w-100 hover:bg-pink-600 text-white px-4 py-2 rounded-4xl"
+            >
+              เลือกบริการและวันเวลา
+            </button>
+          )}
         </div>
-      )}
+
+      </div>
+      }
     </div>
   );
 }

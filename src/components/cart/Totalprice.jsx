@@ -2,7 +2,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { MessageContext } from "../../context/MessageContext";
-
+import apiauth from "@/api/axios";
 
 export default function TotalPrice (){
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ export default function TotalPrice (){
 
       console.log(booking);
 
-      const bookingResponse = await axios.post(`${API}/bookings`, booking);
+      const bookingResponse = await apiauth.post(`/bookings`, booking);
 	  const bookingInfoID = bookingResponse.data.data._id;
 	  setBookingID(bookingInfoID);
 
@@ -45,7 +45,7 @@ export default function TotalPrice (){
 
       console.log(billing);
 
-      const billingResponse = await axios.post(`${API}/bookings/${bookingInfoID}/billings`, billing);
+      const billingResponse = await apiauth.post(`${API}/bookings/${bookingInfoID}/billings`, billing);
 	  const billingInfoID = billingResponse.data.data._id;
 	  setBillingID(billingInfoID);
 	  
@@ -89,7 +89,7 @@ export default function TotalPrice (){
 			</div>
 		</div>
 			<button className="w-full mt-4 text-2xl bg-lime-300 outline outline-lime-400 text-gray-700 rounded-4xl py-3 font-bold hover:bg-lime-500 hover:text-white hover:cursor-pointer" onClick={handleBookingSubmit}>
-				ดำเนินการสั่งซื้อ
+				ดำเนินการจอง
 			</button>
 			<p className="text-gray-400 text-sm mt-2">การชำระเงินปลอดภัย รองรับบัตรเครดิต/เดบิต และโอนผ่านธนาคาร</p>
 	</div>
