@@ -67,7 +67,6 @@ export default function LoginForm() {
     }
   };
 
-  
   useEffect(() => {
     let token = "";
     if (sessionStorage.getItem("token")) {
@@ -82,7 +81,6 @@ export default function LoginForm() {
       navigate(user.role === "CAREGIVER" ? "/dashboard" : "/userdashboard");
     }
   }, []);
-  
 
   return (
     <AuthLayout title="ยินดีต้อนรับ">

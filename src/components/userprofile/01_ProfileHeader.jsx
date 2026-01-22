@@ -1,20 +1,22 @@
-export default function ProfileHeader({caregiver}) {
+export default function ProfileHeader({ caregiver }) {
+  // 🔥 บรรทัดนี้ “จำเป็นต้องมี”
+  if (!caregiver) {
+    return null; // หรือ return <div>Loading...</div>
+  }
+
   return (
     <div className="max-w-5xl mx-auto px-4 py-12">
-      <h2 className="text-3xl md:text-4xl font-bold mb-6">
-        Caregiver {caregiver.firstName} {caregiver.lastName}
+      <h2 className="text-3xl font-bold mb-4">
+        {caregiver.firstName} {caregiver.lastName}
       </h2>
 
-      <div className="grid md:grid-cols-2 gap-8 items-start">
-        <img src={caregiver.imageUrl} className="rounded-xl" />
+      <img
+        src={caregiver.imageUrl}
+        alt={caregiver.firstName}
+        className="rounded-xl w-full max-h-105 object-cover"
+      />
 
-        <div>
-          <h3 className="text-xl font-semibold mb-2">แนะนำตัว</h3>
-          <p className="text-gray-600 leading-relaxed">
-            {caregiver.introduction}
-          </p>
-        </div>
-      </div>
+      <p className="mt-4 text-gray-600">{caregiver.introduction}</p>
     </div>
   );
 }

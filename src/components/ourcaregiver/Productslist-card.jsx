@@ -1,6 +1,5 @@
-  import { Link } from "react-router"
-  import { useNavigate } from "react-router-dom";
-  import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
   export default function ProductslistCard ({caregivers, recommended, askResult, caregiverID, setCaregiverID}){
     const navigate = useNavigate();
@@ -43,12 +42,14 @@
                 <div className="flex justify-between items-center mb-1">
                   <h3 className="font-semibold">{item.firstName} {item.lastName}</h3>
 
-                  {recommended && (
-                    <span className="text-xs text-blue-600 border border-blue-500 px-2 py-0.5 rounded-4xl">
-                      แนะนำ
-                    </span>
-                  )}
-                </div>
+                {recommended && (
+                  <span className="text-xs text-blue-600 border border-blue-500 px-2 py-0.5 rounded-4xl">
+                    แนะนำ
+                  </span>
+                )}
+              </div>
+
+              <p className="text-sm text-gray-600 mb-3">{item.introduction}</p>
 
                 <p className="text-sm text-gray-600 mb-3">
                   {item.introduction}
@@ -78,8 +79,9 @@
 
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
-      )
-  };
+    </div>
+  );
+}
