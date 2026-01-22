@@ -1,7 +1,7 @@
 import ProfileHeader from "@/components/userprofile/01_ProfileHeader";
 import LatesWorks from "@/components/userprofile/02_LatesWorks";
 import Certificates from "@/components/userprofile/03_Certificates";
-import AllProjects from "@/components/userprofile/04_AllProjects";
+import AllProjects from "@/components/userprofile/06_AllProjects";
 import Reviews from "@/components/userprofile/05_Reviews";
 
 export default function UserProfile() {
