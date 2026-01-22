@@ -12,10 +12,10 @@ import { useEffect } from "react";
 
 
     const handleCaregiverPage = (e) => {
-      navigate(`/caregiver/${e.target.value}`);
+      navigate(`/caregivers/${e.target.value}`);
     };
 
-    const handleCaregiverID = (e) => {
+    const handleCaregiverID = () => {
       navigate("/serviceslist");
     };
 
@@ -49,8 +49,6 @@ import { useEffect } from "react";
                 )}
               </div>
 
-              <p className="text-sm text-gray-600 mb-3">{item.introduction}</p>
-
                 <p className="text-sm text-gray-600 mb-3">
                   {item.introduction}
                 </p>
@@ -77,7 +75,6 @@ import { useEffect } from "react";
                 
                 </div>
 
-              </div>
             </div>
           </div>
         ))}

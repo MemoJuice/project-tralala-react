@@ -14,6 +14,12 @@ export default function CareGiverCard() {
   const navigate = useNavigate();
   const location = useLocation();
   const [caregiver, setCaregiver] = useState(null);
+  let token = "";
+  if (sessionStorage.getItem("token")) {
+    token = sessionStorage.getItem("token");
+  } else if (localStorage.getItem("token")) {
+    token = localStorage.getItem("token")
+  };
 
   const { cart, setCart } = useContext(MessageContext);
 
@@ -64,39 +70,43 @@ export default function CareGiverCard() {
       <Link to="/cart"></Link>
       <Certificates certifications={caregiver?.certifications || []} />
       <Reviews ratingSummary={caregiver?.ratingSummary} />
-      <div className="flex flex-wrap justify-center items-center overflow-hidden md:flex md:gap-4"></div>
-      {/* Action buttons */}
-      <div className="flex flex-wrap justify-center items-center md:gap-4 mt-6">
-        {hasBookingDetails ? (
-          <button
-            onClick={() =>
-              handleBookingSubmit({
-                startDate,
-                endDate,
-                shift,
-                caregiverId: id,
-              })
-            }
-            type="button"
-            className="bg-pink-400 text-2xl w-80 md:w-100 hover:bg-pink-600 text-white px-4 py-2 rounded-4xl"
-          >
-            จองบริการ
-          </button>
-        ) : (
-          <button
-            onClick={() => navigate("/cart")}
-            type="button"
-            className="bg-pink-400 text-2xl w-80 md:w-100 hover:bg-pink-600 text-white px-4 py-2 rounded-4xl"
-          >
-            เลือกบริการและวันเวลา
-          </button>
-        )}
-      </div>
 
-      {/* Inline booking section if no details */}
-      {!hasBookingDetails && (
-          <ServiesBar />
-      )}
+      { token &&
+      <div className="flex flex-wrap justify-center items-center overflow-hidden md:flex md:gap-4">
+        {/* Inline booking section if no details */}
+        {!hasBookingDetails && (
+            <ServiesBar />
+        )}
+        {/* Action buttons */}
+        <div className="flex flex-wrap justify-center items-center md:gap-4 mt-6">
+          {hasBookingDetails ? (
+            <button
+              onClick={() =>
+                handleBookingSubmit({
+                  startDate,
+                  endDate,
+                  shift,
+                  caregiverId: id,
+                })
+              }
+              type="button"
+              className="bg-pink-400 text-2xl w-80 md:w-100 hover:bg-pink-600 text-white px-4 py-2 rounded-4xl"
+            >
+              จองบริการ
+            </button>
+          ) : (
+            <button
+              onClick={() => navigate("/cart")}
+              type="button"
+              className="bg-pink-400 text-2xl w-80 md:w-100 hover:bg-pink-600 text-white px-4 py-2 rounded-4xl"
+            >
+              เลือกบริการและวันเวลา
+            </button>
+          )}
+        </div>
+
+      </div>
+      }
     </div>
   );
 }
