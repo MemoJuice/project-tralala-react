@@ -1,15 +1,29 @@
 import { Link } from "react-router";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { MessageContext } from "../context/MessageContext";
 import CheckoutForm from "../components/checkout/CheckoutForm";
 import PaymentSummary from "../components/checkout/PaymentSummary";
+import { useNavigate } from "react-router-dom";
+
 
 export default function OrderConfirmation() {
+  const navigate = useNavigate();
+  const token = sessionStorage.getItem("token");
   const [formType, setFormType] = useState("confirmation");
   const {purchaseSummary, cart} = useContext(MessageContext);
 
+  useEffect(() => {
+    if (!token) {
+        console.log("UNAUTHORIZATION, PLEASE LOG IN");
+        navigate("/login");
+    }
+  }, []);
+
   return (
     <div>
+        { !token ?
+        <h1 className="text-black text-3xl">UNAUTHORIZATION, PLEASE LOG IN</h1>
+        :
         <section className="flex">
             <div className="bg-white my-4 mx-auto w-[90%] rounded-2xl mt-12 ">
                 <div className="flex-wrap md:flex justify-center items-center md:gap-8">
@@ -36,6 +50,7 @@ export default function OrderConfirmation() {
                 </div>
             </div>
         </section>
+        }
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import ServiesBox  from "../components/homepage/ServiesBox";
+import SearchBox from "@/components/homepage/SearchBox";
 import ServiceSection from "../components/homepage/Servies-section";
 import UserReview from "../components/homepage/User-review";
 import TopCaregiver from "../components/homepage/Top-caregiver";
@@ -20,7 +21,7 @@ export default function Home() {
             <p className="mt-105 text-2xl font-semibold text-gray-700 text-shadow-2xs md:mt-5 md:text-4xl">
               ค้นหาผู้ดูแลที่เหมาะสม<br className="sm:hidden" />สำหรับคนที่คุณรัก
             </p>
-            <ServiesBox />
+            <SearchBox />
           </div>
         </div>
       </section>

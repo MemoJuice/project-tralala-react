@@ -1,16 +1,26 @@
-import { Link } from "react-router-dom";
+import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 import ProfileHeader from "@/components/userprofile/01_ProfileHeader";
 import Certificates from "@/components/userprofile/03_Certificates";
 import Reviews from "@/components/userprofile/05_Reviews";
-import { useParams, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useState, useContext } from "react";
 import apiauth from "@/api/axios";
+import { MessageContext } from "../context/MessageContext";
+import Skills from "@/components/userprofile/04_Skills";
 
 export default function CareGiverCard() {
   const { id } = useParams(); // caregiver ID from URL
   const navigate = useNavigate();
+  const location = useLocation();
   const [caregiver, setCaregiver] = useState(null);
+
+  const { cart, setCart } = useContext(MessageContext);
+
+  // read booking details from query params
+  const searchParams = new URLSearchParams(location.search);
+  const startDate = searchParams.get("startDate");
+  const endDate = searchParams.get("endDate");
+  const shift = searchParams.get("shift");
+  const hasBookingDetails = startDate && endDate && shift;
 
   useEffect(() => {
     async function fetchCaregiver() {
@@ -20,58 +30,112 @@ export default function CareGiverCard() {
     fetchCaregiver();
   }, [id]);
 
-  async function handleBookingSubmit() {
-    try {
-      const res = await axios.post("/api/bookings", {
-        startDate: "2026-01-22", // you’d pass actual state
-        endDate: "2026-01-25",
-        shift: "dayshift",
-        caregiverId: id, // ✅ send caregiver ID
-      });
+  function handleBookingSubmit({ startDate, endDate, shift, caregiverId }) {
+    // Save booking details into context cart
+    setCart({
+      ...cart,
+      serviceType: "custom", // or daily/hospital/monthly depending on flow
+      startDate,
+      endDate,
+      shift,
+      caregiverID: caregiverId,
+    });
 
-      if (res.ok) {
-        navigate("/cart");
-      }
-    } catch (err) {
-      alert("เกิดข้อผิดพลาดในการจอง");
-    }
+    //  Navigate to cart page
+    navigate("/cart");
   }
 
-  if (!caregiver) return <p>Loading...</p>;
-
   return (
-    <div className="min-h-full mx-6 p-2 md:mx-12 mt-16 mb-8 bg-white rounded-2xl overflow-auto flex flex-col justify-center items-center">
+    <div className="min-h-full mx-6 p-2 md:mx-12 mt-16 mb-8 bg-white rounded-2xl overflow-auto flex flex-col justify-center ">
       <ProfileHeader caregiver={caregiver} />
-      <Link to="/cart">
-        <button
-          onClick={handleBookingSubmit}
-          type="booking"
-          className="bg-pink-400 text-2xl w-50 hover:bg-pink-600 text-white px-4 py-2 rounded-4xl"
-        >
-          จองบริการ
-        </button>
-      </Link>
-      <Certificates certifications={caregiver.certifications} />
-      <Reviews ratingSummary={caregiver.ratingSummary} />
-      <div className="flex flex-wrap justify-center items-center overflow-hidden md:flex md:gap-4">
-        <Link to="/ourcaregiver">
+      <Skills skills={caregiver?.skills} />
+      <Link to="/cart"></Link>
+      <Certificates certifications={caregiver?.certifications || []} />
+      <Reviews ratingSummary={caregiver?.ratingSummary} />
+      <div className="flex flex-wrap justify-center items-center overflow-hidden md:flex md:gap-4"></div>
+      {/* Action buttons */}
+      <div className="flex flex-wrap justify-center items-center md:gap-4 mt-6">
+        {hasBookingDetails ? (
           <button
-            type="booking"
-            className="bg-sky-300 text-2xl w-50 hover:bg-sky-400 text-white px-4 py-2 rounded-4xl "
-          >
-            กลับไปหน้าก่อน
-          </button>
-        </Link>
-        <Link to="/cart">
-          <button
-            onClick={handleBookingSubmit}
-            type="booking"
-            className="bg-pink-400 text-2xl w-80 md:w-100 hover:bg-pink-600 text-white px-4 py-2 rounded-4xl "
+            onClick={() =>
+              handleBookingSubmit({
+                startDate,
+                endDate,
+                shift,
+                caregiverId: id,
+              })
+            }
+            type="button"
+            className="bg-pink-400 text-2xl w-80 md:w-100 hover:bg-pink-600 text-white px-4 py-2 rounded-4xl"
           >
             จองบริการ
           </button>
-        </Link>
+        ) : (
+          <button
+            onClick={() => navigate("/cart")}
+            type="button"
+            className="bg-pink-400 text-2xl w-80 md:w-100 hover:bg-pink-600 text-white px-4 py-2 rounded-4xl"
+          >
+            เลือกบริการและวันเวลา
+          </button>
+        )}
       </div>
+
+      {/* Inline booking section if no details */}
+      {!hasBookingDetails && (
+        <div className="w-full bg-pink-50 rounded-2xl p-6 mt-8">
+          <h3 className="text-xl font-bold mb-4">กรุณาเลือกบริการและวันเวลา</h3>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              const formStart = e.target.startDate.value;
+              const formEnd = e.target.endDate.value;
+              const formShift = e.target.shift.value;
+
+              if (!formStart || !formEnd || !formShift) {
+                alert("กรุณากรอกข้อมูลให้ครบ");
+                return;
+              }
+
+              handleBookingSubmit({
+                startDate: formStart,
+                endDate: formEnd,
+                shift: formShift,
+                caregiverId: id,
+              });
+            }}
+            className="flex flex-col gap-4"
+          >
+            <label className="text-lg">วันเริ่ม</label>
+            <input
+              type="date"
+              name="startDate"
+              className="border rounded px-3 py-2"
+            />
+
+            <label className="text-lg">วันสิ้นสุด</label>
+            <input
+              type="date"
+              name="endDate"
+              className="border rounded px-3 py-2"
+            />
+
+            <label className="text-lg">เลือกเวร</label>
+            <select name="shift" className="border rounded px-3 py-2">
+              <option value="">เลือกเวร</option>
+              <option value="dayshift">เวรเช้า (8.00-19.00)</option>
+              <option value="nightshift">เวรดึก (19.00-8.00)</option>
+            </select>
+
+            <button
+              type="submit"
+              className="bg-pink-400 text-white px-4 py-2 rounded hover:bg-pink-600 mt-4"
+            >
+              จองบริการ
+            </button>
+          </form>
+        </div>
+      )}
     </div>
   );
 }

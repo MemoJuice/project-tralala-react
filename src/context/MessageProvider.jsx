@@ -17,6 +17,9 @@ export default function MessageProvider({children}) {
             startDate: "",
             endDate: "",
             caregiverID: "",
+            serviceType: "",
+            time:"",
+            shift:"",
         };
       }
     );
@@ -29,7 +32,10 @@ export default function MessageProvider({children}) {
             description: e.description,
             startDate: e.startDate,
             endDate: e.endDate,
-            caregiverID: e.caregiverID
+            caregiverID: e.caregiverID,
+            serviceType: e.serviceType,
+            time:e.time,
+            shift:e.shift,
         });
     };
 
@@ -46,7 +52,7 @@ export default function MessageProvider({children}) {
     );
 
     const [purchaseSummary, setPurchaseSummary] = useState(() => {
-      const savedPurchaseSummary = localStorage.getItem("purchaseSummary");
+      const savedPurchaseSummary = localStorage.getItem("purchaseSummary")
 
       return savedPurchaseSummary
         ? JSON.parse(savedPurchaseSummary)
@@ -60,15 +66,17 @@ export default function MessageProvider({children}) {
             seniorLlastName: "",
             seniorAge: "",
             location: "",
-            clientNote: ""
+            clientNote: "",
         };
       }
     );
 
+    const [searchQuestion, setSearchQuestion] = useState("");
+
 
     return (
         <MessageContext.Provider 
-            value={{ API, cart, setCart, handleServiceCart, bookingID, setBookingID, billingID, setBillingID, purchaseSummary, setPurchaseSummary, caregiverID, setCaregiverID}}
+            value={{ API, cart, setCart, handleServiceCart, bookingID, setBookingID, billingID, setBillingID, purchaseSummary, setPurchaseSummary, caregiverID, setCaregiverID, searchQuestion, setSearchQuestion }}
         >
             {children}
         </MessageContext.Provider>

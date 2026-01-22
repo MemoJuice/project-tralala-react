@@ -41,7 +41,7 @@ export default function Navbar() {
     navigate("/");
   };
   return (
-    <nav className="flex sticky items-center bg-[#FEFBF2] top-0 w-full h-20 overflow-hidden md:justify-start">
+    <nav className="flex sticky items-center bg-[#FEFBF2] top-0 w-full h-20 overflow-hidden md:justify-start z-99">
       <div className="sm:ml-2 h-full min-w-16 hover:cursor-pointer mt-1">
         <Link to="/">
           <img

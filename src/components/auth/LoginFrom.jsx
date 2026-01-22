@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import AuthLayout from "./AuthLayout";
 import { Eye, EyeOff } from "lucide-react";
@@ -50,7 +50,8 @@ export default function LoginForm() {
       });
 
       setFormData({ email: "", password: "" });
-      setRememberMe(false);
+      // setRememberMe(false);
+      console.log(user.role);
 
       navigate(user.role === "CAREGIVER" ? "/dashboard" : "/userdashboard");
     } catch (error) {
@@ -63,6 +64,16 @@ export default function LoginForm() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    const token = sessionStorage.getItem("token");
+
+    if (token) {
+      console.log("AUTHORIZED, NAVIGATE TO DASHBOARD");
+      const user = JSON.parse(sessionStorage.getItem("user"));
+      navigate(user.role === "CAREGIVER" ? "/dashboard" : "/userdashboard");
+    }
+  }, []);
 
   return (
     <AuthLayout title="ยินดีต้อนรับ">

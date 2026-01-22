@@ -27,7 +27,7 @@ apiauth.interceptors.request.use(
 apiauth.interceptors.response.use(
   (response) => response,
   (error) => {
-    // ถ้า token หมดอายุ (401)
+    // ถ้า token หมดอายุ
     if (error.response?.status === 401) {
       localStorage.removeItem("token");
       localStorage.removeItem("user");
