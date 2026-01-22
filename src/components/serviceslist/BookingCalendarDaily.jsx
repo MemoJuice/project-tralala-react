@@ -1,4 +1,4 @@
-  import { useState,useContext } from "react";
+  import { useEffect, useState, useContext } from "react";
   import * as React from "react";
   import { ChevronDownIcon } from "lucide-react";
   import { useNavigate } from "react-router-dom";
@@ -13,34 +13,55 @@
   } from "@/components/ui/popover"
   import { MessageContext } from "../../context/MessageContext";
 
-  export default function BookingCalendarDaily() {
-    const [openStart, setOpenStart] = React.useState(false);
-    const [openEnd, setOpenEnd] = React.useState(false);
-    const [date, setDate] = React.useState(undefined);
-    const [endDate, setEndDate] = React.useState(undefined);
+  export default function BookingCalendarDaily({selectedCaregiver, service}) {
+    const [openStart, setOpenStart] = useState(false);
+    const [openEnd, setOpenEnd] = useState(false);
+    const [date, setDate] = useState(undefined);
+    const [endDate, setEndDate] = useState(undefined);
     const [shift, setShift] = useState("")
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
-    const { handleServiceCart } = useContext(MessageContext); // ✅ use context
+    const { cart, setCart } = useContext(MessageContext); // ✅ use context
 
     function handleBooking() {
       if (!date || !endDate || !shift) {
         alert("กรุณาเลือกวันเริ่ม วันสิ้นสุด และเวรที่ต้องการ");
         return;
-      }
+      };
 
-      // ✅ Save booking details into context cart
-      handleServiceCart({
-      serviceType: "daily",
-      startDate: date.toISOString().split("T")[0],
-      endDate: endDate.toISOString().split("T")[0],
-      shift,
-      });
+      setLoading(true);
 
-      console.log(handleServiceCart)
+    let caregiverID = "";
+    if(selectedCaregiver) {
+      caregiverID = selectedCaregiver._id;
+    };
+
+    // ✅ Save booking details into context cart
+      setCart({
+        // serviceType: "daily",
+        startDate: date.toISOString().split("T")[0],
+        endDate: endDate.toISOString().split("T")[0],
+        shift,
+        caregiverID: caregiverID,
+        serviceID: service._id,
+        name: service.name,
+        price: service.price,
+        description: service.description,
+    });
 
       navigate("/cart");
+      setLoading(false);
     }
+
+    useEffect(() => {
+      console.log(cart);
+      if (sessionStorage.getItem("token")) {
+          sessionStorage.setItem("cart", JSON.stringify(cart));
+      } else if (localStorage.getItem("token")) {
+          localStorage.setItem("cart", JSON.stringify(cart));
+      };
+    }, [cart]);
 
     function handleStartDate(selectedDate) {
       setDate(selectedDate);
@@ -133,6 +154,15 @@
             </select> 
 
         <div className="flex justify-center flex-wrap gap-4 mt-2 md:gap-4 md:mt-10">
+
+          {selectedCaregiver &&
+            <button
+              className="h-12 text-shadow-2xs bg-pink-50 text-black w-50 rounded-4xl text-xl border font-semibold"
+            >
+              ผู้ดูแล: {selectedCaregiver.firstName} {selectedCaregiver.lastName}
+            </button>
+          }
+
           <button
             onClick={handleBooking}
             type="booking"

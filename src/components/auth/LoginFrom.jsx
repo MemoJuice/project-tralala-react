@@ -45,6 +45,9 @@ export default function LoginForm() {
         sessionStorage.setItem("user", JSON.stringify(user));
       }
       window.dispatchEvent(new Event("auth-change"));
+      console.log(user);
+      console.log(user.id);
+      
 
       setMessage({
         type: "success",

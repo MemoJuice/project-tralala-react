@@ -8,17 +8,42 @@ export default function TotalPrice (){
   const navigate = useNavigate();
   const {API, cart, setBookingID, bookingID, setBillingID, billingID} = useContext(MessageContext);
   const [submitting, setSubmitting] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [customer, setCustomer] = useState("");
+  let token = "";
+  let user = "";
+  if (sessionStorage.getItem("token")) {
+    token = sessionStorage.getItem("token");
+    user = JSON.parse(sessionStorage.getItem("user"));
+  } else if (localStorage.getItem("token")) {
+    token = localStorage.getItem("token");
+    user = JSON.parse(localStorage.getItem("user"));
+  };
+
+  const fetchCustomer = async () => {
+	setLoading(true);
+	try {
+	  const res = await axios.get(`${API}/customers/user/${user.id}`);
+	  setCustomer(res.data.data[0]);
+	} catch {
+	//   alert("Failed to fetch customer");
+	} finally {
+	  setLoading(false);
+	}
+  };
+
 
   const handleBookingSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
     try {
       const booking = {
-		customerID: "65a02001f1a2b3c4d5e6f401",
+		customerID: customer._id,
 		serviceID: cart.serviceID,
 		schedule: {
 			startDate: new Date(cart.startDate),
-			endDate: new Date(cart.endDate)
+			endDate: new Date(cart.endDate),
+			startTime: new String(cart.time)
 		},
 		status: "PENDING"
       };
@@ -30,7 +55,7 @@ export default function TotalPrice (){
 	  setBookingID(bookingInfoID);
 
       const billing = {
-		customerID: "65a02001f1a2b3c4d5e6f401",
+		customerID: customer._id,
 		shoppingCart: [
 			{
 				"bookingID": bookingInfoID,
@@ -48,6 +73,8 @@ export default function TotalPrice (){
       const billingResponse = await apiauth.post(`${API}/bookings/${bookingInfoID}/billings`, billing);
 	  const billingInfoID = billingResponse.data.data._id;
 	  setBillingID(billingInfoID);
+
+	  localStorage.setItem("customer", JSON.stringify(customer));
 	  
       navigate("/checkout");
 
@@ -70,6 +97,15 @@ export default function TotalPrice (){
 	}
 	}, [billingID]);
 
+	useEffect(() => {
+		if (user?.id) {
+			fetchCustomer();
+		};
+		console.log(user);
+		console.log(customer);
+	}, [user?.id]);
+
+
     return (
 	<div className="rounded-xl p-4 bg-white shadow-sm">
 		<h3 className="text-lg font-semibold mb-2">สรุปยอดชำระ</h3>
@@ -88,7 +124,7 @@ export default function TotalPrice (){
 				<dd className="bg-blue-50 border border-dashed border-accent rounded px-2 py-1 text-green-600 font-bold">{cart.price} บาท</dd>
 			</div>
 		</div>
-			<button className="w-full mt-4 text-2xl bg-lime-300 outline outline-lime-400 text-gray-700 rounded-4xl py-3 font-bold hover:bg-lime-500 hover:text-white hover:cursor-pointer" onClick={handleBookingSubmit}>
+			<button className="w-full mt-4 text-2xl bg-lime-300 outline outline-lime-400 text-gray-700 rounded-4xl py-3 font-bold hover:bg-lime-500 hover:text-white hover:cursor-pointer" onClick={handleBookingSubmit} disabled={!customer || submitting}>
 				ดำเนินการจอง
 			</button>
 			<p className="text-gray-400 text-sm mt-2">การชำระเงินปลอดภัย รองรับบัตรเครดิต/เดบิต และโอนผ่านธนาคาร</p>

@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import * as React from "react";
 import { ChevronDownIcon } from "lucide-react";
 
@@ -14,14 +14,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { Input } from "../ui/input";
 import { MessageContext } from "../../context/MessageContext"; // ✅ import context
 
-export default function BookingCalendarHospital() {
-  const [open, setOpen] = React.useState(false);
-  const [date, setDate] = React.useState(undefined);
+export default function BookingCalendarHospital({selectedCaregiver, service}) {
+  const [open, setOpen] = useState(false);
+  const [date, setDate] = useState(undefined);
   const [time, setTime] = useState("10:30:00");
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
-  const { handleServiceCart } = useContext(MessageContext); // ✅ use context
+  const { cart, setCart } = useContext(MessageContext); // ✅ use context
 
   function handleBooking() {
     if (!date || !time) {
@@ -31,16 +31,34 @@ export default function BookingCalendarHospital() {
 
     setLoading(true);
 
-    handleServiceCart({
-      serviceType: "Hospital",
+    let caregiverID = "";
+    if(selectedCaregiver) {
+      caregiverID = selectedCaregiver._id;
+    };
+
+    setCart({
+      // serviceType: "hospital",
       startDate: date.toISOString().split("T")[0],
       time,
+      caregiverID: caregiverID,
+      serviceID: service._id,
+      name: service.name,
+      price: service.price,
+      description: service.description
     });
 
-    console.log(handleServiceCart)
     navigate("/cart");
     setLoading(false);
   }
+
+  useEffect(() => {
+    console.log(cart);
+    if (sessionStorage.getItem("token")) {
+        sessionStorage.setItem("cart", JSON.stringify(cart));
+    } else if (localStorage.getItem("token")) {
+        localStorage.setItem("cart", JSON.stringify(cart));
+    };
+  }, [cart]);
 
   return (
     <div className="flex flex-wrap gap-4 ">
@@ -94,6 +112,14 @@ export default function BookingCalendarHospital() {
             เลือกผู้ดูแล
           </button>
         </Link> */}
+
+        {selectedCaregiver &&
+          <button
+            className="h-12 text-shadow-2xs bg-pink-50 text-black w-50 rounded-4xl text-xl border font-semibold"
+          >
+            ผู้ดูแล: {selectedCaregiver.firstName} {selectedCaregiver.lastName}
+          </button>
+        }
 
         <button
           type="button"
