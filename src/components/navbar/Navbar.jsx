@@ -96,7 +96,15 @@ export default function Navbar() {
       </ul>
 
       <ul className="flex ml-auto gap-1 md:gap-4 sm:text-black-600">
-        <li className="hidden sm:flex self-center text-center max-w-40 hover:cursor-pointer hover:font-bold">
+          <li className="hidden sm:flex self-center text-center max-w-40">
+        <Link
+           to="/userdashboard"
+           className="py-2 text-xl w-50 px-4 bg-pink-400 text-white rounded-4xl hover:bg-pink-500 transition"
+       >ข้อมูลผู้ใช้งาน
+       </Link>
+      </li>
+
+                {/* <li className="hidden sm:flex self-center text-center max-w-40 hover:cursor-pointer hover:font-bold">
           <img
             src="images/phone-call.svg"
             alt="phone"
@@ -105,24 +113,24 @@ export default function Navbar() {
           <span className="hidden md:block ml-2 md:text-base">
             086-858-8666
           </span>
-        </li>
+        </li> */}
         {/* <li className="flex self-center outline-1 p-2 w-10 bg-white rounded-full hover:cursor-pointer hover:font-bold">
           <img src="images/user.svg" className="w-full" />
         </li> */}
-        <li className="hidden sm:flex self-center xl:mr-4 relative">
+        <li className="hidden sm:flex self-center xl:mr-4 justify-center items-center relative">
           {!token ? (
             <Link
               to="/login"
-              className="py-2 px-4 bg-white rounded-full font-semibold text-sm md:text-base hover:bg-pink-400 transition"
+              className="py-2 px-4 w-35 bg-sky-200 rounded-full text-2xl  hover:bg-pink-400"
             >
-              Login
+              เข้าสู่ระบบ
             </Link>
           ) : (
             <button
               onClick={handleLogout}
               className="py-2 px-4 bg-white rounded-full font-semibold text-sm md:text-base hover:bg-pink-400 transition"
             >
-              Logout
+              ออกจากระบบ
             </button>
           )}
         </li>
@@ -150,6 +158,10 @@ export default function Navbar() {
             </li>
             <li className="self-center text-center min-w-full hover:cursor-pointer hover:bg-pink-200 group-hover:bg-pink-50 group-hover:outline-1 outline-pink-200 rounded-bl-3xl">
               <Link to="/contact">สมัครเป็นผู้ดูแล</Link>
+            </li>
+            <li className="self-center text-center min-w-full hover:cursor-pointer hover:bg-pink-200 group-hover:bg-pink-50 group-hover:outline-1 outline-pink-200 rounded-bl-3xl">
+             <Link
+               to="/userdashboard">ข้อมูลผู้ใช้งาน</Link>
             </li>
           </ul>
         </div>
