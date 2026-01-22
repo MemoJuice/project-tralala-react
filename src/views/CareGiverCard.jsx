@@ -3,9 +3,15 @@ import ProfileHeader from "@/components/userprofile/01_ProfileHeader";
 import Certificates from "@/components/userprofile/03_Certificates";
 import Reviews from "@/components/userprofile/05_Reviews";
 import { useEffect, useState, useContext } from "react";
+<<<<<<< HEAD
 import axios from "axios";
 import { MessageContext } from "../context/MessageContext"; 
 import ServiesBar from "@/components/caregivercard/ServiesBar";
+=======
+import apiauth from "@/api/axios";
+import { MessageContext } from "../context/MessageContext";
+import Skills from "@/components/userprofile/04_Skills";
+>>>>>>> dev
 
 export default function CareGiverCard() {
   const { id } = useParams(); // caregiver ID from URL
@@ -13,7 +19,7 @@ export default function CareGiverCard() {
   const location = useLocation();
   const [caregiver, setCaregiver] = useState(null);
 
-  const { cart, setCart } = useContext(MessageContext); // ✅ use context
+  const { cart, setCart } = useContext(MessageContext);
 
   // read booking details from query params
   const searchParams = new URLSearchParams(location.search);
@@ -24,19 +30,14 @@ export default function CareGiverCard() {
 
   useEffect(() => {
     async function fetchCaregiver() {
-      if (!id) return;
-      try {
-        const res = await axios.get(`/api/caregivers/${id}`);
-        setCaregiver(res.data);
-      } catch (err) {
-        console.error("Failed to fetch caregiver", err);
-      }
+      const res = await apiauth.get(`/caregivers/${id}`);
+      setCaregiver(res.data);
     }
     fetchCaregiver();
   }, [id]);
 
   function handleBookingSubmit({ startDate, endDate, shift, caregiverId }) {
-    // ✅ Save booking details into context cart
+    // Save booking details into context cart
     setCart({
       ...cart,
       serviceType: "custom", // or daily/hospital/monthly depending on flow
@@ -46,16 +47,18 @@ export default function CareGiverCard() {
       caregiverID: caregiverId,
     });
 
-    // ✅ Navigate to cart page
+    //  Navigate to cart page
     navigate("/cart");
   }
 
   return (
-    <div className="min-h-full mx-6 p-2 md:mx-40 mt-16 mb-8 bg-white rounded-2xl overflow-auto flex flex-col justify-center items-center">
-      <ProfileHeader />
-      <Certificates />
-      <Reviews />
-
+    <div className="min-h-full mx-6 p-2 md:mx-12 mt-16 mb-8 bg-white rounded-2xl overflow-auto flex flex-col justify-center ">
+      <ProfileHeader caregiver={caregiver} />
+      <Skills skills={caregiver?.skills} />
+      <Link to="/cart"></Link>
+      <Certificates certifications={caregiver?.certifications || []} />
+      <Reviews ratingSummary={caregiver?.ratingSummary} />
+      <div className="flex flex-wrap justify-center items-center overflow-hidden md:flex md:gap-4"></div>
       {/* Action buttons */}
       <div className="flex flex-wrap justify-center items-center md:gap-4 mt-6">
         {hasBookingDetails ? (

@@ -1,22 +1,37 @@
 import React from "react";
 import { Link } from "react-router";
 
-export default function SeniorsCard() {
+export default function SeniorsCard({ senior }) {
+  // 👉 กรณีไม่มีผู้สูงอายุที่ดูแลวันนี้
+  if (!senior) {
+    return (
+      <div className="lg:col-span-1 rounded-3xl p-6 flex flex-col items-center justify-center shadow-lg bg-white text-gray-400">
+        ยังไม่มีผู้สูงอายุที่ดูแล
+      </div>
+    );
+  }
+
   return (
     <div className="lg:col-span-1 rounded-3xl p-6 md:p-6 flex flex-col items-center justify-center shadow-lg bg-white">
+      {/* Avatar */}
       <div className="w-24 h-24 md:w-28 md:h-28 bg-white bg-opacity-40 rounded-full mb-4 flex items-center justify-center">
-        <img src="images/woman.png" alt="user-profile" className="w-32 " />
+        <img src="images/woman.png" alt="senior-profile" className="w-32" />
       </div>
+
+      {/* Info */}
       <div className="space-y-2 w-full">
         <div className="bg-gray-100 bg-opacity-90 rounded-full px-4 py-4 text-center">
           <p className="text-gray-800 font-semibold text-xs md:text-sm">
-            สมจิต ใจดี
+            {senior.name}
           </p>
-          <p className="text-gray-700 text-xs md:text-sm">อายุ 66 ปี</p>
+          <p className="text-gray-700 text-xs md:text-sm">
+            อายุ {senior.age} ปี
+          </p>
         </div>
+
         <Link to="/userdashboard">
           <button
-            type="submit"
+            type="button"
             className="w-1/2 bg-pink-400 hover:bg-pink-600 text-gray-800 py-2 rounded-2xl mx-auto block hover:cursor-pointer"
           >
             ดูเพิ่มเติม
