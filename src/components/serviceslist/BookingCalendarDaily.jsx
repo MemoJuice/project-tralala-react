@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useContext } from "react";
 import * as React from "react";
 import { ChevronDownIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -13,6 +13,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { Link } from "react-router-dom"
+import { MessageContext } from "../../context/MessageContext";
 
 export default function BookingCalendarDaily() {
   const [openStart, setOpenStart] = React.useState(false);
@@ -22,32 +23,25 @@ export default function BookingCalendarDaily() {
   const [shift, setShift] = useState("")
 
   const navigate = useNavigate();
+  const { handleServiceCart } = useContext(MessageContext); // ✅ use context
 
-  async function handleBooking() {
-    if (!date || !endDate) {
-      alert("กรุณาเลือกวันเริ่มและวันสิ้นสุด");
+  function handleBooking() {
+    if (!date || !endDate || !shift) {
+      alert("กรุณาเลือกวันเริ่ม วันสิ้นสุด และเวรที่ต้องการ");
       return;
     }
 
-    try {
-      const res = await fetch("/api/monthly-bookings", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          startDate: date.toISOString().split("T")[0],
-          endDate: endDate.toISOString().split("T")[0],
-        }),
-      });
+    // ✅ Save booking details into context cart
+    handleServiceCart({
+     serviceType: "daily",
+     startDate: date.toISOString().split("T")[0],
+     endDate: endDate.toISOString().split("T")[0],
+     shift,
+    });
 
-      if (!res.ok) throw new Error("Booking failed");
-      const data = await res.json();
-      console.log("Booking success:", data);
+    console.log(handleServiceCart)
 
-      navigate("/cart");
-    } catch (err) {
-      console.error(err);
-      alert("เกิดข้อผิดพลาดในการจอง");
-    }
+    navigate("/cart");
   }
 
   function handleStartDate(selectedDate) {
@@ -141,16 +135,7 @@ export default function BookingCalendarDaily() {
           </select> 
 
       <div className="flex justify-center flex-wrap gap-4 mt-2 md:gap-4 md:mt-10">
-        <Link to="/ourcaregiver">
-          <button
-            type="caregiver"
-            className="h-12 bg-sky-400 text-shadow-2xs text-white w-50 rounded-4xl text-xl hover:bg-sky-500 hover:cursor-pointer"
-          >
-            เลือกผู้ดูแล
-          </button>
-        </Link>
-
-        <button
+         <button
           onClick={handleBooking}
           type="booking"
           className="h-12 bg-pink-400 text-white w-50 rounded-4xl text-xl hover:bg-pink-600 hover:cursor-pointer"
