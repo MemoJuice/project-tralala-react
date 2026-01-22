@@ -89,32 +89,40 @@ export default function ProfileInfoForm() {
 
               <Select label="เพศ" value={seniorForm.gender}
                 onChange={e => setSeniorForm({ ...seniorForm, gender: e.target.value })}
-                options={["Female", "Male", "Other"]} />
+                options={["ชาย", "หญืง", "ไม่ระบุ"]} />
             </div>
 
-            <Input label="ระดับการเคลื่อนไหว" value={seniorForm.medicalProfile.mobilityLevel}
-              onChange={e => setSeniorForm({
-                ...seniorForm,
-                medicalProfile: { ...seniorForm.medicalProfile, mobilityLevel: e.target.value }
-              })} />
+                <Select label="ระดับสุขภาพ" 
+                    value={seniorForm.medicalProfile.healthLevel || ""} 
+                    onChange={e => setSeniorForm({
+                      ...seniorForm,
+                      medicalProfile: { 
+                        ...seniorForm.medicalProfile, 
+                        healthLevel: e.target.value 
+                      }
+                    })}
+                    options={["พักรักษาที่รพ.", "ช่วยเหลือตัวเองได้", "ต้องพยุง", "ติดเตียง"]}
+                  />
 
-            <Input label="สภาพการรับรู้" value={seniorForm.medicalProfile.cognitiveStatus}
-              onChange={e => setSeniorForm({
-                ...seniorForm,
-                medicalProfile: { ...seniorForm.medicalProfile, cognitiveStatus: e.target.value }
-              })} />
-
-            <Input label="อาการแพ้ยา / อาหาร" value={seniorForm.medicalProfile.allergies}
+              <Input label="อาการแพ้ยา / อาหาร" value={seniorForm.medicalProfile.allergies}
               onChange={e => setSeniorForm({
                 ...seniorForm,
                 medicalProfile: { ...seniorForm.medicalProfile, allergies: e.target.value }
               })} />
 
-            <Input label="โรคประจำตัว" value={seniorForm.medicalProfile.chronicConditions}
-              onChange={e => setSeniorForm({
-                ...seniorForm,
-                medicalProfile: { ...seniorForm.medicalProfile, chronicConditions: e.target.value }
-              })} />
+             <Select 
+                    label="โรคประจำตัว" 
+                    value={seniorForm.medicalProfile.chronicConditions || ""} 
+                    onChange={e => setSeniorForm({...seniorForm,
+                      medicalProfile: {...seniorForm.medicalProfile,chronicConditions: e.target.value  }
+                    })}
+                    options={["ความดันโลหิตสูง","เบาหวาน","ไขมันในเลือดสูง","โรคหัวใจขาดเลือด",
+                      "โรคหลอดเลือดสมอง","โรคไตเรื้อรัง","โรคปอดอุดกั้นเรื้อรัง","หอบหืด",
+                      "ข้อเข่าเสื่อม","กระดูกพรุน","โรคเก๊าท์","โรคข้ออักเสบรูมาตอยด์",
+                      "โรคอัลไซเมอร์","ภาวะสมองเสื่อม","พาร์กินสัน","โรคซึมเศร้า",
+                      "โรควิตกกังวล","โรคตับเรื้อรัง","โรคกระเพาะอาหาร","มะเร็ง"
+                    ]}
+/>
 
             <UploadBox />
           </div>
@@ -133,7 +141,7 @@ export default function ProfileInfoForm() {
 
               <Select label="เพศ" value={relativeForm.gender}
                 onChange={e => setRelativeForm({ ...relativeForm, gender: e.target.value })}
-                options={["Female", "Male", "Other"]} />
+                options={["หญิง", "ชาย", "ไม่ระบุ"]} />
 
               <Input label="วันเกิด" type="date" value={relativeForm.dob}
                 onChange={e => setRelativeForm({ ...relativeForm, dob: e.target.value })} />
