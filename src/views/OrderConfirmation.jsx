@@ -8,7 +8,13 @@ import { useNavigate } from "react-router-dom";
 
 export default function OrderConfirmation() {
   const navigate = useNavigate();
-  const token = sessionStorage.getItem("token");
+  let token = "";
+  if (sessionStorage.getItem("token")) {
+    token = sessionStorage.getItem("token");
+  } else if (localStorage.getItem("token")) {
+    token = localStorage.getItem("token")
+  };
+  
   const [formType, setFormType] = useState("confirmation");
   const {purchaseSummary, cart} = useContext(MessageContext);
 

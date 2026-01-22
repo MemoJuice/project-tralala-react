@@ -4,15 +4,21 @@
 
   export default function ProductslistCard ({caregivers, recommended, askResult, caregiverID, setCaregiverID}){
     const navigate = useNavigate();
-
-    const handleCaregiverID = (e) => {
-      setCaregiverID(e.target.value);
-      navigate("/serviceslist");
+    let token = "";
+    if (sessionStorage.getItem("token")) {
+      token = sessionStorage.getItem("token");
+    } else if (localStorage.getItem("token")) {
+      token = localStorage.getItem("token")
     };
 
-    useEffect(() => {
-      console.log(`caregiverID: ${caregiverID}`);
-    }, [caregiverID]);
+
+    const handleCaregiverPage = (e) => {
+      navigate(`/caregiver/${e.target.value}`);
+    };
+
+    const handleCaregiverID = (e) => {
+      navigate("/serviceslist");
+    };
 
     return (
       <div className="flex flex-col gap-6">
@@ -49,21 +55,24 @@
                 </p>
                 
                 <div className="flex-wrap md:justify-evenly items-start ">
-                  <Link to="/caregivercard">
-                    <button
-                    type="readmore"
-                    className="w-35 mr-6  bg-sky-300 hover:bg-sky-500 text-white text-xl text-shadow-2xs px-4 py-2 rounded-4xl">
-                      ดูข้อมูลเพิ่ม
-                    </button>
-                  </Link>
-                  
                   <button
-                    type="booking"
-                    className="bg-pink-400 w-55 mt-2 md-4 hover:bg-pink-600 text-white text-xl text-shadow-2xs px-4 py-2 rounded-4xl" value={item._id}
-                    onClick={handleCaregiverID}
+                  type="readmore"
+                  className="w-35 mr-6  bg-sky-300 hover:bg-sky-500 text-white text-xl text-shadow-2xs px-4 py-2 rounded-4xl"
+                  value={item._id}
+                  onClick={handleCaregiverPage}
                   >
-                    จองบริการ
+                    ดูข้อมูลเพิ่ม
                   </button>
+                  
+                  {token &&
+                    <button
+                      type="booking"
+                      className="bg-pink-400 w-55 mt-2 md-4 hover:bg-pink-600 text-white text-xl text-shadow-2xs px-4 py-2 rounded-4xl" value={item._id}
+                      onClick={handleCaregiverID}
+                    >
+                      จองบริการ
+                    </button>
+                  }
                 
                 </div>
 

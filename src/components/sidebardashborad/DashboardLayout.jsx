@@ -8,7 +8,12 @@ import { useNavigate } from "react-router-dom";
 export default function DashboardLayout() {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState("dashboard");
-  const token = sessionStorage.getItem("token");
+  let token = "";
+  if (sessionStorage.getItem("token")) {
+    token = sessionStorage.getItem("token");
+  } else if (localStorage.getItem("token")) {
+    token = localStorage.getItem("token")
+  };
 
   useEffect(() => {
     if (!token) {

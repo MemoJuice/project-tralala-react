@@ -8,6 +8,7 @@ import { MessageContext } from "../context/MessageContext"; // ✅ import contex
 
 export default function CareGiverCard() {
   const { id } = useParams(); // caregiver ID from URL
+  const {API, caregiverID} = useContext(MessageContext);
   const navigate = useNavigate();
   const location = useLocation();
   const [caregiver, setCaregiver] = useState(null);
@@ -22,17 +23,24 @@ export default function CareGiverCard() {
   const hasBookingDetails = startDate && endDate && shift;
 
   useEffect(() => {
-    async function fetchCaregiver() {
-      if (!id) return;
+    if (!id) return;
+
+    const fetchCaregiver = async () => {
       try {
-        const res = await axios.get(`/api/caregivers/${id}`);
+        const res = await axios.get(`${API}/caregivers/${id}`);
         setCaregiver(res.data);
       } catch (err) {
         console.error("Failed to fetch caregiver", err);
       }
-    }
+    };
+
     fetchCaregiver();
   }, [id]);
+
+  useEffect(() => {
+    console.log(caregiver);
+  },[caregiver]);
+
 
   function handleBookingSubmit({ startDate, endDate, shift, caregiverId }) {
     // ✅ Save booking details into context cart
@@ -49,11 +57,20 @@ export default function CareGiverCard() {
     navigate("/cart");
   }
 
+  useEffect(() => {
+    console.log(cart);
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
   return (
     <div className="min-h-full mx-6 p-2 md:mx-40 mt-16 mb-8 bg-white rounded-2xl overflow-auto flex flex-col justify-center items-center">
-      <ProfileHeader />
-      <Certificates />
-      <Reviews />
+      {caregiver &&
+        <>
+          <ProfileHeader caregiver={caregiver} />
+          <Certificates caregiver={caregiver} />
+          <Reviews />
+        </>
+      }
 
       {/* Action buttons */}
       <div className="flex flex-wrap justify-center items-center md:gap-4 mt-6">

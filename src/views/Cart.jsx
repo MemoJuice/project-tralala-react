@@ -7,7 +7,13 @@ import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
 	const navigate = useNavigate();
-	const token = sessionStorage.getItem("token");
+	let token = "";
+	if (sessionStorage.getItem("token")) {
+		token = sessionStorage.getItem("token");
+	} else if (localStorage.getItem("token")) {
+		token = localStorage.getItem("token")
+	};
+
 	const mockService = {
 		serviceID: "659e1001f1a2b3c4d5e6f002",
 		name: "บริการดูแลผู้สูงอายุที่บ้าน(รายวัน)",
