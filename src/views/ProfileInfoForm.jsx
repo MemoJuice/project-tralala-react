@@ -57,11 +57,11 @@ export default function ProfileInfoForm() {
   const handleSubmit = async () => {
     console.log("Payload to backend:", payload);
 
-    // await fetch("/api/profile", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(payload),
-    // });
+    await fetch("/api/profile", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
   };
 
   /* ===================== UI ===================== */

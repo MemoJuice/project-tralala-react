@@ -98,7 +98,7 @@ export default function Navbar() {
       <ul className="flex ml-auto gap-1 md:gap-4 sm:text-black-600">
           <li className="hidden sm:flex self-center text-center max-w-40">
         <Link
-           to="/userdashboard"
+           to="/dashboard"
            className="py-2 text-xl w-50 px-4 bg-pink-400 text-white rounded-4xl hover:bg-pink-500 transition"
        >ข้อมูลผู้ใช้งาน
        </Link>
