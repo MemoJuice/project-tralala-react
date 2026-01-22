@@ -2,14 +2,17 @@ import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 import ProfileHeader from "@/components/userprofile/01_ProfileHeader";
 import Certificates from "@/components/userprofile/03_Certificates";
 import Reviews from "@/components/userprofile/05_Reviews";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import axios from "axios";
+import { MessageContext } from "../context/MessageContext"; // ✅ import context
 
 export default function CareGiverCard() {
   const { id } = useParams(); // caregiver ID from URL
   const navigate = useNavigate();
   const location = useLocation();
   const [caregiver, setCaregiver] = useState(null);
+
+  const { cart, setCart } = useContext(MessageContext); // ✅ use context
 
   // read booking details from query params
   const searchParams = new URLSearchParams(location.search);
@@ -31,23 +34,20 @@ export default function CareGiverCard() {
     fetchCaregiver();
   }, [id]);
 
-  async function handleBookingSubmit({ startDate, endDate, shift, caregiverId }) {
-    try {
-      const res = await axios.post("/api/bookings", {
-        startDate,
-        endDate,
-        shift,
-        caregiverId,
-      });
-      if (res.status === 200) {
-        navigate("/cart");
-      }
-    } catch (err) {
-      alert("เกิดข้อผิดพลาดในการจอง");
-    }
-  }
+  function handleBookingSubmit({ startDate, endDate, shift, caregiverId }) {
+    // ✅ Save booking details into context cart
+    setCart({
+      ...cart,
+      serviceType: "custom", // or daily/hospital/monthly depending on flow
+      startDate,
+      endDate,
+      shift,
+      caregiverID: caregiverId,
+    });
 
-  // if (!caregiver) return <p>Loading...</p>;
+    // ✅ Navigate to cart page
+    navigate("/cart");
+  }
 
   return (
     <div className="min-h-full mx-6 p-2 md:mx-40 mt-16 mb-8 bg-white rounded-2xl overflow-auto flex flex-col justify-center items-center">
