@@ -4,8 +4,11 @@ export default function TopCaregiver (){
     return (
         <div className=" flex py-20 bg-sky-50 flex-col justify-center items-center">
           <h1 className="text-3xl md:text-6xl text-pink-400 font-bold font-inter mb-8 items-center ">Hope will be partner with</h1>
+         <a href="https://thailand.generation.org/programs/senior-care-professional/">
          <img src="/images/Generation_Thailand_logo_NEW-BLUE.webp"
-         className="w-85 md:w-100 flex justify-center items-center" />
+         className="w-85 md:w-100 flex justify-center items-center hover:scale-110"
+         Link to="https://thailand.generation.org/programs/senior-care-professional/" />
+         </a>
         </div>
 		// <div className="py-20 bg-sky-50 ">
     //  	   <div className="max-w-screen-xl mx-auto">
