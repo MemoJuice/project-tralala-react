@@ -2,12 +2,10 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import AuthLayout from "./AuthLayout";
 import { Eye, EyeOff } from "lucide-react";
-import axios from "axios";
-import { useContext, useEffect } from "react";
-import { MessageContext } from "../../context/MessageContext";
+import api from "@/api/axios";
 
 export default function LoginForm() {
-  const { API, setMessage } = useContext(MessageContext);
+  const [message, setMessage] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
@@ -29,22 +27,24 @@ export default function LoginForm() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post(`${API}/auth/login`, formData);
+      const res = await api.post(`/auth/login`, formData);
+      alert("login successfully");
       const { token, user } = res.data;
+      // console.log(res.data);
 
-      // เลือกว่าจะเก็บที่ไหน เก็บไว้ถาวร ไม่ต้อง login ใหม่
-      // if (rememberMe) {
-      //   // เลือก "จดจำฉันไว้" → localStorage
-      //   localStorage.setItem("token", token);
-      //   localStorage.setItem("user", JSON.stringify(user));
-      // } else {
+      // เก็บไว้ถาวร ไม่ต้อง login ใหม่
+      if (rememberMe) {
+        // เลือก "จดจำฉันไว้" → localStorage
+        localStorage.setItem("token", token);
+        localStorage.setItem("user", JSON.stringify(user));
+      } else {
         // ไม่เลือก → sessionStorage ปิดแท็บแล้วต้อง login ใหม่
         sessionStorage.setItem("token", token);
         sessionStorage.setItem("user", JSON.stringify(user));
-        sessionStorage.setItem("checkSession", true);
-      // }
+      }
+      window.dispatchEvent(new Event("auth-change"));
 
-      setMessage?.({
+      setMessage({
         type: "success",
         text: "เข้าสู่ระบบสำเร็จ",
       });
@@ -56,10 +56,12 @@ export default function LoginForm() {
       navigate(user.role === "CAREGIVER" ? "/dashboard" : "/userdashboard");
     } catch (error) {
       console.error(error);
-      setMessage?.({
+      setMessage({
         type: "error",
         text: "อีเมลหรือรหัสผ่านไม่ถูกต้อง",
       });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -77,6 +79,17 @@ export default function LoginForm() {
 
   return (
     <AuthLayout title="ยินดีต้อนรับ">
+      {message && (
+        <div
+          className={`p-3 rounded ${
+            message.type === "success"
+              ? "bg-green-100 text-green-700"
+              : "bg-red-100 text-red-700"
+          }`}
+        >
+          {message.text}
+        </div>
+      )}
       <form className="space-y-6 " onSubmit={handleSubmit}>
         <div className="flex flex-col md:flex-row md:items-center gap-4">
           <label
