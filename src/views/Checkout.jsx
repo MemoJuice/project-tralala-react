@@ -5,10 +5,17 @@ import { MessageContext } from "../context/MessageContext";
 import CheckoutForm from "../components/checkout/CheckoutForm";
 import PaymentSummary from "../components/checkout/PaymentSummary";
 import PaymentForm from "../components/checkout/PaymentForm";
+import apiauth from "@/api/axios";
 
 export default function Checkout() {
   const navigate = useNavigate();
-  const token = sessionStorage.getItem("token");
+  let token = "";
+  if (sessionStorage.getItem("token")) {
+    token = sessionStorage.getItem("token");
+  } else if (localStorage.getItem("token")) {
+    token = localStorage.getItem("token")
+  };
+
   const formType = "checkout";
   const {API, cart, bookingID, billingID, setPurchaseSummary} = useContext(MessageContext);
   const [submitting, setSubmitting] = useState(false);
@@ -58,7 +65,7 @@ export default function Checkout() {
       };
 
       console.log(bookingSeniorInfo);
-      await axios.patch(`${API}/bookings/${bookingID}`, bookingSeniorInfo);
+      await apiauth.patch(`/bookings/${bookingID}`, bookingSeniorInfo);
 
       const billingUpdatedInfo = {
         billingSnapshot: {
@@ -72,7 +79,7 @@ export default function Checkout() {
       };
 
       console.log(billingUpdatedInfo);
-      await axios.patch(`${API}/bookings/${bookingID}/billings/${billingID}`, billingUpdatedInfo);
+      await apiauth.patch(`/bookings/${bookingID}/billings/${billingID}`, billingUpdatedInfo);
 
       const summary = {
         billingFirstName: formData.billingFirstName,
@@ -101,7 +108,7 @@ export default function Checkout() {
       navigate("/order_confirmation");
 
       //  Generate ai suggestion after navigate to not delay the page changing
-      const response = await axios.patch(`${API}/bookings/${bookingID}/ai/suggestion`);
+      const response = await apiauth.patch(`/bookings/${bookingID}/ai/suggestion`);
       console.log(response.data.data);
 
     } catch (error) {

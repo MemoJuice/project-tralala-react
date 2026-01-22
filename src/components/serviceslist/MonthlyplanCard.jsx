@@ -6,6 +6,13 @@ import {
 } from "@/components/ui/hover-card"
 
 export default function MonthlyplanCard (){
+    let token = "";
+    if (sessionStorage.getItem("token")) {
+      token = sessionStorage.getItem("token");
+    } else if (localStorage.getItem("token")) {
+      token = localStorage.getItem("token")
+    };
+
     return (
    <div className="items-center w-full mt-8 bg-white rounded-2xl shadow-2xs p-4 grid grid-cols-1 md:grid-cols-2 overflow-hidden">
          {/* <!-- Heading --> */}
@@ -41,11 +48,13 @@ export default function MonthlyplanCard (){
                     </HoverCard>
               </div>
 
+              {token &&
               <div className="mt-6">
                 <div className="flex w-full justify-evenly">
                  <BookingCalendarMonthly />
                 </div>
               </div>
+              }
             </div>
        </div>
     </div>

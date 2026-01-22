@@ -8,10 +8,15 @@ import { useNavigate } from "react-router-dom";
 
 export default function UserDashboard() {
   const navigate = useNavigate();
-  const checkSession = sessionStorage.getItem("checkSession");
+  let token = "";
+  if (sessionStorage.getItem("token")) {
+    token = sessionStorage.getItem("token");
+  } else if (localStorage.getItem("token")) {
+    token = localStorage.getItem("token")
+  };
 
   useEffect(() => {
-    if (!checkSession) {
+    if (!token) {
       console.log("UNAUTHORIZATION, PLEASE LOG IN");
       navigate("/login");
     }
@@ -19,7 +24,7 @@ export default function UserDashboard() {
 
   return (
     <div>
-       { !checkSession ?
+       { !token ?
       <h1 className="text-black text-3xl">UNAUTHORIZATION, PLEASE LOG IN</h1>
       :
       <div>

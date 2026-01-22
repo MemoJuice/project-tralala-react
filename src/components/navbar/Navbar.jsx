@@ -32,6 +32,22 @@ export default function Navbar() {
     localStorage.removeItem("user");
     sessionStorage.removeItem("user");
 
+    // ลบ cart
+    localStorage.removeItem("cart");
+    sessionStorage.removeItem("cart");
+
+    // ลบ bookingID
+    localStorage.removeItem("bookingID");
+    sessionStorage.removeItem("bookingID");
+
+    // ลบ billingID
+    localStorage.removeItem("billingID");
+    sessionStorage.removeItem("billingID");
+
+    // ลบ caregiverID
+    localStorage.removeItem("caregiverID");
+    sessionStorage.removeItem("caregiverID");
+
     // update state
     setToken(null);
 

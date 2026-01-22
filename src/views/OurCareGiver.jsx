@@ -10,12 +10,11 @@ export default function OurCareGiver (){
   const [askError, setAskError] = useState(null);
   const [askResult, setAskResult] = useState(null);
   const [suggestedCaregivers, setSuggestedCaregivers] = useState([]);
-  const { searchQuestion } = useContext(MessageContext);
+  const { searchQuestion, setSearchQuestion } = useContext(MessageContext);
 
 
   const [caregivers, setCaregivers] = useState([]);
   const [loading, setLoading] = useState(true);
-  const checkSession = sessionStorage.getItem("checkSession");
   const [caregiversLoaded, setCaregiversLoaded] = useState(false);
   const [inputQuestion, setInputQuestion] = useState("");
   const [submittedQuestion, setSubmittedQuestion] = useState("");
@@ -81,7 +80,7 @@ export default function OurCareGiver (){
       setSuggestedCaregivers(matched);
       setCaregivers(unmatched);
 
-      setInputQuestion(""); // clear input after submit
+      // setInputQuestion(""); // clear input after submit
     } catch (error) {
       setAskError(
         error?.response?.data?.message ||
@@ -110,8 +109,10 @@ export default function OurCareGiver (){
     if (!caregiversLoaded) return;
     if (!submittedQuestion) return;
 
+    console.log("Attempt to send request to GEMINI AI");
     askAi(submittedQuestion);
   }, [submittedQuestion, caregiversLoaded]);
+
   
     return (
         <div className="min-h-full mx-4 md:mx-24 mt-16 mb-12 bg-white rounded-2xl shadow p-6">

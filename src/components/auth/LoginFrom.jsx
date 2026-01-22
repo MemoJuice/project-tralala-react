@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import AuthLayout from "./AuthLayout";
 import { Eye, EyeOff } from "lucide-react";
+import { MessageContext } from "../../context/MessageContext";
 import apiauth from "@/api/axios";
 
 export default function LoginForm() {
+  const {API} = useContext(MessageContext);
   const [message, setMessage] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -66,7 +68,12 @@ export default function LoginForm() {
   };
 
   useEffect(() => {
-    const token = sessionStorage.getItem("token");
+    let token = "";
+    if (sessionStorage.getItem("token")) {
+      token = sessionStorage.getItem("token");
+    } else if (localStorage.getItem("token")) {
+      token = localStorage.getItem("token")
+    };
 
     if (token) {
       console.log("AUTHORIZED, NAVIGATE TO DASHBOARD");
