@@ -15,8 +15,8 @@ export default function ServiceSection (){
               <Link to="/serviceslist?view=hospitalplan">
                 <img src="images/caregiving-hos.jpg" />
                 <div className="p-5 gap-0.5 text-left">
-                  <h3 className="text-2xl text-gray-700 mb-1 font-bold">พาไปหาหมอ</h3>
-                  <p className="text-gray-700 mb-1">บริการพาไปพบแพทย์ ดูแลตั้งแต่การเดินทาง การรอพบแพทย์ การรับยา และดูแลอย่างใกล้ชิดตลอดการนัดหมาย</p>
+                  <h3 className="text-2xl text-gray-700 mb-1 font-bold">พาไปพบแพทย์</h3>
+                  <p className="text-gray-700 mb-1">บริการพาไปพบแพทย์ ดูแลอย่างใกล้ชิดตลอดการนัดหมาย</p>
                   <p className="text-sky-600 font-medium mt-3">อ่านเพิ่ม</p>
                 </div>
               </Link>
@@ -29,19 +29,19 @@ export default function ServiceSection (){
                 <img src="images/caregiver-daily.jpg" />
                 <div className="p-5 text-left">
                   <h3 className="text-2xl text-gray-700 mb-1 font-bold">บริการดูแลรายวัน</h3>
-                  <p className="text-gray-700 mb-1"> เหมาะสำหรับครอบครัวที่ต้องการผู้ดูแลในช่วงเวลาสั้น ๆ หรือเป็นบางวัน ดูแลสุขอนามัย การรับประทานอาหาร การใช้ชีวิตประจำวัน</p>
+                  <p className="text-gray-700 mb-1"> เหมาะสำหรับครอบครัวที่ต้องการผู้ดูแลในช่วงเวลาสั้นๆ หรือเป็นบางวัน ดูแลสุขอนามัย การใช้ชีวิตประจำวัน</p>
                   <p className="text-sky-600 font-medium mt-3">อ่านเพิ่ม</p>
                 </div>
               </Link>
             </div>
 
-            {/* <!-- Card --> */}
+            {/* <!-- Card ---> */}
             <div className="bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-xl">
               <Link to="/serviceslist?view=monthlyplan">
                 <img src="images/cargive-monthly.jpg" />
                 <div className="p-5 text-left">
                   <h3 className="text-2xl text-gray-700 mb-1 font-bold">บริการดูแลรายเดือน</h3>
-                  <p className="text-gray-700 mb-1">เหมาะสำหรับการดูแลต่อเนื่องระยะยาว โดยทีมผู้ดูแลคุณภาพที่มีประสบการณ์และผ่านการอบรม พร้อมดูแลทั้งร่างกายและจิตใจ</p>
+                  <p className="text-gray-700 mb-1">เหมาะสำหรับการดูแลระยะยาว โดยทีมผู้ดูแลคุณภาพที่มีประสบการณ์และผ่านการอบรม </p>
                   <p className="text-sky-600 font-medium mt-3">อ่านเพิ่ม</p>
                 </div>
               </Link>
